@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[
+  `<HelloWorld /> should render the heading on HelloWorld component 1`
+] = `
+.c0 {
+  color: var(--color-brand);
+}
+
+<h1
+  class="c0"
+>
+  Hello World
+</h1>
+`;
