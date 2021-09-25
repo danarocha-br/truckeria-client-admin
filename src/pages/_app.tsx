@@ -1,24 +1,40 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import {
+  ChakraProvider,
+  cookieStorageManager,
+  localStorageManager,
+} from '@chakra-ui/react';
 
-import GlobalStyles from 'styles/global';
-import Providers from './Providers';
+import { theme } from 'styles/theme';
 
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps, cookies }: AppProps) {
   return (
-    <Providers>
+    <ChakraProvider
+      theme={theme}
+      colorModeManager={
+        typeof cookies === 'string'
+          ? cookieStorageManager(cookies)
+          : localStorageManager
+      }
+    >
       <Head>
         <title>Application Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="shortcut icon" href="/img/icon-512.png" />
         <link rel="apple-touch-icon" href="/img/icon-512.png" />
-        <link rel="manifest" href="/manifest.json" />
         <meta name="description" content="App description." />
       </Head>
-      <GlobalStyles />
 
       <Component {...pageProps} />
-    </Providers>
+    </ChakraProvider>
   );
 }
 
 export default App;
+
+// App.getInitialProps = ({ req:  }) => {
+//   return {
+//     cookies: req.headers.cookie ?? '',
+//   };
+// };

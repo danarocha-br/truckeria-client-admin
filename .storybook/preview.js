@@ -1,49 +1,44 @@
 import { addDecorator, addParameters } from '@storybook/react';
-import { withNextRouter } from 'storybook-addon-next-router';
-import { ThemeProvider } from 'styled-components';
-import { withThemesProvider } from 'storybook-styled-components-theme-selector';
-import { withDesign } from 'storybook-addon-designs';
+// import { withNextRouter } from 'storybook-addon-next-router';
+import {
+  ChakraProvider,
+  Flex,
+  IconButton,
+  useColorMode,
 
-import GlobalStyles from 'styles/global';
-import { lightTheme, darkTheme } from 'styles/themes';
-import tokens from 'styles/tokens';
+} from '@chakra-ui/react';
 
+import { theme } from "styles/theme";
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+SunIcon
+const Nav = ({ children }) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  return (
+    <Flex p="0.5rem" justifyContent="space-between" align="center">
+      {children}
+        <IconButton
+          position="absolute"
+          top="1rem"
+          right="1rem"
+          onClick={toggleColorMode}
+          icon={colorMode === 'light' ? <SunIcon /> : <MoonIcon />  }
+        >
+        </IconButton>
+    </Flex>
+  );
+};
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
-  backgrounds: {
-    default: 'light',
-    values: [
-      {
-        name: 'light',
-        value: tokens.colors.gray[100],
-      },
-      {
-        name: 'dark',
-        value: tokens.colors.gray[900],
-      },
-    ],
-  },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/
+    }
+  }
 }
 
-const themes = [
-  { ...lightTheme,
-    id: 'light',
-    name: 'Light'
-  },
-  { ...darkTheme,
-    id: 'dark',
-    name: 'Dark'
-    }
-]
-
-addDecorator(withNextRouter());
-addDecorator(withDesign());
-addDecorator(
-  withThemesProvider({
-    themes,
-  }),
-);
+// addDecorator(withNextRouter());
 
 addParameters({
   a11y: {},
@@ -51,9 +46,10 @@ addParameters({
 
 export const decorators = [
   (Story) => (
-    <ThemeProvider theme={lightTheme}>
-        <GlobalStyles removeBg />
-        <Story />
-    </ThemeProvider>
+    <ChakraProvider theme={theme}>
+      <Nav>
+      <Story />
+      </Nav>
+    </ChakraProvider>
   ),
 ];
