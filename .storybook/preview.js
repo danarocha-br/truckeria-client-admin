@@ -17,6 +17,8 @@ const Nav = ({ children }) => {
     <Flex p="0.5rem" justifyContent="space-between" align="center">
       {children}
         <IconButton
+          variant='transparent'
+          aria-label='Toogle theme'
           position="absolute"
           top="1rem"
           right="1rem"

@@ -1,3 +1,5 @@
+import { Button } from '@chakra-ui/react';
+
 export default function Home() {
-  return <h1>Hello World</h1>;
+  return <Button size="md">Test</Button>;
 }

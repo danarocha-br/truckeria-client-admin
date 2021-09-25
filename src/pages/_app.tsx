@@ -10,14 +10,7 @@ import { theme } from 'styles/theme';
 
 function App({ Component, pageProps, cookies }: AppProps) {
   return (
-    <ChakraProvider
-      theme={theme}
-      colorModeManager={
-        typeof cookies === 'string'
-          ? cookieStorageManager(cookies)
-          : localStorageManager
-      }
-    >
+    <>
       <Head>
         <title>Application Title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,8 +19,17 @@ function App({ Component, pageProps, cookies }: AppProps) {
         <meta name="description" content="App description." />
       </Head>
 
-      <Component {...pageProps} />
-    </ChakraProvider>
+      <ChakraProvider
+        theme={theme}
+        colorModeManager={
+          typeof cookies === 'string'
+            ? cookieStorageManager(cookies)
+            : localStorageManager
+        }
+      >
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </>
   );
 }
 
