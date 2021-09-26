@@ -1,7 +1,8 @@
 import { extendTheme, ThemeConfig } from '@chakra-ui/react';
 
-import { colors, fontSizes, fonts, radii } from './tokens';
+import { colors, fontSizes, fonts, radii, fontWeigths } from './tokens';
 import { Button } from 'components/Button';
+import { Link } from 'components/Link';
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',
@@ -10,6 +11,7 @@ const config: ThemeConfig = {
 
 const components = {
   Button,
+  Link,
 };
 
 const overrides = {
@@ -22,6 +24,7 @@ const overrides = {
   colors,
   fontSizes,
   fonts,
+  fontWeigths,
   radii,
   config,
   components,

@@ -45,6 +45,14 @@ export const fontSizes = {
   '2xl': '1.625rem',
 };
 
+export const fontWeigths = {
+  light: 300,
+  normal: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+};
+
 export const radii = {
   none: '0',
   sm: '.25rem',
