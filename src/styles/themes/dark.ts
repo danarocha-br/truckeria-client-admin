@@ -93,6 +93,7 @@ export default {
     danger: tokens.theme.colors.red[500],
     warning: tokens.theme.colors.yellow[500],
     success: tokens.theme.colors.green[500],
+    onBrand: tokens.theme.colors.yellow[300],
     onInteractive: tokens.theme.colors.white,
   },
 } as const;

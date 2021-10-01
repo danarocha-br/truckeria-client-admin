@@ -12,6 +12,17 @@ module.exports = {
     'storybook-mobile',
     '@storybook/addon-a11y',
     'storybook-styled-components-theme-selector',
+    {
+      name: '@storybook/addon-postcss',
+      options: {
+        cssLoaderOptions: {
+          importLoaders: 1,
+        },
+        postcssLoaderOptions: {
+          implementation: require('postcss'),
+        },
+      },
+    },
   ],
   webpackFinal: (config) => {
     config.resolve.modules.push(`${process.cwd()}/src`);
