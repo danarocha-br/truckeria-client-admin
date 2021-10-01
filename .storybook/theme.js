@@ -8,12 +8,12 @@ export default create({
   colorSecondary: tokens.theme.colors.brand,
 
   appBg: tokens.theme.colors.neutral[800],
-  appContentBg: tokens.theme.colors.neutral[100],
-  appBorderColor: tokens.theme.colors.neutral[300],
+  appContentBg: tokens.theme.colors.neutral[700],
+  appBorderColor: tokens.theme.colors.neutral[400],
   appBorderRadius: 8,
   appTextColor: tokens.theme.colors.white,
 
-  textColor: tokens.theme.colors.white,
+  textColor: tokens.theme.colors.neutral[100],
   fontBase: 'DM Sans, sans-serif',
   fontCode: 'monospace',
 
@@ -24,7 +24,7 @@ export default create({
 
   // Form colors
   inputBg: 'white',
-  inputBorder: 'silver',
+  inputBorder: tokens.theme.colors.neutral[200],
   inputTextColor: tokens.theme.colors.neutral[800],
   inputBorderRadius: 4,
 

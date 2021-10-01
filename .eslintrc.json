@@ -8,7 +8,8 @@
   "settings": {
     "react": {
       "version": "detect"
-    }
+    },
+    "import/ignore": ["tailwind.css" ]
   },
   "extends": [
     "eslint:recommended",

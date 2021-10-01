@@ -1,6 +1,7 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 
+import '../../tailwind.css';
 import GlobalStyles from 'styles/global';
 import Providers from './Providers';
 
