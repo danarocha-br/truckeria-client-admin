@@ -14,16 +14,10 @@ updates:
     - 14.14.39
     - 14.14.41
     - 15.0.0
-  - dependency-name: "@storybook/react"
+  - dependency-name: twin.macro
     versions:
-    - 6.2.0
-    - 6.2.1
-    - 6.2.2
-    - 6.2.3
-    - 6.2.5
-    - 6.2.6
-    - 6.2.7
-    - 6.2.8
+    - 2.3.2
+    - 2.3.3
   - dependency-name: eslint
     versions:
     - 7.23.0
@@ -45,9 +39,10 @@ updates:
     versions:
     - 10.1.1
     - 10.1.2
-  - dependency-name: "@types/jest"
-    versions:
-    - 26.0.22
+    - 10.1.3
   - dependency-name: "@testing-library/jest-dom"
     versions:
     - 5.11.10
+  - dependency-name: "@types/jest"
+    versions:
+    - 26.0.22
