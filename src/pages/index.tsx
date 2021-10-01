@@ -1,5 +1,9 @@
-import { Button } from '@chakra-ui/react';
+import SwitchCustom from 'components/Switch';
 
 export default function Home() {
-  return <Button size="md">Test</Button>;
+  return (
+    <div className="h-full w-full">
+      <SwitchCustom />
+    </div>
+  );
 }

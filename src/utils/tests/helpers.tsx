@@ -1,7 +1,7 @@
-import { ChakraProvider } from '@chakra-ui/react';
+import { ThemeProvider } from 'styled-components';
 import { render, RenderResult } from '@testing-library/react';
 
-import { theme } from 'styles/theme';
+import { lightTheme } from 'styles/themes';
 
 export const renderWithTheme = (children: React.ReactNode): RenderResult =>
-  render(<ChakraProvider theme={theme}>{children}</ChakraProvider>);
+  render(<ThemeProvider theme={lightTheme}>{children}</ThemeProvider>);
