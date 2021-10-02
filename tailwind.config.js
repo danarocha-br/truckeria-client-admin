@@ -41,7 +41,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        "graphie, -apple--apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+        "canada-type-gibson, -apple--apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
       ],
       serif: ['Merriweather', 'serif'],
     },

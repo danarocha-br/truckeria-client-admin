@@ -14,10 +14,7 @@ function App({ Component, pageProps }: AppProps) {
         <link rel="apple-touch-icon" href="/img/icon-512.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="description" content="App description." />
-        <link
-          rel="stylesheet"
-          href="https://use.typekit.net/jll4squ.css"
-        ></link>
+        <link rel="stylesheet" href="https://use.typekit.net/jll4squ.css" />
       </Head>
       <GlobalStyles />
 

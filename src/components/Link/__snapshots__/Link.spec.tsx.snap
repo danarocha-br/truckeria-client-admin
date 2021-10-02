@@ -2,16 +2,9 @@
 
 exports[`<Link /> should render the Link 1`] = `
 .c0 {
-  --tw-translate-x: 0;
-  --tw-translate-y: 0;
-  --tw-rotate: 0;
-  --tw-skew-x: 0;
-  --tw-skew-y: 0;
-  --tw-scale-x: 1;
-  --tw-scale-y: 1;
-  -webkit-transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-  -ms-transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-  transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  -webkit-transform: var(--tw-transform);
+  -ms-transform: var(--tw-transform);
+  transform: var(--tw-transform);
   -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform,filter,backdrop-filter;
   -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;
   transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;
@@ -19,15 +12,16 @@ exports[`<Link /> should render the Link 1`] = `
   transition-timing-function: cubic-bezier(0,0,0.2,1);
   -webkit-transition-duration: 700ms;
   transition-duration: 700ms;
-  font-size: 1.4rem;
-  font-weight: 500;
+  font-weight: 600;
   -webkit-text-decoration: none;
   text-decoration: none;
   display: inline-block;
   position: relative;
   padding-left: 1rem;
   padding-right: 1.25rem;
-  color: #CCAF81;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  color: #a47f43;
 }
 
 .c0:after,
@@ -35,7 +29,7 @@ exports[`<Link /> should render the Link 1`] = `
   position: absolute;
   display: inline-block;
   width: 1.25rem;
-  top: 1.25rem;
+  top: 0.75rem;
   content: '';
   height: 1px;
   background-color: #FF8D4D;
@@ -55,16 +49,9 @@ exports[`<Link /> should render the Link 1`] = `
 
 .c0:hover:after,
 .c0:hover:before {
-  --tw-translate-x: 0;
-  --tw-translate-y: 0;
-  --tw-rotate: 0;
-  --tw-skew-x: 0;
-  --tw-skew-y: 0;
-  --tw-scale-x: 1.25;
-  --tw-scale-y: 1;
-  -webkit-transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-  -ms-transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-  transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  -webkit-transform: var(--tw-transform);
+  -ms-transform: var(--tw-transform);
+  transform: var(--tw-transform);
   -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform,filter,backdrop-filter;
   -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;
   transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;
@@ -72,6 +59,7 @@ exports[`<Link /> should render the Link 1`] = `
   transition-timing-function: cubic-bezier(0,0,0.2,1);
   -webkit-transition-duration: 700ms;
   transition-duration: 700ms;
+  --tw-scale-x: 1.25;
 }
 
 <a

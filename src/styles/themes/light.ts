@@ -78,7 +78,7 @@ export default {
   },
 
   interactive: {
-    default: tokens.theme.colors.yellow[300],
+    default: darken(0.2, tokens.theme.colors.yellow[300]),
     subdued: tokens.theme.colors.yellow[500],
     hover: tokens.theme.colors.brand,
     pressed: darken(0.1, tokens.theme.colors.yellow[500]),
