@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> should render the medium Button size by default 1`] = `
+.c0 {
+  --tw-text-opacity: 1;
+  color: rgba(255,255,255,var(--tw-text-opacity));
+  font-weight: 600;
+  text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  white-space: nowrap;
+  width: auto;
+  position: relative;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+  font-size: 1.1rem;
+  line-height: 1.25rem;
+  height: 3.5rem;
+  border-radius: 1.2rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  background-color: #FF8D4D;
+}
+
+.c0:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000);
+}
+
+.c0 svg {
+  height: 1.75rem;
+  width: 1.75rem;
+}
+
+.c0:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgba(255,141,77,var(--tw-ring-opacity));
+}
+
+.c0:hover {
+  background-color: #ff6c1a;
+}
+
+.c0:focus {
+  background-color: #ff6c1a;
+  box-shadow: 0 0 0 1px #FFFFFF,0 0 0 calc(2px + 2px) rgba(255,141,77,0.6);
+}
+
+.c0:active {
+  background-color: #e65300;
+}
+
+.c0:disabled {
+  background-color: rgba(255,141,77,0.6);
+}
+
+<button
+  aria-label="button label"
+  class="c0"
+  color="primary"
+>
+  button label
+</button>
+`;

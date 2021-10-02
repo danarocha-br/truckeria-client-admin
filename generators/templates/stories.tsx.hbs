@@ -5,11 +5,14 @@ import {{pascalCase name}} from '.';
 export default {
   title: '{{pascalCase name}}',
   component: {{pascalCase name}},
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    label: 'Button',
+  }
 } as Meta;
 
-export const Template: Story = (args) => <{{pascalCase name}} {...args} />;
+const Template: Story = (args) => <{{pascalCase name}} {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  label: 'Button',
-};

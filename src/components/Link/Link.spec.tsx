@@ -1,0 +1,15 @@
+import { screen } from '@testing-library/react';
+
+import { renderWithTheme } from 'utils/tests/helpers';
+
+import Link from '.';
+
+describe('<Link />', () => {
+  it('should render the Link', () => {
+    const { container } = renderWithTheme(<Link to="/" label="I am a link" />);
+
+    expect(screen.getByLabelText(/I am a link/i)).toBeInTheDocument();
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+});

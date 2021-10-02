@@ -41,19 +41,19 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        "-apple--apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+        "graphie, -apple--apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
       ],
       serif: ['Merriweather', 'serif'],
     },
     fontSize: {
-      tiny: '1.0rem',
-      xs: '1.2rem',
-      sm: '1.4rem',
-      base: '1.6rem',
-      lg: '2.0rem',
-      xl: '2.4rem',
-      '2xl': '3.2rem',
-      '3xl': '4.4rem',
+      tiny: '0.66rem',
+      xs: '0.77rem',
+      sm: '0.8rem',
+      base: '1.1rem',
+      lg: '1.25rem',
+      xl: '1.5rem',
+      '2xl': '2rem',
+      '3xl': '2.75rem',
     },
     borderRadius: {
       xs: '0.4rem',
@@ -70,7 +70,10 @@ module.exports = {
   },
   extend: {},
   variants: {
-    extend: {},
+    extend: {
+      backgroundOpacity: ['disabled', 'active'],
+      scale: ['active', 'group-hover', 'hover'],
+    },
   },
   plugins: [],
 };
