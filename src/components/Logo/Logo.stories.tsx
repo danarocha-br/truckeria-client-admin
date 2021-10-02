@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import Logo from '.';
 
 export default {
-  title: 'Logo',
+  title: 'Foundation/Logo',
   component: Logo,
   parameters: {
     layout: 'centered',

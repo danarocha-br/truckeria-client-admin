@@ -15,10 +15,14 @@ const CustomStyles: GlobalStyleComponent<
   DefaultTheme
 > = createGlobalStyle`
   * {
-    ${tw`antialiased`};
+    ${tw`
+      antialiased
+    `};
 
     button {
-      ${tw`cursor-pointer`};
+      ${tw`
+        cursor-pointer
+      `};
     }
   }
 
@@ -29,31 +33,41 @@ const CustomStyles: GlobalStyleComponent<
     body {
       ${!removeBg &&
       css`
-        background-color: ${theme.colors.white};
+        background-color: ${theme.background.default};
         -webkit-tap-highlight-color: ${theme.colors.brand};
       `}
     }
 
     [disabled] {
-      ${tw`cursor-not-allowed`};
+      ${tw`
+        cursor-not-allowed
+      `};
     }
 
     html,
     body,
     #__next {
-      ${tw`h-full`}
+      ${tw`
+        h-full
+      `}
     }
 
     body,
     button,
     input,
     textarea {
-      ${tw`font-sans`}
+      ${tw`
+        font-sans
+      `}
       font-display: swap;
     }
 
     button {
-      ${tw`outline-none border-none cursor-pointer`}
+      ${tw`
+        outline-none
+        border-none
+        cursor-pointer
+      `}
     }
   `}
 `;
