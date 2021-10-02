@@ -20,10 +20,8 @@ const SwitchCustom = () => {
       onColor="#fff"
       offHandleColor={tokens.theme.colors.neutral[700]}
       onHandleColor="#fff"
-      height={60}
-      width={60.01}
-      borderRadius={0}
-      activeBoxShadow={'0 0 2px 3px #ffffff0'}
+      height={40}
+      borderRadius={8}
       uncheckedHandleIcon={
         <svg
           xmlns="http://www.w3.org/2000/svg"

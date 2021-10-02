@@ -4,8 +4,7 @@ import tw from 'twin.macro';
 export const Anchor = styled.a`
   ${({ theme }) => css`
     ${tw`
-      text-sm
-      font-medium
+      font-semibold
       no-underline
       inline-block
       relative
@@ -26,7 +25,7 @@ export const Anchor = styled.a`
         absolute
         inline-block
         w-5
-        top-5
+        top-3
         `};
       content: '';
       height: 1px;

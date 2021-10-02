@@ -3,10 +3,13 @@
 exports[`<Logo /> should render the Logo 1`] = `
 .c0 {
   color: #2B3038;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
 }
 
 <div
-  class="c0 hidden sm:block"
+  class="c0  undefined"
 >
   <svg
     aria-label="Truckeria"

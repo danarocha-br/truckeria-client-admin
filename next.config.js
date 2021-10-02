@@ -1,4 +1,7 @@
 module.exports = {
+  images: {
+    domains: ['res.cloudinary.com'],
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       // Unset client-side javascript that only works server-side
