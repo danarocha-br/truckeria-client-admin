@@ -52,10 +52,9 @@ addParameters({
 export const decorators = [
   (Story) => (
 
-    <ThemeProvider theme={lightTheme}>
-
-    <GlobalStyles removeBg />
-        <Story />
+    <ThemeProvider theme={darkTheme}>
+      <GlobalStyles removeBg />
+      <Story />
     </ThemeProvider>
   ),
 ];

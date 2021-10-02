@@ -27,10 +27,8 @@ const CustomStyles: GlobalStyleComponent<
   }
 
   ${({ theme, removeBg }) => css`
-    html {
-      font-size: 62.5%;
-    }
     body {
+      color: ${theme.text.default};
       ${!removeBg &&
       css`
         background-color: ${theme.background.default};
@@ -67,7 +65,7 @@ const CustomStyles: GlobalStyleComponent<
         outline-none
         border-none
         cursor-pointer
-      `}
+        `}
     }
   `}
 `;

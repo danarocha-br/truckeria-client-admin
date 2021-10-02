@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import Switch from 'react-switch';
 
 import tokens from '../../../tailwind.config';

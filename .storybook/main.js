@@ -8,7 +8,6 @@ module.exports = {
     "@storybook/theming",
     "@storybook/addon-essentials",
     'storybook-addon-designs',
-    '@etchteam/storybook-addon-status/register',
     'storybook-mobile',
     '@storybook/addon-a11y',
     'storybook-styled-components-theme-selector',
