@@ -14,7 +14,7 @@ module.exports = {
       brand: '#FF8D4D',
       white: '#FFFFFF',
       red: {
-        500: '#E85A7C',
+        500: '#E05252',
         100: '#F7D5D5',
       },
       yellow: {
@@ -72,6 +72,7 @@ module.exports = {
   variants: {
     extend: {
       backgroundOpacity: ['disabled', 'active'],
+      borderOpacity: ['disabled', 'active'],
       scale: ['active', 'group-hover', 'hover'],
     },
   },

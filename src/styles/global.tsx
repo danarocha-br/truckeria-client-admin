@@ -65,9 +65,28 @@ const CustomStyles: GlobalStyleComponent<
         outline-none
         border-none
         cursor-pointer
-        `}
+      `}
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+      ${tw`
+        px-3
+      `}
+      box-shadow: 0 0 0px 4px ${theme.surface.warning
+        .disabled} inset !important;
+      transition: background-color 5000s ease-in-out 0s;
+      filter: none;
     }
   `}
+
 `;
 
 const GlobalStyles = () => {

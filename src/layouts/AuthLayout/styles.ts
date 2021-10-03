@@ -61,6 +61,7 @@ export const AnimatedContainer = styled.div<ModifierProps>`
       px-8
       sm:px-20
       lg:px-3
+      mt-10
       flex
       flex-col
       items-center

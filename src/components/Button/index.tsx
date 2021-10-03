@@ -1,20 +1,21 @@
 import * as React from 'react';
-
+import { IconType } from 'react-icons';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+
 import * as S from './styles';
 
 export type ButtonProps = {
   label?: string;
   ariaLabel?: string;
-  icon?: JSX.Element;
+  icon?: JSX.Element | string | IconType;
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
-  loading?: boolean;
-  disabled?: boolean;
+  loading?: boolean | number;
+  disabled?: boolean | number;
   color?: 'primary' | 'success';
   variant?: 'default' | 'icon';
   onClick?: () => (event: React.MouseEvent<HTMLButtonElement>) => void;
-};
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = ({
   label,
@@ -37,16 +38,17 @@ const Button = ({
     color={color}
     variant={variant}
     onClick={onClick}
-    loading={loading}
+    loading={Number(loading)}
     disabled={loading || disabled}
     {...props}
   >
-    {!!icon && icon}
+    {!!icon && <i aria-hidden="true">{icon}</i>}
     {variant !== 'icon' && label}
     {loading && (
       <AiOutlineLoading3Quarters
         color="white"
         className="ml-5 -mr-4 animate-spin"
+        aria-hidden="true"
       />
     )}
   </S.Button>

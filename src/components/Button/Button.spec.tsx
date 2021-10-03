@@ -1,4 +1,5 @@
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { FiPlus } from 'react-icons/fi';
 
 import { renderWithTheme } from 'utils/tests/helpers';
@@ -12,7 +13,7 @@ describe('<Button />', () => {
     expect(screen.getByRole('button', { name: /button label/i })).toHaveStyle({
       padding: '2.5rem 4rem 2.5rem 4rem',
       'font-size': '1.1rem',
-      height: '3.5rem',
+      height: '3rem',
     });
 
     expect(container.firstChild).toMatchSnapshot();
@@ -54,4 +55,14 @@ it('should render an icon if prop is passed', () => {
 
   expect(screen.getByText(/button label/i)).toBeInTheDocument();
   expect(screen.getByTestId(/icon/i)).toBeInTheDocument();
+});
+
+it('Is accessible by tab', () => {
+  renderWithTheme(<Button label="button label" />);
+
+  const button = screen.getByLabelText(/button label/i);
+  expect(document.body).toHaveFocus();
+
+  userEvent.tab();
+  expect(button).toHaveFocus();
 });
