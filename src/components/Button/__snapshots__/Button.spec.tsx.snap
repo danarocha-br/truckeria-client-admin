@@ -29,8 +29,8 @@ exports[`<Button /> should render the medium Button size by default 1`] = `
   transition-duration: 300ms;
   font-size: 1.1rem;
   line-height: 1.25rem;
-  height: 3.5rem;
-  border-radius: 1.2rem;
+  height: 3rem;
+  border-radius: 0.4rem;
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
   padding-left: 4rem;
@@ -62,7 +62,7 @@ exports[`<Button /> should render the medium Button size by default 1`] = `
 
 .c0:focus {
   background-color: #ff6c1a;
-  box-shadow: 0 0 0 1px #FFFFFF,0 0 0 calc(2px + 2px) rgba(255,141,77,0.6);
+  box-shadow: 0 0 0 1px #FFFFFF,0 0 0 calc(2px + 2px) rgba(172,164,160,0.75);
 }
 
 .c0:active {
@@ -70,13 +70,14 @@ exports[`<Button /> should render the medium Button size by default 1`] = `
 }
 
 .c0:disabled {
-  background-color: rgba(255,141,77,0.6);
+  background-color: rgba(172,164,160,0.75);
 }
 
 <button
   aria-label="button label"
   class="c0"
   color="primary"
+  loading="0"
 >
   button label
 </button>

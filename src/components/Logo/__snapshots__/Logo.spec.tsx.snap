@@ -2,7 +2,7 @@
 
 exports[`<Logo /> should render the Logo 1`] = `
 .c0 {
-  color: #2B3038;
+  color: #876837;
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);

@@ -31,8 +31,8 @@ const sizeModifier = {
     ${tw`
         text-base
         leading-5
-        h-14
-        rounded-md
+        h-12
+        rounded-xs
     `}
     ${variant === 'icon' ? tw`w-14` : tw`py-10 px-16`};
 
@@ -49,7 +49,7 @@ const sizeModifier = {
         text-lg
         leading-6
         h-16
-        rounded-md
+        rounded-sm
     `}
     ${variant === 'icon' ? tw`w-16` : tw`py-12 px-20`};
 

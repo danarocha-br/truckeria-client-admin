@@ -40,6 +40,7 @@ exports[`<AuthLayout /> should render the AuthLayout with a title 1`] = `
   width: 100%;
   padding-left: 2rem;
   padding-right: 2rem;
+  margin-top: 2.5rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -75,7 +76,7 @@ exports[`<AuthLayout /> should render the AuthLayout with a title 1`] = `
 }
 
 .c4 {
-  color: #2B3038;
+  color: #876837;
   -webkit-transform: scale(1.4);
   -ms-transform: scale(1.4);
   transform: scale(1.4);
