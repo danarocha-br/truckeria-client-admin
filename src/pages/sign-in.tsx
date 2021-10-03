@@ -35,7 +35,7 @@ export default function SignIn() {
 
   const methods = useForm<FormData>({
     defaultValues: { ...initialValues },
-    mode: 'onChange',
+    mode: 'all',
     resolver: yupResolver<Yup.AnyObjectSchema>(SignInSchema),
   });
 

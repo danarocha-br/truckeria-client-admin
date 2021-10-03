@@ -8,6 +8,7 @@ import Link from 'components/Link';
 
 export type AuthLayoutProps = {
   title: string;
+  subtitle?: string;
   /** href for the link at the top */
   to?: string;
   /** if link needed, need to pass a label */
@@ -19,6 +20,7 @@ export type AuthLayoutProps = {
 
 const AuthLayout = ({
   title,
+  subtitle,
   children,
   to,
   linkLabel,
@@ -32,8 +34,9 @@ const AuthLayout = ({
         </div>
       )}
       <S.AnimatedContainer position={position}>
-        <Logo size="lg" className="mt-24" />
-        <S.Title>{title}</S.Title>
+        <Logo size="lg" className="mt-16 lg:mt-24" />
+        <S.Title hasSubtitle={!!subtitle}>{title}</S.Title>
+        <S.Subtitle>{subtitle}</S.Subtitle>
         {children}
       </S.AnimatedContainer>
     </S.ContainerLeft>
