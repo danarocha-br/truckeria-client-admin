@@ -1,4 +1,5 @@
 import * as React from 'react';
+import NextLink from 'next/link';
 import Image from 'next/image';
 
 import * as S from './styles';
@@ -37,7 +38,11 @@ const AuthLayout = ({
         </div>
       )}
       <S.AnimatedContainer position={position}>
-        <Logo size="lg" className="mt-16 lg:mt-18" />
+        <NextLink href="http://truckeria.app" passHref>
+          <a href="/">
+            <Logo size="lg" className="mt-16 lg:mt-18" />
+          </a>
+        </NextLink>
         <S.Title hasSubtitle={!!subtitle}>{title}</S.Title>
         <S.Subtitle>{subtitle}</S.Subtitle>
         {children}
