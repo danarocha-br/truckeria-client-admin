@@ -4,7 +4,7 @@ import tw from 'twin.macro';
 export const Anchor = styled.a`
   ${({ theme }) => css`
     ${tw`
-      font-semibold
+      font-medium
       no-underline
       inline-block
       relative
@@ -56,6 +56,22 @@ export const Anchor = styled.a`
           duration-700
         `};
       }
+    }
+  `}
+`;
+
+export const AnchorInline = styled.a`
+  ${({ theme }) => css`
+    ${tw`
+      font-medium
+      inline-block
+      transition-colors
+    `}
+
+    color: ${theme.interactive.default};
+
+    &:hover {
+      color: ${theme.interactive.hover};
     }
   `}
 `;

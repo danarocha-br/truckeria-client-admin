@@ -27,6 +27,10 @@ const CustomStyles: GlobalStyleComponent<
   }
 
   ${({ theme, removeBg }) => css`
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       color: ${theme.text.default};
       ${!removeBg &&

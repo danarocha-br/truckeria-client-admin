@@ -30,7 +30,7 @@ export const Wrapper = styled.main<ModifierProps>`
   ${({ theme, position }) => css`
     ${tw`
       w-full
-      h-full
+      h-screen
       flex
       justify-between
     `};
@@ -47,9 +47,11 @@ export const ContainerLeft = styled.div`
       flex
       flex-col
       w-full
-      h-full
+      h-screen
       items-center
       relative
+      overflow-y-scroll
+      pb-10
     `};
   `}
 `;
@@ -57,14 +59,14 @@ export const ContainerLeft = styled.div`
 export const AnimatedContainer = styled.div<ModifierProps>`
   ${tw`
       w-full
-      lg:w-1/2
-      px-8
+      px-10
       sm:px-20
-      lg:px-3
+      lg:w-2/3
       mt-10
       flex
       flex-col
       items-center
+      justify-center
     `};
   animation: ${(p) => (p.position === 'right' ? enterRight : enterLeft)} 1s;
 `;
@@ -81,15 +83,34 @@ export const ContainerRight = styled.div`
   `}
 `;
 
-export const Title = styled.h1`
-  ${() => css`
+type TitleProps = {
+  hasSubtitle: boolean;
+};
+
+export const Title = styled.h1<TitleProps>`
+  ${({ hasSubtitle }) => css`
     ${tw`
-      font-semibold
+      font-normal
       text-center
       text-xl
       tracking-wide
-      mb-12
       mt-14
     `};
+
+    ${hasSubtitle ? 'mb-6' : 'mb-12'}
+  `}
+`;
+
+export const Subtitle = styled.h2`
+  ${({ theme }) => css`
+    ${tw`
+      text-center
+      text-base
+      tracking-wide
+      mb-12
+      mt-4
+      opacity-70
+    `};
+    color: ${theme.text.subdued};
   `}
 `;

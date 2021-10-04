@@ -9,13 +9,32 @@ type LinkProps = {
   /** if you need special link description */
   ariaLabel?: string;
   className?: string;
+  variant?: 'standalone' | 'inline';
 };
 
-const CustomLink = ({ to, label, ariaLabel, className }: LinkProps) => (
+const CustomLink = ({
+  to,
+  label,
+  ariaLabel,
+  className,
+  variant = 'standalone',
+}: LinkProps) => (
   <Link href={to} passHref>
-    <S.Anchor className={className} aria-label={ariaLabel ? ariaLabel : label}>
-      {label}
-    </S.Anchor>
+    {variant === 'standalone' ? (
+      <S.Anchor
+        className={className}
+        aria-label={ariaLabel ? ariaLabel : label}
+      >
+        {label}
+      </S.Anchor>
+    ) : (
+      <S.AnchorInline
+        className={className}
+        aria-label={ariaLabel ? ariaLabel : label}
+      >
+        {label}
+      </S.AnchorInline>
+    )}
   </Link>
 );
 

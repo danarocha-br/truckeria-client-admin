@@ -1,4 +1,5 @@
 import * as React from 'react';
+import NextLink from 'next/link';
 import Image from 'next/image';
 
 import * as S from './styles';
@@ -8,10 +9,13 @@ import Link from 'components/Link';
 
 export type AuthLayoutProps = {
   title: string;
+  subtitle?: string;
   /** href for the link at the top */
   to?: string;
   /** if link needed, need to pass a label */
   linkLabel?: string;
+  /** if custom image is passed */
+  image?: string;
   /** to invert left and right panels */
   position?: 'left' | 'right';
   children: React.ReactNode;
@@ -19,9 +23,11 @@ export type AuthLayoutProps = {
 
 const AuthLayout = ({
   title,
+  subtitle,
   children,
   to,
   linkLabel,
+  image,
   position = 'left',
 }: AuthLayoutProps) => (
   <S.Wrapper position={position}>
@@ -32,14 +38,23 @@ const AuthLayout = ({
         </div>
       )}
       <S.AnimatedContainer position={position}>
-        <Logo size="lg" className="mt-24" />
-        <S.Title>{title}</S.Title>
+        <NextLink href="http://truckeria.app" passHref>
+          <a href="/">
+            <Logo size="lg" className="mt-16 lg:mt-18" />
+          </a>
+        </NextLink>
+        <S.Title hasSubtitle={!!subtitle}>{title}</S.Title>
+        <S.Subtitle>{subtitle}</S.Subtitle>
         {children}
       </S.AnimatedContainer>
     </S.ContainerLeft>
     <S.ContainerRight>
       <Image
-        src="https://res.cloudinary.com/danarocha/image/upload/v1633193126/truckeria/signinbackground_dcrtxs.png"
+        src={`${
+          image
+            ? image
+            : `https://res.cloudinary.com/danarocha/image/upload/v1633193126/truckeria/signinbackground_dcrtxs.png`
+        }`}
         alt="Truckeria"
         layout="fill"
         objectFit="cover"
