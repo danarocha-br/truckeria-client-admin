@@ -8,6 +8,7 @@ import { HiLockClosed } from 'react-icons/hi';
 import AuthLayout from 'layouts/AuthLayout';
 import TextInput from 'components/TextInput';
 import Button from 'components/Button';
+import FormControl from 'components/FormControl';
 
 export type FormData = {
   token: string;
@@ -61,7 +62,7 @@ export default function ResetPassword() {
         image="https://res.cloudinary.com/danarocha/image/upload/v1633350908/truckeria/truckeria-icon-bck_gtmtri.jpg"
       >
         <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4">
+          <FormControl onSubmit={handleSubmit(onSubmit)}>
             <TextInput
               id="password"
               type="password"
@@ -86,7 +87,7 @@ export default function ResetPassword() {
               loading={isSubmitting}
               disabled={!isValid || isSubmitting}
             />
-          </form>
+          </FormControl>
         </FormProvider>
       </AuthLayout>
     </>

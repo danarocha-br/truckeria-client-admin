@@ -16,6 +16,7 @@ import AuthLayout from 'layouts/AuthLayout';
 import TextInput from 'components/TextInput';
 import Button from 'components/Button';
 import Link from 'components/Link';
+import FormControl from 'components/FormControl';
 
 export type FormData = {
   name: string;
@@ -63,7 +64,7 @@ export default function SignUp() {
   const onSubmit = useCallback(
     async (values: FormData) => {
       console.log(values);
-      router.push('/');
+      router.push('/setup-profile');
     },
     [router]
   );
@@ -78,7 +79,7 @@ export default function SignUp() {
         position="right"
       >
         <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4">
+          <FormControl onSubmit={handleSubmit(onSubmit)}>
             <TextInput
               id="name"
               name="name"
@@ -114,7 +115,7 @@ export default function SignUp() {
               loading={isSubmitting}
               disabled={!isValid || isSubmitting}
             />
-          </form>
+          </FormControl>
 
           <p
             className="text-center mt-10"

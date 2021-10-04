@@ -11,7 +11,7 @@ export type LogoProps = {
 const Logo = ({ symbolOnly = false, size, className, ...props }: LogoProps) => (
   <>
     {!symbolOnly ? (
-      <S.Container size={size} className={` ${className}`} {...props}>
+      <S.Container size={size} className={className} {...props}>
         <svg
           width="171"
           height="82"
@@ -63,7 +63,10 @@ const Logo = ({ symbolOnly = false, size, className, ...props }: LogoProps) => (
         </svg>
       </S.Container>
     ) : (
-      <S.Container size={size} className={`${symbolOnly && 'sm:block'}`}>
+      <S.Container
+        size={size}
+        className={`${symbolOnly && 'sm:block'} ${className}`}
+      >
         <svg
           width="58"
           height="58"
