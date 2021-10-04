@@ -117,7 +117,7 @@ export const Container = styled.span<ContainerProps>`
       h-20
     `}
     border-color: ${theme.background.default};
-    min-width: 23rem;
+    min-width: 15rem;
     z-index: 1;
 
     &:hover {

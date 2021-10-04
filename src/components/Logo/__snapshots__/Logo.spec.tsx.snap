@@ -9,7 +9,7 @@ exports[`<Logo /> should render the Logo 1`] = `
 }
 
 <div
-  class="c0  undefined"
+  class="c0"
 >
   <svg
     aria-label="Truckeria"

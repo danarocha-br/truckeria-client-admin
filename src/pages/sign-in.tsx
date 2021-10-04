@@ -10,6 +10,7 @@ import AuthLayout from 'layouts/AuthLayout';
 import TextInput from 'components/TextInput';
 import Button from 'components/Button';
 import Link from 'components/Link';
+import FormControl from 'components/FormControl';
 
 export type FormData = {
   email: string;
@@ -61,7 +62,7 @@ export default function SignIn() {
         title="Welcome back!"
       >
         <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4">
+          <FormControl onSubmit={handleSubmit(onSubmit)}>
             <TextInput
               id="email"
               type="email"
@@ -88,7 +89,7 @@ export default function SignIn() {
               loading={isSubmitting}
               disabled={!isValid || isSubmitting}
             />
-          </form>
+          </FormControl>
           <Link
             to="/forgot-password"
             label="Forgot password?"
