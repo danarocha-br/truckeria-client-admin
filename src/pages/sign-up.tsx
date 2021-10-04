@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useCallback, useContext } from 'react';
-import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, FormProvider } from 'react-hook-form';
@@ -16,6 +15,7 @@ import {
 import AuthLayout from 'layouts/AuthLayout';
 import TextInput from 'components/TextInput';
 import Button from 'components/Button';
+import Link from 'components/Link';
 
 export type FormData = {
   name: string;
@@ -30,7 +30,13 @@ const initialValues: FormData = {
 };
 
 const SignUpSchema = Yup.object().shape({
-  name: Yup.string().min(3).required('Name is required'),
+  name: Yup.string()
+    .min(
+      3,
+      `Name must be at least 3 characters.
+  `
+    )
+    .required('Name is required'),
   email: Yup.string()
     .email('Please provide a valid e-mail.')
     .required('E-mail is required'),
@@ -102,7 +108,7 @@ export default function SignUp() {
               loading={isSubmitting}
             />
             <Button
-              label="Sign In"
+              label="Create an Account"
               type="submit"
               fullWidth
               loading={isSubmitting}
@@ -117,26 +123,8 @@ export default function SignUp() {
             }}
           >
             By signing up, I agree to Truckeria's{' '}
-            <NextLink href="/">
-              <a
-                className="font-medium"
-                href=""
-                style={{ color: `${theme.interactive.default}` }}
-              >
-                Terms & Conditions
-              </a>
-            </NextLink>{' '}
-            and{' '}
-            <NextLink href="/">
-              <a
-                className="font-medium"
-                href=""
-                style={{ color: `${theme.interactive.default}` }}
-              >
-                Privacy Policy
-              </a>
-            </NextLink>
-            .
+            <Link to="/" variant="inline" label="Terms & Conditions"></Link> and{' '}
+            <Link to="/" variant="inline" label="Privacy Policy"></Link>.
           </p>
         </FormProvider>
       </AuthLayout>

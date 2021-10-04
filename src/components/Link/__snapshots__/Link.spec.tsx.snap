@@ -12,7 +12,7 @@ exports[`<Link /> should render the Link 1`] = `
   transition-timing-function: cubic-bezier(0,0,0.2,1);
   -webkit-transition-duration: 700ms;
   transition-duration: 700ms;
-  font-weight: 600;
+  font-weight: 500;
   -webkit-text-decoration: none;
   text-decoration: none;
   display: inline-block;

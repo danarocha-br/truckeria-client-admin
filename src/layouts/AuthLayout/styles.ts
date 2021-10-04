@@ -59,14 +59,14 @@ export const ContainerLeft = styled.div`
 export const AnimatedContainer = styled.div<ModifierProps>`
   ${tw`
       w-full
-      lg:w-1/2
-      px-8
+      px-10
       sm:px-20
-      lg:px-3
+      lg:w-2/3
       mt-10
       flex
       flex-col
       items-center
+      justify-center
     `};
   animation: ${(p) => (p.position === 'right' ? enterRight : enterLeft)} 1s;
 `;
