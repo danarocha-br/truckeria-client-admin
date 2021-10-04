@@ -18,4 +18,9 @@ const Template: Story = (args) => (
   <Link {...args} label="I don't have an account" to="/" />
 );
 
-export const Primary = Template.bind({});
+export const Standalone = Template.bind({});
+export const Inline = Template.bind({});
+Inline.args = {
+  variant: 'inline',
+  label: 'Read our terms and conditions',
+};
