@@ -1,5 +1,27 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import tw from 'twin.macro';
+
+const lineUp = keyframes`
+  0% {
+        transform-origin: 50% 100%;
+        transform: scale3d(1, 0.045, 1);
+    }
+
+    50% {
+        transform-origin: 50% 100%;
+        transform: scale3d(1, 1, 1);
+    }
+
+    51% {
+        transform-origin: 50% 0%;
+        transform: scale3d(1, 1, 1);
+    }
+
+    100% {
+        transform-origin: 50% 0%;
+        transform: scale3d(1, 0.045, 1);
+    }
+`;
 
 export const Anchor = styled.a`
   ${({ theme }) => css`
@@ -66,12 +88,58 @@ export const AnchorInline = styled.a`
       font-medium
       inline-block
       transition-colors
+      relative
+      whitespace-nowrap
     `}
 
     color: ${theme.interactive.default};
 
     &:hover {
       color: ${theme.interactive.hover};
+    }
+
+    &::before,
+    &::after {
+      ${tw`
+      absolute
+      w-full
+      left-0
+      pointer-events-none
+    `}
+      height: 1px;
+      background: currentColor;
+      top: 100%;
+    }
+
+    &::before {
+      ${tw`
+        opacity-0
+      `}
+      content: '';
+      height: 3px;
+    }
+
+    &:hover::before {
+      ${tw`
+        opacity-100
+      `}
+      animation: ${lineUp} 0.3s ease forwards;
+    }
+
+    &::after {
+      ${tw`
+        opacity-0
+        transition-opacity
+        duration-200
+      `}
+      content: '';
+    }
+
+    &:hover::after {
+      ${tw`
+        opacity-100
+        delay-300
+      `}
     }
   `}
 `;
