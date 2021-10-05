@@ -8,8 +8,9 @@ import { HiOutlineMail, HiOutlinePhone, HiOutlineGlobe } from 'react-icons/hi';
 import { FiInstagram, FiFacebook } from 'react-icons/fi';
 
 import TextInput from 'components/TextInput';
-import Button from 'components/Button';
+import Textarea from 'components/Textarea';
 import FormControl from 'components/FormControl';
+import Button from 'components/Button';
 
 import * as S from './styles';
 import Heading from 'components/Heading';
@@ -19,6 +20,7 @@ import Preview from './Preview';
 export type FormData = {
   files?: string[];
   name: string;
+  description: string;
   cuisines: string[];
   state: string;
   city: string;
@@ -31,6 +33,7 @@ export type FormData = {
 const initialValues: FormData = {
   files: [],
   name: '',
+  description: '',
   cuisines: [],
   state: '',
   city: '',
@@ -44,6 +47,9 @@ const TruckSetupSchema = Yup.object().shape({
   name: Yup.string()
     .required('Please insert your food truck name.')
     .min(3, 'Name must have at least 3 characters.'),
+  description: Yup.string()
+    .required('Please describe your food-truck.')
+    .min(5, 'Description must have at least 5 characters.'),
   cuisines: Yup.array()
     .min(1, 'Select at least one cuisine type.')
     .of(
@@ -105,10 +111,10 @@ export default function TruckSetup() {
               autoComplete="off"
               loading={isSubmitting}
             />
-            <TextInput
+            <Textarea
               id="description"
               name="description"
-              label="About your food-truck"
+              label="Describe a bit about your truck"
               autoComplete="off"
               loading={isSubmitting}
             />
