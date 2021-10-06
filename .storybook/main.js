@@ -14,14 +14,11 @@ module.exports = {
     {
       name: '@storybook/addon-postcss',
       options: {
-        cssLoaderOptions: {
-          importLoaders: 1,
-        },
-        postcssLoaderOptions: {
-          implementation: require('postcss'),
+          postcssLoaderOptions: {
+            implementation: require('postcss'),
+          },
         },
       },
-    },
   ],
   webpackFinal: (config) => {
     config.resolve.modules.push(`${process.cwd()}/src`);

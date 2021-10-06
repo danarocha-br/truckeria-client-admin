@@ -24,7 +24,7 @@ export default create({
 
   // Form colors
   inputBg: 'white',
-  inputBorder: tokens.theme.colors.neutral[200],
+  inputBorder: tokens.theme.colors.neutral[400],
   inputTextColor: tokens.theme.colors.neutral[800],
   inputBorderRadius: 4,
 

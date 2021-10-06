@@ -1,21 +1,38 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm, FormProvider, useWatch } from 'react-hook-form';
 import * as Yup from 'yup';
 import { HiOutlineMail, HiOutlinePhone, HiOutlineGlobe } from 'react-icons/hi';
 import { FiInstagram, FiFacebook } from 'react-icons/fi';
+import axios from 'axios';
 
 import TextInput from 'components/TextInput';
 import Textarea from 'components/Textarea';
+import Select from 'components/Select';
 import FormControl from 'components/FormControl';
 import Button from 'components/Button';
+import Heading from 'components/Heading';
 
 import * as S from './styles';
-import Heading from 'components/Heading';
 import Logo from 'components/Logo';
 import Preview from './Preview';
+
+import { FOOD_TYPE_OPTIONS } from 'constants/index';
+
+type Cities = {
+  data: {
+    nome: string;
+  }[];
+};
+
+type States = {
+  data: {
+    nome?: string;
+    sigla: string;
+  }[];
+};
 
 export type FormData = {
   files?: string[];
@@ -51,24 +68,28 @@ const TruckSetupSchema = Yup.object().shape({
     .required('Please describe your food-truck.')
     .min(5, 'Description must have at least 5 characters.'),
   cuisines: Yup.array()
-    .min(1, 'Select at least one cuisine type.')
     .of(
-      Yup.object()
-        .shape({
-          label: Yup.string(),
-          value: Yup.string(),
-        })
-        .nullable()
+      Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.string(),
+      })
     )
+    .min(1, 'Select at least one cuisine type.')
     .max(5, 'You can select up to 5 cuisines.')
     .required('Please select at least one cuisine type.'),
   files: Yup.array(),
-  state: Yup.string().required('Please choose your state.'),
-  city: Yup.string().required('Please choose your city.'),
+  state: Yup.object()
+    .shape({
+      label: Yup.string().required('Please choose your state.'),
+      value: Yup.string().required('Please choose your state.'),
+    })
+    .required('Please choose your state.'),
 });
 
 export default function TruckSetup() {
   const router = useRouter();
+  const [stateInitials, setStateInitials] = useState<string[]>([]);
+  const [cities, setCities] = useState<string[]>([]);
 
   const methods = useForm<FormData>({
     defaultValues: { ...initialValues },
@@ -78,8 +99,38 @@ export default function TruckSetup() {
 
   const {
     handleSubmit,
+    control,
     formState: { isSubmitting, isValid },
   } = methods;
+
+  const selectedState = useWatch({
+    control,
+    name: 'state',
+    defaultValue: '',
+  });
+
+  // get state list
+  useEffect(() => {
+    axios
+      .get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+      .then((response: States) => {
+        const stateInitials = response.data.map((initial) => initial.sigla);
+        setStateInitials(stateInitials);
+      });
+  }, []);
+
+  // get city list
+  useEffect(() => {
+    axios
+      .get(
+        `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedState.value}/municipios`
+      )
+      .then((response: Cities) => {
+        const cityNames = response.data.map((city) => city.nome);
+        setCities(cityNames);
+        console.log(cityNames);
+      });
+  }, [selectedState]);
 
   const onSubmit = useCallback(
     async (values: FormData) => {
@@ -117,6 +168,43 @@ export default function TruckSetup() {
               label="Describe a bit about your truck"
               autoComplete="off"
               loading={isSubmitting}
+            />
+
+            <Select
+              id="state"
+              name="state"
+              label="Select a state"
+              placeholder=""
+              options={
+                stateInitials &&
+                stateInitials.map((state) => {
+                  return { key: state, value: state, label: state };
+                })
+              }
+              loading={isSubmitting}
+            />
+            {selectedState && (
+              <Select
+                id="city"
+                name="city"
+                label="Select a city"
+                options={
+                  cities &&
+                  cities.map((city) => {
+                    return { key: city, value: city, label: city };
+                  })
+                }
+                loading={isSubmitting}
+              />
+            )}
+            <Select
+              id="cuisines"
+              name="cuisines"
+              label="Select a cuisine type"
+              options={FOOD_TYPE_OPTIONS}
+              loading={isSubmitting}
+              isMulti
+              isClearable
             />
 
             <h2 className="border-b border-dashed border-neutral-300 opacity-50">

@@ -121,7 +121,9 @@ const Textarea = forwardRef<Ref, TextareaProps>(
           </S.Label>
         </S.Container>
 
-        {errors[name] ? <Error>{errors[name].message}</Error> : null}
+        {errors[name] ? (
+          <Error role="alert">{errors[name].message}</Error>
+        ) : null}
       </div>
     );
   }
