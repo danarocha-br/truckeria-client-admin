@@ -105,6 +105,7 @@ export const Container = styled.span<ContainerProps>`
     `}
     border-color: ${theme.background.default};
     min-width: 15rem;
+    min-height: 5rem;
 
     &:hover {
       border-color: ${theme.form.focus};
@@ -122,7 +123,7 @@ export const CustomSelect = styled(Select)<SelectProps>`
   ${({ theme, isFocused, hasError, hasValue, isDisabled }) => css`
     ${tw`
         w-full
-        h-full
+        h-auto
         border-none
         rounded-xs
     `};

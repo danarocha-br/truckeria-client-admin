@@ -37,7 +37,7 @@ const Select = ({
   disabled = false,
   loading = false,
   isMulti = false,
-  isClearable = true,
+  isClearable = false,
   defaultValue,
   ...rest
 }: SelectProps) => {
