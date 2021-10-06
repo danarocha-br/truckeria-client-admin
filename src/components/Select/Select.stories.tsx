@@ -9,7 +9,7 @@ import { FOOD_TYPE_OPTIONS } from 'constants/index';
 import { useCallback } from 'react';
 
 export default {
-  title: 'FormControls/Select',
+  title: 'Form Controls/Select',
   component: Select,
   parameters: {
     layout: 'centered',

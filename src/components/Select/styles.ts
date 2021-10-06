@@ -166,7 +166,7 @@ export const CustomSelect = styled(Select)<SelectProps>`
       &__menu {
         ${tw`
           rounded-xs
-          -mt-1
+          mt-1
         `};
         z-index: 1999 !important;
         background-color: ${theme.surface.base.subdued};
@@ -182,11 +182,17 @@ export const CustomSelect = styled(Select)<SelectProps>`
       &__option {
         &:hover {
           ${tw`
-            bg-blue-500
+            bg-blue-300
           `};
         }
 
         &--is-focused {
+          ${tw`
+            bg-blue-300
+          `};
+        }
+
+        &--is-selected {
           ${tw`
             bg-blue-500
           `};

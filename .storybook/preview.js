@@ -7,6 +7,7 @@ import { themes } from '@storybook/theming';
 import GlobalStyles from 'styles/global';
 import { lightTheme, darkTheme } from 'styles/themes';
 import tokens from '../tailwind.config.js';
+import '../tailwind.css';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

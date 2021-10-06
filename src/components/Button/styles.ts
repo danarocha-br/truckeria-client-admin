@@ -113,7 +113,9 @@ const colorModifier = {
       background-color: ${theme.action.success.pressed};
     }
 
-    background-color: ${theme.action.success.disabled};
+    &:disabled {
+      background-color: ${theme.action.success.disabled};
+    }
   `,
 };
 

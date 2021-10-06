@@ -74,7 +74,7 @@ export default {
 };
 
 const Template: Story = (args) => (
-  <div className="flex flex-col items-center justify-center space-y-8">
+  <div className="flex flex-col items-center justify-center space-y-8 h-full w-full">
     <Button {...args} />
 
     <Button {...args} color="success" />

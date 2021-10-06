@@ -9,7 +9,7 @@ import { HiOutlineMail } from 'react-icons/hi';
 import TextInput from '.';
 
 export default {
-  title: 'FormControls/TextInput',
+  title: 'Form Controls/TextInput',
   component: TextInput,
   parameters: {
     layout: 'centered',

@@ -8,7 +8,7 @@ import Textarea from '.';
 import { useCallback } from 'react';
 
 export default {
-  title: 'FormControls/Textarea',
+  title: 'Form Controls/Textarea',
   component: Textarea,
   parameters: {
     layout: 'centered',
