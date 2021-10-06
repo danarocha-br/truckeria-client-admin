@@ -9,13 +9,16 @@ import { FiInstagram, FiFacebook } from 'react-icons/fi';
 
 import TextInput from 'components/TextInput';
 import Textarea from 'components/Textarea';
+import Select from 'components/Select';
 import FormControl from 'components/FormControl';
 import Button from 'components/Button';
+import Heading from 'components/Heading';
 
 import * as S from './styles';
-import Heading from 'components/Heading';
 import Logo from 'components/Logo';
 import Preview from './Preview';
+
+import { FOOD_TYPE_OPTIONS } from 'constants/index';
 
 export type FormData = {
   files?: string[];
@@ -51,15 +54,13 @@ const TruckSetupSchema = Yup.object().shape({
     .required('Please describe your food-truck.')
     .min(5, 'Description must have at least 5 characters.'),
   cuisines: Yup.array()
-    .min(1, 'Select at least one cuisine type.')
     .of(
-      Yup.object()
-        .shape({
-          label: Yup.string(),
-          value: Yup.string(),
-        })
-        .nullable()
+      Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.string(),
+      })
     )
+    .min(1, 'Select at least one cuisine type.')
     .max(5, 'You can select up to 5 cuisines.')
     .required('Please select at least one cuisine type.'),
   files: Yup.array(),
@@ -117,6 +118,23 @@ export default function TruckSetup() {
               label="Describe a bit about your truck"
               autoComplete="off"
               loading={isSubmitting}
+            />
+
+            <Select
+              id="city"
+              name="city"
+              label="Select a city"
+              placeholder=""
+              options={FOOD_TYPE_OPTIONS}
+              // loading={isSubmitting}
+            />
+            <Select
+              id="cuisines"
+              name="cuisines"
+              label="Select a cuisine type"
+              options={FOOD_TYPE_OPTIONS}
+              // loading={isSubmitting}
+              isMulti
             />
 
             <h2 className="border-b border-dashed border-neutral-300 opacity-50">

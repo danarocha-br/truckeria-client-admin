@@ -5,7 +5,7 @@ type ContainerProps = {
   isFocused: boolean;
   hasError: boolean;
   isDisabled: boolean;
-  readOnly: boolean;
+  readOnly?: boolean;
   isLoading: boolean | number;
 };
 
@@ -182,6 +182,7 @@ export const Label = styled.label<Pick<ContainerProps, 'hasError'>>`
       h-full
       pt-2
       px-3
+      rounded-xs
     `};
 
     color: ${theme.text.default};

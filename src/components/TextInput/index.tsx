@@ -125,7 +125,9 @@ const TextInput = forwardRef<Ref, TextInputProps>(
           </S.Label>
         </S.Container>
 
-        {errors[name] ? <S.Error>{errors[name].message}</S.Error> : null}
+        {errors[name] ? (
+          <S.Error role="alert">{errors[name].message}</S.Error>
+        ) : null}
       </div>
     );
   }
