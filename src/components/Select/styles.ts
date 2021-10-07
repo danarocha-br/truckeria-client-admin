@@ -15,7 +15,7 @@ type ContainerProps = {
 type SelectProps = {
   isFocused: boolean;
   hasError: boolean;
-  hasValue: boolean;
+  hasValue?: boolean;
   isDisabled: boolean;
   readOnly?: boolean;
   isLoading?: boolean | number;

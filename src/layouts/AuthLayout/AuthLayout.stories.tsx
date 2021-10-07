@@ -3,10 +3,10 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import AuthLayout from '.';
 
 export default {
-  title: 'Layouts/AuthLayout',
+  title: 'Templates/AuthLayout',
   component: AuthLayout,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
   args: {
     to: '/sign-up',
@@ -40,6 +40,6 @@ PositionRight.args = {
 export const Mobile = Template.bind({});
 Mobile.parameters = {
   viewport: {
-    default: 'mobile1',
+    defaultViewport: 'iphone12',
   },
 };

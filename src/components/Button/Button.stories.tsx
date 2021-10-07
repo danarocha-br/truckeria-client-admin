@@ -4,7 +4,7 @@ import { FiPlus } from 'react-icons/fi';
 import Button from '.';
 
 export default {
-  title: 'Button',
+  title: 'Components/Button',
   component: Button,
   args: {
     label: 'Sign in',
