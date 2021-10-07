@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, FormProvider, useWatch } from 'react-hook-form';
@@ -90,6 +90,7 @@ export default function TruckSetup() {
   const router = useRouter();
   const [stateInitials, setStateInitials] = useState<string[]>([]);
   const [cities, setCities] = useState<string[]>([]);
+  const mountedRef = useRef(true);
 
   const methods = useForm<FormData>({
     defaultValues: { ...initialValues },
@@ -110,27 +111,52 @@ export default function TruckSetup() {
   });
 
   // get state list
+  const handleStateList = useCallback(() => {
+    try {
+      axios
+        .get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+        .then((response: States) => {
+          const stateInitials = response.data.map((initial) => initial.sigla);
+
+          if (!mountedRef.current) return null;
+          setStateInitials(stateInitials);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [mountedRef]);
+
   useEffect(() => {
-    axios
-      .get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
-      .then((response: States) => {
-        const stateInitials = response.data.map((initial) => initial.sigla);
-        setStateInitials(stateInitials);
-      });
-  }, []);
+    handleStateList();
+    return () => {
+      mountedRef.current = false;
+    };
+  }, [handleStateList]);
 
   // get city list
+  const handleCityList = useCallback(() => {
+    try {
+      axios
+        .get(
+          `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedState.value}/municipios`
+        )
+        .then((response: Cities) => {
+          const cityNames = response.data.map((city) => city.nome);
+
+          if (!mountedRef.current) return null;
+          setCities(cityNames);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [mountedRef, selectedState]);
+
   useEffect(() => {
-    axios
-      .get(
-        `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedState.value}/municipios`
-      )
-      .then((response: Cities) => {
-        const cityNames = response.data.map((city) => city.nome);
-        setCities(cityNames);
-        console.log(cityNames);
-      });
-  }, [selectedState]);
+    handleCityList();
+    return () => {
+      mountedRef.current = false;
+    };
+  }, [handleCityList]);
 
   const onSubmit = useCallback(
     async (values: FormData) => {
