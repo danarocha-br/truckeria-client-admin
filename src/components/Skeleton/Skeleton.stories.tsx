@@ -11,6 +11,7 @@ export default {
   args: {
     width: 100,
     height: 10,
+    animationOff: false,
   },
 } as Meta;
 

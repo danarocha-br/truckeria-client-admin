@@ -34,11 +34,16 @@ type States = {
   }[];
 };
 
+type Cuisine = {
+  label: string;
+  value: string;
+};
+
 export type FormData = {
   files?: string[];
   name: string;
   description: string;
-  cuisines: string[];
+  cuisines: Cuisine[];
   state: string;
   city: string;
   phone: number | string;
@@ -169,7 +174,7 @@ export default function TruckSetup() {
   return (
     <S.Wrapper>
       <S.Content>
-        <Logo symbolOnly className="mb-6 md:absolute md:left-8" />
+        <Logo symbolOnly className="mb-6 md:fixed md:left-8" />
 
         <Heading className="text-center mt-4">Your FoodTruck Info</Heading>
         <p className="text-center text-opacity-60 mb-8 mt-2">
@@ -291,7 +296,7 @@ export default function TruckSetup() {
       </S.Content>
 
       <S.Preview>
-        <Preview />
+        <Preview control={control} />
       </S.Preview>
     </S.Wrapper>
   );

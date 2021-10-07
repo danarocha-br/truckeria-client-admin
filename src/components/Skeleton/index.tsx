@@ -5,16 +5,25 @@ import ReactSkeleton, {
   SkeletonProps,
 } from 'react-loading-skeleton';
 
+type SkeletonCustomProps = {
+  animationOff?: boolean;
+} & SkeletonProps;
+
 const Skeleton = ({
   width = 50,
   height = 10,
   count = 1,
+  animationOff,
   ...props
-}: SkeletonProps) => {
+}: SkeletonCustomProps) => {
   const theme = useContext(ThemeContext);
   return (
     <SkeletonTheme
-      color={theme.surface.loading.default}
+      color={
+        animationOff
+          ? theme.surface.loading.subdued
+          : theme.surface.loading.default
+      }
       highlightColor={theme.surface.loading.subdued}
     >
       <ReactSkeleton width={width} count={count} height={height} {...props} />
