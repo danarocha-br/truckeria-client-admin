@@ -7,9 +7,10 @@ import { AnyObjectSchema } from 'yup';
 import Select from '.';
 import { FOOD_TYPE_OPTIONS } from 'constants/index';
 import { useCallback } from 'react';
+import FormControl from 'components/FormControl';
 
 export default {
-  title: 'FormControls/Select',
+  title: 'Form Controls/Select',
   component: Select,
   parameters: {
     layout: 'centered',
@@ -70,15 +71,26 @@ export default {
 
 const Template: Story = (args) => {
   type FormData = {
-    description: string;
+    cuisines: {
+      label: string;
+      value: string;
+    };
   };
 
   const initialValues: FormData = {
-    description: '',
+    cuisines: {
+      label: '',
+      value: '',
+    },
   };
 
   const SampleSchema = Yup.object().shape({
-    description: Yup.string().min(5).required('Description is required'),
+    cuisines: Yup.object()
+      .shape({
+        label: Yup.string().required('Please choose a cuisine type.'),
+        value: Yup.string().required('Please choose a cuisine type.'),
+      })
+      .required('Please choose a cuisine type.'),
   });
 
   const methods = useForm<FormData>({
@@ -97,23 +109,136 @@ const Template: Story = (args) => {
   }, []);
 
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-96 space-y-4">
-        <Select
-          {...args}
-          name="type"
-          id="type"
-          label="Select a food type"
-          options={FOOD_TYPE_OPTIONS}
-        />
-      </form>
-    </FormProvider>
+    <div className="w-96">
+      <FormProvider {...methods}>
+        <FormControl onSubmit={handleSubmit(onSubmit)}>
+          <Select
+            {...args}
+            name="cuisines"
+            id="cuisines"
+            label="Select a food type"
+            options={FOOD_TYPE_OPTIONS}
+          />
+        </FormControl>
+      </FormProvider>
+    </div>
   );
 };
 
 export const Single = Template.bind({});
 
-export const isMulti = Template.bind({});
-isMulti.args = {
-  isMulti: true,
+const MultiTemplate: Story = (args) => {
+  type FormData = {
+    cuisines: {
+      label: string;
+      value: string;
+    }[];
+  };
+
+  const initialValues: FormData = {
+    cuisines: [],
+  };
+
+  const MultiSchema = Yup.object().shape({
+    cuisines: Yup.array()
+      .of(
+        Yup.object().shape({
+          label: Yup.string(),
+          value: Yup.string(),
+        })
+      )
+      .min(1, 'Select at least one cuisine type.')
+      .max(5, 'You can select up to 5 cuisines.')
+      .required('Please select at least one cuisine type.'),
+  });
+
+  const methods = useForm<FormData>({
+    defaultValues: { ...initialValues },
+    mode: 'onTouched',
+    resolver: yupResolver<AnyObjectSchema>(MultiSchema),
+  });
+
+  const {
+    handleSubmit,
+    // formState: { isSubmitting },
+  } = methods;
+
+  const onSubmit = useCallback(async (values: FormData) => {
+    console.log(values);
+  }, []);
+
+  return (
+    <div className="w-96">
+      <FormProvider {...methods}>
+        <FormControl onSubmit={handleSubmit(onSubmit)}>
+          <Select
+            {...args}
+            name="type"
+            id="type"
+            label="Select a food type"
+            options={FOOD_TYPE_OPTIONS}
+            isMulti
+          />
+        </FormControl>
+      </FormProvider>
+    </div>
+  );
+};
+
+export const isMulti = MultiTemplate.bind({});
+
+export const DefaultValue: Story = (args) => {
+  type FormData = {
+    cuisines: { label: string; value: string }[];
+  };
+
+  const initialValues: FormData = {
+    cuisines: [FOOD_TYPE_OPTIONS[2], FOOD_TYPE_OPTIONS[3]],
+  };
+
+  const MultiSchema = Yup.object().shape({
+    cuisines: Yup.array()
+      .of(
+        Yup.object().shape({
+          label: Yup.string(),
+          value: Yup.string(),
+        })
+      )
+      .min(1, 'Select at least one cuisine type.')
+      .max(5, 'You can select up to 5 cuisines.')
+      .required('Please select at least one cuisine type.'),
+  });
+
+  const methods = useForm<FormData>({
+    defaultValues: { ...initialValues },
+    mode: 'onTouched',
+    resolver: yupResolver<AnyObjectSchema>(MultiSchema),
+  });
+
+  const {
+    handleSubmit,
+    // formState: { isSubmitting },
+  } = methods;
+
+  const onSubmit = useCallback(async (values: FormData) => {
+    console.log(values);
+  }, []);
+
+  return (
+    <div className="w-96">
+      <FormProvider {...methods}>
+        <FormControl onSubmit={handleSubmit(onSubmit)}>
+          <Select
+            {...args}
+            name="type"
+            id="type"
+            label="Select a food type"
+            defaultValue={[FOOD_TYPE_OPTIONS[2], FOOD_TYPE_OPTIONS[3]]}
+            options={FOOD_TYPE_OPTIONS}
+            isMulti
+          />
+        </FormControl>
+      </FormProvider>
+    </div>
+  );
 };

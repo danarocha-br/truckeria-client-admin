@@ -7,9 +7,10 @@ import { AnyObjectSchema } from 'yup';
 import { HiOutlineMail } from 'react-icons/hi';
 
 import TextInput from '.';
+import FormControl from 'components/FormControl';
 
 export default {
-  title: 'FormControls/TextInput',
+  title: 'Form Controls/TextInput',
   component: TextInput,
   parameters: {
     layout: 'centered',
@@ -110,29 +111,31 @@ const Template: Story = (args) => {
   }, []);
 
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-96 space-y-4">
-        <TextInput
-          {...args}
-          id="email"
-          type="email"
-          name="email"
-          aria-label="E-mail"
-          label="E-mail"
-          icon={HiOutlineMail}
-          autoComplete="email"
-          inputMode="email"
-          loading={isSubmitting}
-        />
-        {/* <Button
+    <div className="w-96">
+      <FormProvider {...methods}>
+        <FormControl onSubmit={handleSubmit(onSubmit)}>
+          <TextInput
+            {...args}
+            id="email"
+            type="email"
+            name="email"
+            aria-label="E-mail"
+            label="E-mail"
+            icon={HiOutlineMail}
+            autoComplete="email"
+            inputMode="email"
+            loading={isSubmitting}
+          />
+          {/* <Button
               label="Sign In"
               type="submit"
               fullWidth
               loading={isSubmitting}
               disabled={!isValid || isSubmitting}
             /> */}
-      </form>
-    </FormProvider>
+        </FormControl>
+      </FormProvider>
+    </div>
   );
 };
 

@@ -84,7 +84,7 @@ exports[`<Select /> should render the Select 1`] = `
 
 .c1 .c-select__menu {
   border-radius: 0.4rem;
-  margin-top: -0.25rem;
+  margin-top: 0.25rem;
   z-index: 1999 !important;
   background-color: #B8C4C8;
 }
@@ -102,6 +102,11 @@ exports[`<Select /> should render the Select 1`] = `
 .c1 .c-select__option--is-focused {
   --tw-bg-opacity: 1;
   background-color: rgba(41,178,176,var(--tw-bg-opacity));
+}
+
+.c1 .c-select__option--is-selected {
+  --tw-bg-opacity: 1;
+  background-color: rgba(33,142,141,var(--tw-bg-opacity));
 }
 
 .c1 .c-select__option:first-child {

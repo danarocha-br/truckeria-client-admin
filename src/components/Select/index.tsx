@@ -66,10 +66,6 @@ const Select = ({
     setFocus(false);
   }, []);
 
-  // useEffect(() => {
-  //   setValue(name, defaultValue);
-  // }, [defaultValue, name]);
-
   /** Custom components */
   const DropdownIndicator = (props: DropdownIndicatorProps) => (
     <components.DropdownIndicator {...props}>
@@ -115,7 +111,7 @@ const Select = ({
             options={options}
             isFocused={isFocused}
             hasError={errors[name] ? true : false}
-            hasValue={!!dirtyFields[name]}
+            hasValue={!!dirtyFields[name] || !!defaultValue}
             isDisabled={disabled || loading}
             // value={value}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -50,6 +50,10 @@ export default {
       pressed: darken(0.2, tokens.theme.colors.yellow[500]),
       disabled: desaturate(0.5, tokens.theme.colors.yellow[500]),
     },
+    loading: {
+      default: tokens.theme.colors.neutral[700],
+      subdued: tokens.theme.colors.neutral[500],
+    },
   },
 
   form: {

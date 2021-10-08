@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import Heading from '.';
 
 export default {
-  title: 'Heading',
+  title: 'Components/Heading',
   component: Heading,
   parameters: {
     layout: 'centered',

@@ -8,6 +8,8 @@ export const Wrapper = styled.main`
       h-full
       flex
       overflow-hidden
+      sm:py-3
+      sm:pr-3
     `}
   `}
 `;
@@ -39,8 +41,8 @@ export const Preview = styled.section`
       sm:flex-col
       sm:w-1/2
       md:w-1/3
-      px-6
       py-10
+      rounded-lg
     `}
     background-color: ${theme.background.subdued};
   `}
@@ -54,5 +56,18 @@ export const ProfileImage = styled.div`
       bg-red-500
       rounded-sm
     `}
+  `}
+`;
+
+export const About = styled.section`
+  ${({ theme }) => css`
+    ${tw`
+      mt-4
+      border-b
+      border-dashed
+      pb-4
+    `}
+
+    border-color: ${theme.surface.loading.subdued};
   `}
 `;

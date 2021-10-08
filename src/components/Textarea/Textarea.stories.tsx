@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, FormProvider } from 'react-hook-form';
@@ -5,10 +6,10 @@ import * as Yup from 'yup';
 import { AnyObjectSchema } from 'yup';
 
 import Textarea from '.';
-import { useCallback } from 'react';
+import FormControl from 'components/FormControl';
 
 export default {
-  title: 'FormControls/Textarea',
+  title: 'Form Controls/Textarea',
   component: Textarea,
   parameters: {
     layout: 'centered',
@@ -83,18 +84,20 @@ const Template: Story = (args) => {
   }, []);
 
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-96 space-y-4">
-        <Textarea
-          {...args}
-          id="description"
-          name="description"
-          label="A little bit about you"
-          autoComplete="off"
-          loading={isSubmitting}
-        />
-      </form>
-    </FormProvider>
+    <div className="w-96">
+      <FormProvider {...methods}>
+        <FormControl onSubmit={handleSubmit(onSubmit)}>
+          <Textarea
+            {...args}
+            id="description"
+            name="description"
+            label="A little bit about you"
+            autoComplete="off"
+            loading={isSubmitting}
+          />
+        </FormControl>
+      </FormProvider>
+    </div>
   );
 };
 
