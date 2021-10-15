@@ -13,7 +13,7 @@ export const Container = styled.span`
       border-solid
       rounded-xs
       px-5
-      py-2
+      py-1
     `};
     border-color: ${theme.colors.brand};
   `}

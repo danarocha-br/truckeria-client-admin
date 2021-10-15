@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, FormProvider, useWatch } from 'react-hook-form';
 import * as Yup from 'yup';
-import { HiOutlineMail, HiOutlinePhone, HiOutlineGlobe } from 'react-icons/hi';
-import { FiInstagram, FiFacebook } from 'react-icons/fi';
+// import { HiOutlineMail, HiOutlinePhone, HiOutlineGlobe } from 'react-icons/hi';
+// import { FiInstagram, FiFacebook } from 'react-icons/fi';
 import axios from 'axios';
 
 import TextInput from 'components/TextInput';
@@ -13,7 +13,7 @@ import Textarea from 'components/Textarea';
 import Select from 'components/Select';
 import FormControl from 'components/FormControl';
 import Button from 'components/Button';
-import Heading from 'components/Heading';
+import Steps from 'components/Steps';
 
 import * as S from './styles';
 import Logo from 'components/Logo';
@@ -176,16 +176,28 @@ export default function TruckSetup() {
       <S.Content>
         <Logo symbolOnly className="mb-6 md:fixed md:left-8" />
 
-        <Heading className="text-center mt-4">Your FoodTruck Info</Heading>
-        <p className="text-center text-opacity-60 mb-8 mt-2">
+        <div className="w-full md:w-2/3 mb-12">
+          <Steps
+            steps={[
+              {
+                label: 'Basic info',
+                to: '/',
+                isActive: true,
+              },
+              {
+                label: 'Contact info',
+                to: '/',
+              },
+            ]}
+          />
+        </div>
+
+        <p className="text-center md:text-left text-lg opacity-50 mb-8 mt-2">
           Tell your customers as much as possibile about your food truck!
         </p>
 
         <FormProvider {...methods}>
           <FormControl onSubmit={handleSubmit(onSubmit)} className="md:px-32">
-            <h2 className="border-b border-dashed border-neutral-300 opacity-50">
-              Basic Info
-            </h2>
             <TextInput
               id="name"
               name="name"
@@ -199,6 +211,15 @@ export default function TruckSetup() {
               label="Describe a bit about your truck"
               autoComplete="off"
               loading={isSubmitting}
+            />
+            <Select
+              id="cuisines"
+              name="cuisines"
+              label="Select a cuisine type"
+              options={FOOD_TYPE_OPTIONS}
+              loading={isSubmitting}
+              isMulti
+              isClearable
             />
 
             <Select
@@ -228,20 +249,8 @@ export default function TruckSetup() {
                 loading={isSubmitting}
               />
             )}
-            <Select
-              id="cuisines"
-              name="cuisines"
-              label="Select a cuisine type"
-              options={FOOD_TYPE_OPTIONS}
-              loading={isSubmitting}
-              isMulti
-              isClearable
-            />
 
-            <h2 className="border-b border-dashed border-neutral-300 opacity-50">
-              Contact Info
-            </h2>
-            <TextInput
+            {/* <TextInput
               id="phone"
               name="phone"
               label="Your phone number"
@@ -282,7 +291,7 @@ export default function TruckSetup() {
                 autoComplete="off"
                 icon={FiFacebook}
               />
-            </div>
+            </div> */}
 
             <Button
               label="Create my truck profile"

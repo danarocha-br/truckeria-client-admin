@@ -5,6 +5,7 @@ import { Control, useWatch } from 'react-hook-form';
 import Tag from 'components/Tag';
 import * as S from './styles';
 import { FormData } from './';
+import Skeleton from 'components/Skeleton';
 
 const Preview = ({ control }: { control: Control<FormData> }) => {
   const cuisines = useWatch({
@@ -15,6 +16,11 @@ const Preview = ({ control }: { control: Control<FormData> }) => {
   const truckName = useWatch({
     control,
     name: 'name',
+    defaultValue: '',
+  });
+  const description = useWatch({
+    control,
+    name: 'description',
     defaultValue: '',
   });
 
@@ -32,13 +38,21 @@ const Preview = ({ control }: { control: Control<FormData> }) => {
           />
         </S.ProfileImage>
 
-        <h3 className="mt-4 text-xl font-medium">
-          {truckName ? truckName : 'Your food truck name'}
+        <h3
+          className={`mt-4 text-xl font-medium ${
+            truckName ? 'opacity-100' : 'opacity-30'
+          }`}
+        >
+          {truckName ? truckName : 'Food truck name'}
         </h3>
       </div>
 
       <S.About>
-        <div className="px-6 flex space-x-4">
+        <div
+          className={`px-6 flex space-x-4 ${
+            cuisines.length === 0 ? 'opacity-20' : 'opacity-100'
+          } `}
+        >
           {cuisines.length > 0 ? (
             cuisines.map((cuisine, i) => <Tag key={i} label={cuisine.value} />)
           ) : (
@@ -50,6 +64,17 @@ const Preview = ({ control }: { control: Control<FormData> }) => {
           )}
         </div>
       </S.About>
+
+      <p className={`px-6 mt-4 ${description ? 'opacity-100' : 'opacity-30'}`}>
+        {description ? (
+          description
+        ) : (
+          <div>
+            <Skeleton height={10} width={350} animationOff />
+            <Skeleton height={10} width={180} animationOff />
+          </div>
+        )}
+      </p>
     </aside>
   );
 };
