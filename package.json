@@ -51,7 +51,7 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/user-event": "^13.2.1",
-    "@types/jest": "^26.0.21",
+    "@types/jest": "^27.4.0",
     "@types/node": "^16.4.10",
     "@types/react": "^17.0.3",
     "@types/styled-components": "^5.1.9",
