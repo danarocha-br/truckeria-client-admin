@@ -3,7 +3,6 @@ import { ThemeProvider } from 'styled-components';
 import { withThemesProvider } from 'storybook-styled-components-theme-selector';
 import { withDesign } from 'storybook-addon-designs';
 import { themes } from '@storybook/theming';
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 import './next-image.mock';
 import '../tailwind.css';
@@ -14,9 +13,6 @@ import tokens from '../tailwind.config.js';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
-  viewport: {
-    viewports: INITIAL_VIEWPORTS,
-  },
   docs: {
     theme: themes.dark,
   },

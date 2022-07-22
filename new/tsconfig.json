@@ -20,17 +20,12 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "files": [
-    "twin.d.ts"
+  "exclude": [
+    "node_modules"
   ],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx",
-    "next.config.js",
-    "babel-plugin-macros.config.js"
-  ],
-  "exclude": [
-    "node_modules"
+    "**/*.tsx"
   ]
 }
