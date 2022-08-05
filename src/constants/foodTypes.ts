@@ -1,13 +1,26 @@
 export default [
   {
-    label: 'Burger',
-    value: 'Burger',
+    label: 'Lanches',
+    value: 'Lanches',
   },
   {
-    label: 'Salad',
-    value: 'Salad',
+    label: 'Hamburguer',
+    value: 'Hamburguer',
   },
-  { label: 'Mexican', value: 'mexican' },
-  { label: 'Brazilian', value: 'brazilian' },
-  { label: 'Asian', value: 'asian' },
+  {
+    label: 'Mexicano',
+    value: 'Mexicano',
+  },
+  {
+    label: 'Churrasco',
+    value: 'Churrasco',
+  },
+  {
+    label: 'Asiático',
+    value: 'Asiático',
+  },
+  {
+    label: 'Sobremesas',
+    value: 'Sobremesas',
+  },
 ];

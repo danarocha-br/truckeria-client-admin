@@ -1,145 +1,115 @@
-import styled, { css, keyframes } from 'styled-components';
-import tw from 'twin.macro';
+import { styled, keyframes } from '../../../stitches.config';
+import { Clickable } from 'reakit/Clickable';
 
-const lineUp = keyframes`
-  0% {
-        transform-origin: 50% 100%;
-        transform: scale3d(1, 0.045, 1);
-    }
+const lineUp = keyframes({
+  '0%': {
+    transformOrigin: '50% 100%',
+    transform: 'scale3d(1, 0.045, 1)',
+  },
 
-    50% {
-        transform-origin: 50% 100%;
-        transform: scale3d(1, 1, 1);
-    }
+  ' 50%': {
+    transformOrigin: '50% 100%',
+    transform: 'scale3d(1, 1, 1)',
+  },
 
-    51% {
-        transform-origin: 50% 0%;
-        transform: scale3d(1, 1, 1);
-    }
+  '51%': {
+    transformOrigin: '50% 0%',
+    transform: 'scale3d(1, 1, 1)',
+  },
 
-    100% {
-        transform-origin: 50% 0%;
-        transform: scale3d(1, 0.045, 1);
-    }
-`;
+  '100%': {
+    transformOrigin: '50% 0%',
+    transform: 'scale3d(1, 0.045, 1)',
+  },
+});
 
-export const Anchor = styled.a`
-  ${({ theme }) => css`
-    ${tw`
-      font-medium
-      no-underline
-      inline-block
-      relative
-      pl-4
-      pr-5
-      transition
-      ease-out
-      duration-700
-      transform
-      scale-100
-    `};
+export const Anchor = styled(Clickable, {
+  color: '$interactive-default',
+  fontWeigth: '$medium',
+  underline: 'none',
+  d: 'inline-block',
+  position: 'relative',
+  pl: '$4',
+  pr: '$5',
+  transition: 'all cubic-bezier(0, 0, 0.2, 1) 700ms',
+  transform: 'scale(1)',
+  animationDirection: 'alternate-reverse',
 
-    color: ${theme.interactive.default};
+  '&:after, &:before': {
+    content: '',
+    bg: '$action-primary-default',
+    d: 'inline-block',
+    w: '$5',
+    h: '1.3px',
+    position: 'absolute',
+    top: '$3',
+    transition: 'all cubic-bezier(0, 0, 0.2, 1) 700ms',
+    transform: 'scale(0.85)',
+  },
 
-    &:after,
-    &:before {
-      ${tw`
-        absolute
-        inline-block
-        w-5
-        top-3
-        `};
-      content: '';
-      height: 1px;
-      background-color: ${theme.colors.brand};
-    }
+  '&:after': {
+    ml: '$3',
+  },
 
-    &:after {
-      ${tw`
-        ml-3
-      `};
-    }
-    &:before {
-      ${tw`
-        -ml-8
-      `};
-    }
+  '&:before': {
+    ml: '-$7',
+  },
 
-    &:hover {
-      color: ${theme.interactive.hover};
+  '&:hover': {
+    color: '$interactive-hover',
 
-      &:after,
-      &:before {
-        ${tw`
-          transform
-          scale-x-125
-          transition
-          ease-out
-          duration-700
-        `};
-      }
-    }
-  `}
-`;
+    '&:before, &:after': {
+      h: '1px',
+      bg: '$action-primary-subdued',
+      transform: 'scale(1.25)',
+      transition: 'all cubic-bezier(0, 0, 0.2, 1) 700ms',
+      animationDirection: 'alternate-reverse',
+    },
+  },
+});
 
-export const AnchorInline = styled.a`
-  ${({ theme }) => css`
-    ${tw`
-      font-medium
-      inline-block
-      transition-colors
-      relative
-      whitespace-nowrap
-    `}
+export const AnchorInline = styled(Clickable, {
+  color: '$interactive-default',
+  fontWeigth: '$medium',
+  d: 'inline-block',
+  position: 'relative',
+  transition: 'all cubic-bezier(0, 0, 0.2, 1) 700ms',
+  whiteSpace: 'nowrap',
 
-    color: ${theme.interactive.default};
+  '&:hover': {
+    color: '$interactive-hover',
 
-    &:hover {
-      color: ${theme.interactive.hover};
-    }
+    '&:before': {
+      opacity: 1,
+      animation: `${lineUp} 0.3s ease forwards`,
+    },
 
-    &::before,
-    &::after {
-      ${tw`
-      absolute
-      w-full
-      left-0
-      pointer-events-none
-    `}
-      height: 1px;
-      background: currentColor;
-      top: 100%;
-    }
+    '&:after': {
+      opacity: 1,
+      transitionDelay: '300ms',
+    },
+  },
 
-    &::before {
-      ${tw`
-        opacity-0
-      `}
-      content: '';
-      height: 3px;
-    }
+  '&:before, &:after': {
+    content: '',
+    w: '$full',
+    h: '1px',
+    position: 'absolute',
+    left: 0,
+    pointerEvents: 'none',
+    bg: 'currentColor',
+    top: '100%',
+  },
 
-    &:hover::before {
-      ${tw`
-        opacity-100
-      `}
-      animation: ${lineUp} 0.3s ease forwards;
-    }
+  '&:before': {
+    opacity: 0,
+    h: '3px',
+  },
 
-    &::after {
-      ${tw`
-        opacity-0
-        transition-opacity
-        duration-200
-      `}
-      content: '';
-    }
-
-    &:hover::after {
-      ${tw`
-        opacity-100
-        delay-300
-      `}
-    }
-  `}
-`;
+  '&:after': {
+    opacity: 0,
+    transitionProperty: 'opacity',
+    transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+    transitionDuration: '150ms',
+  },
+});

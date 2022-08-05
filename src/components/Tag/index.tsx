@@ -1,25 +1,17 @@
-import Skeleton from 'components/Skeleton';
+import React from 'react';
 
 import * as S from './styles';
 
-type TagProps = {
+export type TagProps = {
   label: string;
   loading?: boolean;
   isEmpty?: boolean;
 };
 
-const Tag = ({ label, loading, isEmpty }: TagProps) => (
+export const Tag = ({ label, isEmpty = false }: TagProps) => (
   <>
-    {loading ? (
-      <S.Container>
-        <Skeleton width={50} />
-      </S.Container>
-    ) : (
-      <S.Container aria-label={label}>
-        {isEmpty ? <Skeleton width={50} animationOff /> : label}
-      </S.Container>
-    )}
+    <S.Container aria-label={label} isEmpty={isEmpty}>
+      {isEmpty ? <S.Rect /> : label}
+    </S.Container>
   </>
 );
-
-export default Tag;

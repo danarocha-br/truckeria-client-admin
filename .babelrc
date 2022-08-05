@@ -1,12 +1,3 @@
 {
-  "presets": [
-    ["next/babel", { "preset-react": { "runtime": "automatic" } }],
-    "@babel/preset-typescript"
-  ],
-  "plugins": [],
-  "env": {
-    "test": {
-      "plugins": []
-    }
-  }
+  "presets": ["next/babel"]
 }

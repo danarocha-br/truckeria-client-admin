@@ -1,71 +1,72 @@
 import { addDecorator, addParameters } from '@storybook/react';
-import { ThemeProvider } from 'styled-components';
-import { withThemesProvider } from 'storybook-styled-components-theme-selector';
 import { withDesign } from 'storybook-addon-designs';
 import { themes } from '@storybook/theming';
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { DocsContainer } from '@storybook/addon-docs/blocks';
+import { TabContainer } from 'storybook-addon-docs-tabs';
 
-import './next-image.mock';
-import '../tailwind.css';
-
-import GlobalStyles from 'styles/global';
-import { lightTheme, darkTheme } from 'styles/themes';
-import tokens from '../tailwind.config.js';
-
-export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
-  docs: {
-    theme: themes.dark,
-  },
-  options: {
-    storySort: {
-      order: ['Intro', 'Foundation', 'Components', 'Navigation', 'Form Controls', 'Templates'],
-    },
-  },
-  backgrounds: {
-    default: 'dark',
-    layout: 'fullscreen',
-    values: [
-      {
-        name: 'light',
-        value: tokens.theme.colors.neutral[100],
-      },
-      {
-        name: 'dark',
-        value: tokens.theme.colors.neutral[900],
-      },
-    ],
-  },
-}
-
-const appThemes = [
-  { ...lightTheme,
-    id: 'light',
-    name: 'Light'
-  },
-  { ...darkTheme,
-    id: 'dark',
-    name: 'Dark'
-    }
-]
+import 'styles/reset.css';
+import { colors } from 'styles/tokens';
+import { lightTheme, darkTheme } from '../stitches.config';
 
 addDecorator(withDesign());
-addDecorator(
-  withThemesProvider({
-    themes: appThemes,
-  }),
-);
 
 addParameters({
   a11y: {},
 });
 
-export const decorators = [
-  (Story) => (
+export const parameters = {
+  actions: { argTypesRegex: '^on.*' },
+  viewport: {
+    viewports: INITIAL_VIEWPORTS,
+  },
+  docs: {
+    theme: themes.dark,
+    container: ({ children, context }) => (
+      <DocsContainer context={context}>
+        <TabContainer context={context}>{children}</TabContainer>
+      </DocsContainer>
+    ),
+  },
+  options: {
+    storySort: {
+      order: [
+        'Intro',
+        'Foundation',
+        'Primitives',
+        'Components',
+        'Navigation',
+        'Form Controls',
+        'Templates',
+      ],
+    },
+  },
 
-    <ThemeProvider theme={darkTheme}>
+  backgrounds: {
+    default: 'dark',
+    layout: 'centered',
+    values: [
+      {
+        name: 'light',
+        value: colors.white,
+      },
+      {
+        name: 'dark',
+        value: colors.neutral[900],
+      },
+    ],
+  },
 
-    <GlobalStyles removeBg />
-        <Story />
-    </ThemeProvider>
-  ),
-];
+  multipleThemesStitches: {
+    values: [
+      {
+        name: 'Light',
+        theme: lightTheme,
+      },
+      {
+        name: 'Dark',
+        theme: darkTheme,
+      },
+    ],
+  },
+};

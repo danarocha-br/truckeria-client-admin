@@ -1,24 +1,33 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { SWRConfig } from 'swr';
 
-import '../../tailwind.css';
-import GlobalStyles from 'styles/global';
-import Providers from './Providers';
+import { AuthProvider, useAuth, ProtectRoute } from 'hooks/useAuth';
 
-function App({ Component, pageProps }: AppProps) {
+import '../styles/reset.css';
+
+function App({ Component, pageProps, router }: AppProps) {
+  const { fetcher } = useAuth();
+
   return (
-    <Providers>
+    <>
       <Head>
-        <title>Truckeria App</title>
+        <title>Truckeria - Sistema administração</title>
         <link rel="shortcut icon" href="/img/icon-512.png" />
         <link rel="apple-touch-icon" href="/img/icon-512.png" />
-        <meta name="description" content="App description." />
-        <link rel="stylesheet" href="https://use.typekit.net/jll4squ.css" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#FF6F52" />
+        <meta name="description" content="Gerencie os seus food-trucks" />
       </Head>
-      <GlobalStyles />
 
-      <Component {...pageProps} />
-    </Providers>
+      <AuthProvider>
+        <ProtectRoute router={router}>
+          <SWRConfig value={{ fetcher }}>
+            <Component {...pageProps} />
+          </SWRConfig>
+        </ProtectRoute>
+      </AuthProvider>
+    </>
   );
 }
 

@@ -1,17 +1,15 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
   images: {
     domains: ['res.cloudinary.com'],
   },
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      // Unset client-side javascript that only works server-side
-      // https://github.com/vercel/next.js/issues/7755#issuecomment-508633125
-      config.node = { fs: 'empty', module: 'empty' };
-      config.resolve.fallback = {
-        fs: false,
-      };
-    }
 
-    return config;
-  },
+  // swcMinify: true,
+  experimental: {},
+  // pwa: {
+  //   dest: 'public',
+  //   disable: !isProd,
+  // },
 };

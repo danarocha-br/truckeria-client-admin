@@ -1,1 +1,3 @@
-tailwind.css
+!.storybook
+!.jest
+src/**/*.css

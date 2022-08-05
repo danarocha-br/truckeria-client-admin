@@ -1,37 +1,32 @@
+import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import Tag from '.';
+import { Tag, TagProps } from '.';
+import { Flex } from '../Flex';
 
 export default {
   title: 'Components/Tag',
   component: Tag,
   parameters: {
     layout: 'centered',
+    status: 'stable', // beta| deprecated | review | stable,
+    design: {
+      type: 'figma',
+      url: '',
+    },
   },
   args: {
     label: 'I am a tag',
-    loading: false,
     isEmpty: false,
-  },
-  argTypes: {
-    label: {
-      table: {
-        category: 'Modifiers',
-      },
-    },
-    isEmpty: {
-      table: {
-        category: 'Modifiers',
-      },
-    },
-    loading: {
-      table: {
-        category: 'Modifiers',
-      },
-    },
+    loading: false,
   },
 } as Meta;
 
-const Template: Story = (args) => <Tag label="I am a tag" {...args} />;
+const Template: Story<TagProps> = (args) => (
+  <Flex>
+    <Tag {...args} isEmpty={false} />
+    <Tag {...args} />
+  </Flex>
+);
 
-export const Primary = Template.bind({});
+export const Default = Template.bind({});

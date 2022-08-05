@@ -1,57 +1,52 @@
-import * as React from 'react';
-import { IconType } from 'react-icons';
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import React from 'react';
+import { CSS } from '@stitches/react';
 
+import { Spinner } from '../Spinner';
+import { Icon, iconPath } from '../Icon';
 import * as S from './styles';
+import { config } from '../../../stitches.config';
 
 export type ButtonProps = {
   label?: string;
   ariaLabel?: string;
-  icon?: JSX.Element | string | IconType;
+  icon?: keyof typeof iconPath;
+  variant?: 'primary' | 'flat' | 'success' | 'icon';
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
-  loading?: boolean | number;
-  disabled?: boolean | number;
-  color?: 'primary' | 'success';
-  variant?: 'default' | 'icon';
-  onClick?: () => (event: React.MouseEvent<HTMLButtonElement>) => void;
+  loading?: boolean;
+  disabled?: boolean;
+  css?: CSS<typeof config>;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button = ({
+export const Button = ({
   label,
   ariaLabel,
+  variant = 'primary',
   size = 'md',
   fullWidth = false,
   loading = false,
   disabled = false,
   icon,
-  variant = 'default',
-  color = 'primary',
   onClick,
   ...props
 }: ButtonProps) => (
-  <S.Button
+  <S.Container
     aria-label={ariaLabel ? ariaLabel : label}
     size={size}
     fullWidth={fullWidth}
-    hasIcon={!!icon}
-    color={color}
+    hasIcon={!!icon && variant !== 'icon'}
     variant={variant}
+    loading={loading}
+    disabled={disabled || loading}
     onClick={onClick}
-    loading={Number(loading)}
-    disabled={loading || disabled}
     {...props}
   >
-    {!!icon && <i aria-hidden="true">{icon}</i>}
+    {!!icon && <Icon name={icon} color="current" />}
     {variant !== 'icon' && label}
-    {loading && (
-      <AiOutlineLoading3Quarters
-        color="white"
-        className="ml-5 -mr-4 animate-spin"
-        aria-hidden="true"
-      />
+    {loading && variant !== 'icon' && (
+      <S.LoadingWrapper>
+        <Spinner size="xs" color="onInteractive" />
+      </S.LoadingWrapper>
     )}
-  </S.Button>
+  </S.Container>
 );
-
-export default Button;

@@ -1,18 +1,24 @@
+import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import {{pascalCase name}} from '.';
+import { {{pascalCase name}}, {{pascalCase name}}Props  } from '.';
 
 export default {
-  title: '{{pascalCase name}}',
+  title: 'Components/{{pascalCase name}}',
   component: {{pascalCase name}},
   parameters: {
     layout: 'centered',
+    status: 'stable', // beta| deprecated | review | stable,
+    design: {
+      type: 'figma',
+      url:
+        '',
+    },
   },
   args: {
-    label: 'Button',
   }
 } as Meta;
 
-const Template: Story = (args) => <{{pascalCase name}} {...args} />;
+const Template: Story<{{pascalCase name}}Props> = (args) => <{{pascalCase name}} {...args} />;
 
-export const Primary = Template.bind({});
+export const Default = Template.bind({});

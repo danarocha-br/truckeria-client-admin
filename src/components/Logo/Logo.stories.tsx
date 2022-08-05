@@ -1,22 +1,26 @@
+import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import Logo from '.';
+import { Logo, LogoProps } from '.';
 
 export default {
-  title: 'Foundation/Logo',
+  title: 'Components/Logo',
   component: Logo,
   parameters: {
     layout: 'centered',
+    status: 'stable', // beta| deprecated | review | stable,
+    design: {
+      type: 'figma',
+      url: '',
+    },
   },
-  args: {
-    symbolOnly: false,
-  },
+  args: {},
 } as Meta;
 
-const Template: Story = (args) => <Logo {...args} />;
+const Template: Story<LogoProps> = (args) => <Logo {...args} />;
 
 export const Default = Template.bind({});
-export const SymbolOnly = Template.bind({});
-SymbolOnly.args = {
-  symbolOnly: true,
+export const Symbol = Template.bind({});
+Symbol.args = {
+  variant: 'symbol',
 };

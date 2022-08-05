@@ -1,34 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+# Truckeria Admin
+
+<img alt="Truckeria logo" src="https://res.cloudinary.com/danarocha/image/upload/v1600760677/github/truckeria-logo_xxafxi.png"  width="200px"/>
+<br />
+
+
+> `Truckeria design` is a collection of `React UI components` for quickly building user interfaces at Truckeria.
+
+
+
+## Usage
+
+For usage guidelines, please see our documentation website.
+
+## Running locally
+
+#### Pre-requisites
+
+###### NodeJS
+
+<a href="https://nodejs.org/en/download/package-manager/" target="_blank">with these instructions</a>.
+
+###### Yarn
+
+<a href="https://yarnpkg.com/en/docs/getting-started" target="_blank">with these instructions</a>.
+
+Clone the repo then run the following commands from within the repo's folder:
 
 ```bash
-npm run dev
-# or
-yarn dev
+yarn # bootstraps the repo and downloads packages
+yarn storybook #to get the storybook running
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+For more commands, please reference the `package.json` file.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## :rocket: Built With
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- [tsdx](https://tsdx.io/)
+- [typescript](http://typescriptlang.org/)
+- [reactJS](https://reactjs.org/)
+- [stitches](https://stitches.dev/)
+- [framer-motion](https://www.framer.com/motion/)
+- [nivo](https://nivo.rocks)
+- [date-fns](https://date-fns.org/)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+---
 
-## Learn More
+Made with ♥ by **Dana Rocha** :wave: [Get in touch!](https://www.linkedin.com/in/danarocha/)
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the MIT License - see the <a href="" target="_blank">LICENSE.md</a> file for details.

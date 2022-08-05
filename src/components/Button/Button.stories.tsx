@@ -1,50 +1,75 @@
-import { Story } from '@storybook/react/types-6-0';
-import { FiPlus } from 'react-icons/fi';
+import React from 'react';
+import { Story, Meta } from '@storybook/react/types-6-0';
 
-import Button from '.';
+import { Button, ButtonProps } from '.';
+import { Grid } from '../Grid';
+import { Flex } from '../Flex';
 
 export default {
   title: 'Components/Button',
   component: Button,
+  parameters: {
+    status: 'stable', // beta| deprecated | review | stable,
+    design: {
+      type: 'figma',
+      url: '',
+    },
+  },
   args: {
-    label: 'Sign in',
-    ariaLabel: 'View more',
-    kind: 'primary',
+    label: 'I am a button',
+    ariaLabel: 'I am a button',
     size: 'md',
+    variant: 'primary',
     fullWidth: false,
-    disabled: false,
     loading: false,
-    onClick: () => 'clicked',
+    disabled: false,
+    onClick: () => console.log('clicked'),
   },
   argTypes: {
     label: {
       table: {
-        category: 'Text',
+        category: 'Modifiers',
       },
     },
     ariaLabel: {
       table: {
-        category: 'Text',
-      },
-    },
-    onClick: {
-      table: {
-        category: 'Events',
+        category: 'Modifiers',
       },
     },
     variant: {
       table: {
         category: 'Modifiers',
       },
-    },
-    kind: {
-      table: {
-        category: 'Modifiers',
+      options: ['primary', 'success', 'flat', 'icon'],
+      control: {
+        type: 'inline-radio',
       },
     },
     size: {
       table: {
         category: 'Modifiers',
+      },
+      options: ['sm', 'md', 'lg'],
+      control: {
+        type: 'inline-radio',
+      },
+    },
+    icon: {
+      table: {
+        category: 'Modifiers',
+      },
+      control: {
+        type: 'select',
+      },
+    },
+    loading: {
+      table: {
+        category: 'State',
+      },
+    },
+    disabled: {
+      table: {
+        category: 'State',
       },
     },
     fullWidth: {
@@ -52,46 +77,50 @@ export default {
         category: 'Modifiers',
       },
     },
-    icon: {
+    onClick: {
+      table: {
+        category: 'Functions',
+      },
+    },
+    css: {
       type: '',
       table: {
         category: 'Modifiers',
       },
-    },
-    disabled: {
-      type: '',
-      table: {
-        category: 'Modifiers',
-      },
-    },
-    loading: {
-      type: '',
-      table: {
-        category: 'Modifiers',
+      control: {
+        type: 'object',
       },
     },
   },
-};
+} as ButtonProps as Meta;
 
-const Template: Story = (args) => (
-  <div className="flex flex-col items-center justify-center space-y-8 h-full w-full">
+const Template: Story<ButtonProps> = (args) => (
+  <Grid align="center" justify="center" cols={3} gap={6} css={{ p: '$6' }}>
     <Button {...args} />
+    <Button {...args} disabled />
+    <Button {...args} loading />
 
-    <Button {...args} color="success" />
-  </div>
+    <Button {...args} variant="success" />
+    <Button {...args} variant="success" disabled />
+    <Button {...args} variant="success" loading />
+
+    <Button {...args} variant="flat" />
+    <Button {...args} variant="flat" disabled />
+    <Button {...args} variant="flat" loading />
+  </Grid>
 );
 
 export const Default = Template.bind({});
 
 export const WithIcon = Template.bind({});
 WithIcon.args = {
-  label: 'Add',
-  icon: <FiPlus></FiPlus>,
+  icon: 'pencil',
 };
 
-export const IconOnly = Template.bind({});
-IconOnly.args = {
-  ariaLabel: 'Add',
-  icon: <FiPlus></FiPlus>,
-  variant: 'icon',
-};
+export const IconOnly: Story<ButtonProps> = (args) => (
+  <Flex align="center" justify="center" gap={6} css={{ p: '$6' }}>
+    <Button {...args} variant="icon" icon="pencil" />
+    <Button {...args} variant="icon" icon="pencil" disabled />
+    <Button {...args} variant="icon" icon="pencil" loading />
+  </Flex>
+);

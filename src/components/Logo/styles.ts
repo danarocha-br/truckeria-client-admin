@@ -1,12 +1,26 @@
-import styled, { css } from 'styled-components';
+import { styled, lightTheme } from '../../../stitches.config';
 
-import { LogoProps } from './';
+export const MainColor = styled('path', {
+  fill: 'hsla(37, 42%, 65%, 1)',
 
-type ContainerProps = Pick<LogoProps, 'size'>;
+  [`.${lightTheme} &`]: {
+    fill: 'hsla(217, 13%, 19%, 1)',
+  },
+});
+export const BrandColor = styled('path', {
+  fill: 'hsla(10, 100%, 66%, 0.94)',
+});
 
-export const Container = styled.div<ContainerProps>`
-  ${({ theme, size }) => css`
-    color: ${theme.text.onBrand};
-    transform: ${size === 'lg' ? `scale(1.4)` : 'scale(1)'}; ;
-  `}
-`;
+export const Svg = styled('svg', {
+  variants: {
+    size: {
+      sm: {},
+      md: {
+        transform: 'scale(1.3)',
+      },
+    },
+  },
+  variantsDefault: {
+    size: 'sm',
+  },
+});
