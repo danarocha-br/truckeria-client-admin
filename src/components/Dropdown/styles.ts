@@ -60,6 +60,7 @@ const itemStyles = {
   fontSize: '$sm',
   lineHeight: 1,
   borderRadius: '$xs',
+  cursor: 'pointer',
 
   d: 'flex',
   alignItems: 'center',

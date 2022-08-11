@@ -7,20 +7,25 @@ export const Container = styled('div', {
   w: '$full',
   h: '$full',
 
-  d: 'flex',
+  d: 'block',
 
-  p: '$4',
-  pr: '$0',
+  '@bp-md': {
+    d: 'flex',
+    flexDirection: 'row',
+    p: '$4',
+    pr: '$0',
+  },
 });
 
 export const Main = styled('main', {
-  bg: '$background-subdued',
-
   w: '$full',
   h: '$full',
   py: '$5',
   px: '$6',
 
-  borderTopLeftRadius: '$lg',
-  borderBottomLeftRadius: '$lg',
+  '@bp-md': {
+    borderTopLeftRadius: '$lg',
+    borderBottomLeftRadius: '$lg',
+    bg: '$background-subdued',
+  },
 });

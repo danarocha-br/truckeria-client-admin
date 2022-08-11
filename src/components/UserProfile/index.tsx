@@ -19,6 +19,10 @@ import * as S from './styles';
 
 import { useAuth } from 'hooks/useAuth';
 
+type UserProfileProps = {
+  hideUsername?: boolean;
+};
+
 const accounts = [
   {
     id: '1',
@@ -30,7 +34,7 @@ const accounts = [
   },
 ];
 
-export const UserProfile = () => {
+export const UserProfile = ({ hideUsername = false }: UserProfileProps) => {
   const { signOut } = useAuth();
 
   const DropdownItems = () => {
@@ -73,7 +77,7 @@ export const UserProfile = () => {
     <Dropdown items={<DropdownItems />}>
       <S.Container>
         <Avatar user="Dana Rocha" />
-        <Text size="sm">Dana Rocha</Text>
+        {!hideUsername && <Text size="sm">Dana Rocha</Text>}
         <TriangleDownIcon />
       </S.Container>
     </Dropdown>
