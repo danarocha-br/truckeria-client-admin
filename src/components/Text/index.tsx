@@ -59,6 +59,9 @@ export const Text = styled('span', {
       onInteractive: {
         color: '$text-onInteractive',
       },
+      contrast: {
+        color: '$text-contrast',
+      },
     },
 
     weight: {

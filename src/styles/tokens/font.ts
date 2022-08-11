@@ -10,7 +10,7 @@ export default {
     xs: convertRemToPixels(14),
     sm: convertRemToPixels(15),
     base: convertRemToPixels(17),
-    lg: convertRemToPixels(20),
+    lg: convertRemToPixels(23),
     xl: convertRemToPixels(26),
     '2xl': convertRemToPixels(32),
     '3xl': convertRemToPixels(45),

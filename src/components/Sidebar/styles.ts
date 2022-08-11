@@ -2,11 +2,11 @@ import { styled } from '../../../stitches.config';
 
 export const Container = styled('aside', {
   h: '$full',
-  w: 240,
+  w: 260,
 
-  pt: '$7',
+  pt: '$5',
   pb: '$2',
-  px: '$3',
+  pr: '$4',
 
   d: 'none',
   flexDirection: 'column',
@@ -24,11 +24,17 @@ export const Anchor = styled('a', {
   textDecoration: 'none',
   fontWeight: '$regular',
   opacity: 0.6,
+  border: '2px dashed $transparent',
+  borderRadius: '$xs',
 
   d: 'flex',
   alignItems: 'center',
   gap: '$5',
-  mb: '$3',
+  mb: '$1',
+  ml: '$1',
+  p: '$2',
+
+  w: '$full',
 
   position: 'relative',
   transition: 'all cubic-bezier(0.4, 0, 0.2, 1) 300ms',
@@ -39,8 +45,8 @@ export const Anchor = styled('a', {
     w: 0,
     h: 2,
     position: 'absolute',
-    top: '$7',
-    left: '2.8rem',
+    top: '$8',
+    left: '3.4rem',
     borderRadius: '$pill',
     transition: 'all cubic-bezier(0.4, 0, 0.2, 1) 300ms',
   },
@@ -57,6 +63,12 @@ export const Anchor = styled('a', {
     },
   },
 
+  '&:focus': {
+    outline: 'none',
+    opacity: 1,
+    borderColor: '$action-transparent-transparent',
+  },
+
   variants: {
     isActive: {
       true: {
@@ -69,8 +81,8 @@ export const Anchor = styled('a', {
           w: '$6',
           h: 2,
           position: 'absolute',
-          top: '$7',
-          left: '2.8rem',
+          top: '$8',
+          left: '3.4rem',
           borderRadius: '$pill',
         },
 
@@ -158,6 +170,7 @@ export const AnchorMobile = styled('a', {
 export const ContainerMob = styled('nav', {
   position: 'fixed',
   bottom: 0,
+  zIndex: 10,
 
   bg: '$background-subdued',
   h: '$11',

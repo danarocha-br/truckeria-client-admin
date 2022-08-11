@@ -3,7 +3,7 @@ const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   images: {
-    domains: ['res.cloudinary.com'],
+    domains: ['res.cloudinary.com', 'images.unsplash.com'],
   },
 
   // swcMinify: true,
