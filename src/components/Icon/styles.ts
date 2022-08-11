@@ -26,6 +26,9 @@ export const SVG = styled('svg', {
       onInteractive: {
         color: '$text-onInteractive',
       },
+      brand: {
+        color: '$brand',
+      },
       current: {
         color: 'currentColor',
       },
