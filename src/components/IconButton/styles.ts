@@ -25,6 +25,11 @@ export const Container = styled('svg', {
     },
   },
 
+  '&:focus': {
+    outline: 'blue',
+    bg: '$action-primary-pressed',
+  },
+
   variants: {
     variant: {
       primary: {
@@ -33,12 +38,20 @@ export const Container = styled('svg', {
         '&:hover': {
           color: '$action-primary-hover',
         },
+
+        '&:focus, &:active': {
+          color: '$action-primary-pressed',
+        },
       },
       success: {
         color: '$action-success-default',
 
         '&:hover': {
           color: '$action-success-hover',
+        },
+
+        '&:focus, &:active': {
+          color: '$action-success-pressed',
         },
       },
     },

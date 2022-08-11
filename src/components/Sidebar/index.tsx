@@ -60,7 +60,7 @@ export const Sidebar = () => {
     <>
       <S.Container>
         <Flex direction="column" gap="6">
-          <Logo css={{ mb: '$8', ml: '$-2' }} />
+          <Logo css={{ mb: '$8' }} />
 
           {Object.entries(SIDEBAR_NAVIGATION).map(([key, value]) => (
             <SidebarNavItem

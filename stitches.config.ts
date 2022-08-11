@@ -1,6 +1,6 @@
 import type * as Stitches from '@stitches/react';
 
-import { colors, font, spacing, radii } from './src/styles/tokens';
+import { colors, font, spacing, radii, shadow } from './src/styles/tokens';
 import { dark, light } from './src/styles/themes';
 import { createStitches } from '@stitches/react';
 
@@ -79,7 +79,10 @@ export const {
     },
     shadows: {
       10: '0px 4px 10px rgba(0, 0, 0, 0.05)',
-      30: ' 0px 4px 30px rgba(0, 0, 0, 0.08)',
+      30: '0px 4px 30px rgba(0, 0, 0, 0.08)',
+      focus:
+        '$colors$surface-base-default 0px 0px 0px 5px, $colors$loading-default 0px 0px 0px 9px',
+      none: 'none',
     },
     transitions: {
       slow: 'all cubic-bezier(0.4, 0, 0.2, 1) 400ms',
