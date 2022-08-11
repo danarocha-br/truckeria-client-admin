@@ -81,6 +81,11 @@ export const {
       10: '0px 4px 10px rgba(0, 0, 0, 0.05)',
       30: ' 0px 4px 30px rgba(0, 0, 0, 0.08)',
     },
+    transitions: {
+      slow: 'all cubic-bezier(0.4, 0, 0.2, 1) 400ms',
+      base: 'all cubic-bezier(0.4, 0, 0.2, 1) 300ms',
+      fast: 'all cubic-bezier(0.4, 0, 0.2, 1) 150ms',
+    },
   },
   media: {
     'bp-sm': '(min-width: 520px)',
@@ -314,9 +319,10 @@ export const globalStyles = globalCss({
     backgroundColor: '$900',
   },
 
-  'input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus,textarea:-webkit-autofill,textarea:-webkit-autofill:hover,textarea:-webkit-autofill:focus,select:-webkit-autofill,select:-webkit-autofill:hover,select:-webkit-autofill:focus': {
-    boxShadow: '0 0 0px 4px hsla(21, 100%, 91%, 1) inset !important',
-    transition: 'background-color 5000s ease-in-out 0s',
-    filter: 'none',
-  },
+  'input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus,textarea:-webkit-autofill,textarea:-webkit-autofill:hover,textarea:-webkit-autofill:focus,select:-webkit-autofill,select:-webkit-autofill:hover,select:-webkit-autofill:focus':
+    {
+      boxShadow: '0 0 0px 4px hsla(21, 100%, 91%, 1) inset !important',
+      transition: 'background-color 5000s ease-in-out 0s',
+      filter: 'none',
+    },
 });

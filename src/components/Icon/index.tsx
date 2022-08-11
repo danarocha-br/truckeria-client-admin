@@ -11,6 +11,7 @@ export type IconColorProps =
   | 'danger'
   | 'warning'
   | 'current'
+  | 'brand'
   | 'onInteractive';
 
 export type IconProps = {
