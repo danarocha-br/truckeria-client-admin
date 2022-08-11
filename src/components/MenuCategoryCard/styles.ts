@@ -1,7 +1,6 @@
 import { styled } from '../../../stitches.config';
-import { Button } from 'reakit/Button';
 
-export const Container = styled(Button, {
+export const Container = styled('a', {
   $$bgColorOpacity: 'rgb(225, 225, 225, 0.995)',
 
   color: '$neutral400',
@@ -19,14 +18,30 @@ export const Container = styled(Button, {
   position: 'relative',
   cursor: 'pointer',
   transition: '$base',
+  outline: 'none',
+  textDecoration: 'none',
+
+  '.card__actions': {
+    opacity: 0,
+    transitionDelay: '100ms',
+    transitionDuration: '400ms',
+  },
 
   '&:hover': {
     transform: 'scale(1.01)',
+
+    '.card__actions': {
+      opacity: 1,
+    },
   },
 
   '&:focus': {
     boxShadow: '$focus',
     bg: '$white',
+
+    '.card__actions': {
+      opacity: 1,
+    },
   },
 
   variants: {

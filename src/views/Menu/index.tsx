@@ -1,4 +1,5 @@
 import React from 'react';
+import NextLink from 'next/link';
 
 import {
   AdminLayout,
@@ -55,6 +56,8 @@ const Dashboard: React.FC = () => {
           {categories.length > 1 ? (
             categories.map((category) => (
               <MenuCategoryCard
+                as={NextLink}
+                href={`/menu/${category.id}`}
                 key={category.id}
                 title={category.name}
                 count={category.products.length}
@@ -66,6 +69,7 @@ const Dashboard: React.FC = () => {
           ) : (
             <MenuCategoryCard
               variant="add"
+              href="/"
               title="Adicione uma nova categoria ao seu cardápio"
             />
           )}
