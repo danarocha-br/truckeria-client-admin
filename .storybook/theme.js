@@ -7,7 +7,7 @@ export default create({
   colorPrimary: 'red',
   colorSecondary: colors.brand,
 
-  appBg: colors.neutral[800],
+  appBg: colors.neutral[900],
   appContentBg: colors.neutral[700],
   appBorderColor: colors.neutral[400],
   appBorderRadius: 8,

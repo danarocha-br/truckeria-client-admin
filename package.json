@@ -33,6 +33,7 @@
     "@radix-ui/react-scroll-area": "^1.0.0",
     "@radix-ui/react-separator": "^1.0.0",
     "@radix-ui/react-toggle-group": "^1.0.0",
+    "@radix-ui/react-tooltip": "^1.0.0",
     "@stitches/react": "^1.2.8",
     "@supabase/supabase-auth-helpers": "^1.4.2",
     "@supabase/supabase-js": "^1.35.4",
