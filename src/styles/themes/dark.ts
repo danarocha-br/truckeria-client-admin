@@ -85,7 +85,7 @@ export default {
 
   'text-default': colors.white,
   'text-subdued': colors.neutral[200],
-  'text-lighter': colors.neutral[100],
+  'text-lighter': colors.neutral[300],
   'text-danger': colors.red[500],
   'text-warning': colors.yellow[500],
   'text-success': colors.green[500],

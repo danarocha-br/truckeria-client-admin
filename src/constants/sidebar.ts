@@ -6,7 +6,7 @@ export default {
   },
   Menu: {
     label: 'Cardápio',
-    icon: 'truck',
+    icon: 'book',
     href: '/menu',
   },
   Schedule: {
