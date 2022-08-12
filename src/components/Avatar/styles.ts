@@ -1,4 +1,4 @@
-import { styled } from '../../../stitches.config';
+import { darkTheme, styled } from '../../../stitches.config';
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
 
 export const AvatarRoot = styled(AvatarPrimitive.Root, {
@@ -25,7 +25,11 @@ export const AvatarRoot = styled(AvatarPrimitive.Root, {
         h: 36,
 
         border: '3px solid $transparent',
-        boxShadow: '0 0 0 1px $colors$yellow300',
+        boxShadow: '0 0 0 1px $colors$yellow500',
+
+        [`.${darkTheme} &`]: {
+          boxShadow: '0 0 0 1px $colors$yellow300',
+        },
       },
     },
   },
@@ -45,7 +49,7 @@ export const AvatarImage = styled(AvatarPrimitive.Image, {
 export const AvatarFallback = styled(AvatarPrimitive.Fallback, {
   color: '$text-contrast',
   fontWeight: '$medium',
-  bg: '$yellow300',
+  bg: '$yellow500',
   w: '$full',
   h: '$full',
 
@@ -54,6 +58,10 @@ export const AvatarFallback = styled(AvatarPrimitive.Fallback, {
   justifyContent: 'center',
 
   lineHeight: 1,
+
+  [`.${darkTheme} &`]: {
+    bg: '$yellow300',
+  },
 
   variants: {
     size: {

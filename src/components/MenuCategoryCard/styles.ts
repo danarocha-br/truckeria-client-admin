@@ -1,10 +1,9 @@
-import { styled } from '../../../stitches.config';
+import { darkTheme, styled } from '../../../stitches.config';
 
 export const Container = styled('a', {
   $$bgColorOpacity: 'rgb(225, 225, 225, 0.995)',
 
-  color: '$neutral400',
-  bg: '$$bgColorOpacity',
+  color: '$neutral500',
   borderRadius: '$sm',
   p: '$2',
   pb: '$4',
@@ -47,7 +46,12 @@ export const Container = styled('a', {
   variants: {
     variant: {
       primary: {
-        bg: '$$bgColorOpacity',
+        bg: '$white',
+
+        [`.${darkTheme} &`]: {
+          color: '$neutral400',
+          bg: '$$bgColorOpacity',
+        },
 
         '&:hover': {
           bg: '$white',
@@ -76,9 +80,13 @@ export const Tag = styled('div', {
   fontSize: '$tiny',
   fontWeight: '$medium',
 
-  bg: '$surface-base-default',
+  bg: '$neutral800',
   borderRadius: '$xs',
   px: '$3',
   py: '$1',
   w: 'auto',
+
+  [`.${darkTheme} &`]: {
+    bg: '$surface-base-default',
+  },
 });

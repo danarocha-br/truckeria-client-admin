@@ -1,4 +1,4 @@
-import { darken, desaturate, transparentize } from 'polished';
+import { darken, desaturate, transparentize, lighten } from 'polished';
 
 import * as colors from '../tokens/colors';
 
@@ -7,7 +7,7 @@ export default {
   'background-subdued': colors.neutral[100],
 
   'surface-base-default': colors.neutral[100],
-  'surface-base-subdued': colors.neutral[200],
+  'surface-base-subdued': lighten(0.09, colors.neutral[200]),
   'surface-base-hover': darken(0.1, colors.neutral[200]),
   'surface-base-pressed': darken(0.2, colors.neutral[200]),
   'surface-base-disabled': desaturate(0.8, colors.neutral[200]),

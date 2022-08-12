@@ -35,7 +35,7 @@ const Dashboard = () => {
             Cardápio
           </Text>
 
-          <Flex justify="end" gap={8}>
+          <Flex justify="end" gap={6}>
             <ToggleGroup
               type="single"
               defaultValue="card"
@@ -43,7 +43,7 @@ const Dashboard = () => {
               onValueChange={(value) => {
                 if (value) setViewPreference(value);
               }}
-              aria-label="Text alignment"
+              aria-label="Escolha o formato de visualização de preferência"
             >
               <ToggleGroupItem value="card" aria-label="Ver formato grid">
                 <Tooltip content="Ver em formato grid">

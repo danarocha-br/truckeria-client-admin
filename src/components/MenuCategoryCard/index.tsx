@@ -56,6 +56,7 @@ export const MenuCategoryCard = ({
               icon="pencil"
               size="sm"
               css={{
+                color: '$white',
                 bg: '$neutral800',
                 p: '$1',
                 transform: 'scale(0.85)',
@@ -75,6 +76,7 @@ export const MenuCategoryCard = ({
               icon="settings"
               size="sm"
               css={{
+                color: '$white',
                 bg: '$neutral800',
                 p: '$1',
                 transform: 'scale(0.85)',
@@ -103,6 +105,7 @@ export const MenuCategoryCard = ({
                 icon="options"
                 size="sm"
                 css={{
+                  color: '$white',
                   bg: '$neutral800',
                   p: '$1',
                   transform: 'scale(0.85)',
