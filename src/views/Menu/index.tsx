@@ -13,6 +13,7 @@ import {
   ToggleGroupItem,
   Icon,
   Tooltip,
+  MenuCategoryList,
 } from 'components';
 
 import { data as categories } from './mock';
@@ -66,25 +67,41 @@ const Dashboard = () => {
           </Flex>
         </Flex>
 
-        <Text color="subdued" size="sm" css={{ mb: '$6' }}>
+        <Text
+          color="subdued"
+          size="sm"
+          css={{ mb: '$6', mt: '$4', '@bp-md': { mt: '$0' } }}
+        >
           Configure categorias e defina o seu cardápio.
         </Text>
 
         <Grid
-          gap="8"
+          gap={viewPreference === 'card' ? '8' : '3'}
           css={{
-            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+            gridTemplateColumns:
+              viewPreference === 'card'
+                ? 'repeat(2, minmax(0, 1fr))'
+                : 'repeat(1, minmax(0, 1fr))',
 
             '@bp-md': {
-              gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+              gridTemplateColumns:
+                viewPreference === 'card'
+                  ? 'repeat(3, minmax(0, 1fr))'
+                  : 'repeat(1, minmax(0, 1fr))',
             },
 
             '@bp-lg': {
-              gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+              gridTemplateColumns:
+                viewPreference === 'card'
+                  ? 'repeat(4, minmax(0, 1fr))'
+                  : 'repeat(1, minmax(0, 1fr))',
             },
 
             '@bp-xl': {
-              gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
+              gridTemplateColumns:
+                viewPreference === 'card'
+                  ? 'repeat(6, minmax(0, 1fr))'
+                  : 'repeat(1, minmax(0, 1fr))',
             },
           }}
         >
@@ -102,7 +119,16 @@ const Dashboard = () => {
                   isActive={category.isActive}
                 />
               ) : (
-                <div>table</div>
+                <MenuCategoryList
+                  as={NextLink}
+                  href={`/menu/${category.id}`}
+                  key={category.id}
+                  title={category.name}
+                  count={category.products.length}
+                  imageURL={category.image_url}
+                  description={category.description}
+                  isActive={category.isActive}
+                />
               );
             })
           ) : (

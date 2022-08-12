@@ -25,10 +25,8 @@ export const Main = styled('main', {
   h: '$full',
   py: '$5',
   pb: '$0',
-  px: '$5',
 
   '@bp-md': {
-    px: '$8',
     borderTopLeftRadius: '$lg',
     borderBottomLeftRadius: '$lg',
     bg: '$background-subdued',
