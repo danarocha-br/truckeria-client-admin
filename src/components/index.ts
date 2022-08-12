@@ -17,6 +17,7 @@ export * from 'components/Flex';
 export * from 'components/FormWizard';
 export * from 'components/Grid';
 export * from 'components/MenuCategoryCard';
+export * from 'components/MenuCategoryList';
 export * from 'components/NumberInput';
 export * from 'components/ScrollArea';
 export * from 'components/Select';

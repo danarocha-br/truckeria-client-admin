@@ -11,6 +11,7 @@ export default {
   'surface-base-hover': darken(0.1, colors.neutral[200]),
   'surface-base-pressed': darken(0.2, colors.neutral[200]),
   'surface-base-disabled': desaturate(0.8, colors.neutral[200]),
+  'surface-base-lighter': darken(0.03, colors.neutral[100]),
 
   'surface-selected-default': colors.brand,
   'surface-selected-subdued': colors.yellow[500],

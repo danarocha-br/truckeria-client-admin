@@ -143,7 +143,7 @@ export const MenuCategoryCard = ({
           direction="column"
           align="start"
           justify="start"
-          css={{ h: '$full', maxHeight: 80, color: 'inherit' }}
+          css={{ h: '$full', maxHeight: 84, color: 'inherit' }}
         >
           {variant === 'primary' && (
             <Text
@@ -162,6 +162,7 @@ export const MenuCategoryCard = ({
             <Box
               as="span"
               css={{
+                fontSize: '$sm',
                 px: '$1',
                 mt: '$-1',
                 textAlign: 'left',
@@ -204,7 +205,7 @@ export const MenuCategoryCard = ({
                 }}
               >
                 <Icon
-                  name={isActive === true ? 'checkCircle' : 'close'}
+                  name={isActive === true ? 'checkCircle' : 'closeSquare'}
                   color={isActive === true ? 'current' : 'danger'}
                   size="xs"
                 />

@@ -29,7 +29,8 @@ export const data = [
     name: 'Sobremesas',
     image_url:
       'https://images.unsplash.com/photo-1535025183041-0991a977e25b?w=300&dpr=2&q=80',
-    description: 'Awesome burgers',
+    description:
+      'Awesome burgers  burgers burgers burgers burgers burgers burgers burgers burgers burgers burgers burgers burgers burgers burgers burgers burgers burgers burgers burgers burgers burgers burgers burgers burgers',
     isActive: false,
     products: [
       {

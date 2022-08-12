@@ -82,6 +82,8 @@ export const {
       30: '0px 4px 30px rgba(0, 0, 0, 0.08)',
       focus:
         '$colors$surface-base-default 0px 0px 0px 5px, $colors$loading-default 0px 0px 0px 9px',
+      'focus-sm':
+        '$colors$surface-base-default 0px 0px 0px 3px, $colors$loading-default 0px 0px 0px 6px',
       none: 'none',
     },
     transitions: {

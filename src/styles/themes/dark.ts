@@ -4,12 +4,14 @@ import * as colors from '../tokens/colors';
 
 export default {
   'background-default': colors.neutral[900],
-  'background-subdued': colors.neutral[800],
+  'background-subdued': darken(0.02, colors.neutral[800]),
 
   'surface-base-default': colors.neutral[800],
   'surface-base-subdued': colors.neutral[700],
   'surface-base-hover': darken(0.1, colors.neutral[800]),
   'surface-base-pressed': darken(0.2, colors.neutral[800]),
+  'surface-base-disabled': darken(0.033, colors.neutral[700]),
+  'surface-base-lighter': darken(0.03, colors.neutral[600]),
 
   'surface-selected-default': colors.brand,
   'surface-selected-subdued': colors.yellow[500],

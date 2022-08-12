@@ -12,7 +12,18 @@ export const AdminLayout = ({ children }: AdminLayoutProps) => (
     <Sidebar />
 
     <S.Main>
-      <ScrollArea css={{ w: '$full', h: '$full' }}>{children}</ScrollArea>
+      <ScrollArea
+        css={{
+          w: '$full',
+          h: '$full',
+          px: '$5',
+          '@bp-md': {
+            px: '$8',
+          },
+        }}
+      >
+        {children}
+      </ScrollArea>
     </S.Main>
   </S.Container>
 );
