@@ -28,4 +28,5 @@ export * from 'components/Tag';
 export * from 'components/Text';
 export * from 'components/TextInput';
 export * from 'components/Toast';
+export * from 'components/ToggleGroup';
 export * from 'components/UserProfile';

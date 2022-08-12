@@ -59,7 +59,7 @@ export const MenuCategoryCard = ({
             tabIndex={-1}
           />
           <Button
-            label="Editar"
+            label="Configurações"
             variant="icon"
             icon="settings"
             size="sm"
@@ -76,7 +76,7 @@ export const MenuCategoryCard = ({
           <Button
             label="Mais opções"
             variant="icon"
-            icon="settings"
+            icon="options"
             size="sm"
             css={{
               bg: '$neutral800',
