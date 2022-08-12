@@ -8,6 +8,8 @@ import { Box } from 'components/Box';
 import { Flex } from 'components/Flex';
 import { Icon } from 'components/Icon';
 import { Button } from 'components/Button';
+import { Tooltip } from 'components/Tooltip';
+import { Dropdown, DropdownItem } from 'components/Dropdown';
 
 export type MenuCategoryCardProps = {
   /** to render a wrapper to the a tag */
@@ -19,6 +21,8 @@ export type MenuCategoryCardProps = {
   description?: string;
   isActive?: boolean;
   variant?: 'primary' | 'add';
+  onEdit?: () => void;
+  onDelete?: () => void;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const MenuCategoryCard = ({
@@ -30,6 +34,8 @@ export const MenuCategoryCard = ({
   description,
   isActive = true,
   variant = 'primary',
+  onEdit,
+  onDelete,
   ...props
 }: MenuCategoryCardProps) => {
   const Component = as || React.Fragment;
@@ -43,51 +49,71 @@ export const MenuCategoryCard = ({
           gap="0"
           css={{ position: 'absolute', top: 6, right: '$1', zIndex: 2 }}
         >
-          <Button
-            label="Editar"
-            variant="icon"
-            icon="pencil"
-            size="sm"
-            css={{
-              bg: '$neutral800',
-              p: '$1',
-              transform: 'scale(0.85)',
-              '&:hover': {
-                bg: '$neutral900',
-              },
-            }}
-            tabIndex={-1}
-          />
-          <Button
-            label="Configurações"
-            variant="icon"
-            icon="settings"
-            size="sm"
-            css={{
-              bg: '$neutral800',
-              p: '$1',
-              transform: 'scale(0.85)',
-              '&:hover': {
-                bg: '$neutral900',
-              },
-            }}
-            tabIndex={-1}
-          />
-          <Button
-            label="Mais opções"
-            variant="icon"
-            icon="options"
-            size="sm"
-            css={{
-              bg: '$neutral800',
-              p: '$1',
-              transform: 'scale(0.85)',
-              '&:hover': {
-                bg: '$neutral900',
-              },
-            }}
-            tabIndex={-1}
-          />
+          <Tooltip content="Edite categoria">
+            <Button
+              label="Editar"
+              variant="icon"
+              icon="pencil"
+              size="sm"
+              css={{
+                bg: '$neutral800',
+                p: '$1',
+                transform: 'scale(0.85)',
+                '&:hover': {
+                  bg: '$neutral900',
+                },
+              }}
+              onClick={onEdit}
+              tabIndex={-1}
+            />
+          </Tooltip>
+
+          <Tooltip content="Configurações">
+            <Button
+              label="Configurações"
+              variant="icon"
+              icon="settings"
+              size="sm"
+              css={{
+                bg: '$neutral800',
+                p: '$1',
+                transform: 'scale(0.85)',
+                '&:hover': {
+                  bg: '$neutral900',
+                },
+              }}
+              tabIndex={-1}
+            />
+          </Tooltip>
+
+          <Tooltip content="Outras opções">
+            <Dropdown
+              items={
+                <>
+                  <DropdownItem onSelect={onDelete}>
+                    <Icon name="trash" />
+                    Deletar
+                  </DropdownItem>
+                </>
+              }
+            >
+              <Button
+                label="Mais opções"
+                variant="icon"
+                icon="options"
+                size="sm"
+                css={{
+                  bg: '$neutral800',
+                  p: '$1',
+                  transform: 'scale(0.85)',
+                  '&:hover': {
+                    bg: '$neutral900',
+                  },
+                }}
+                tabIndex={-1}
+              />
+            </Dropdown>
+          </Tooltip>
         </Flex>
 
         {variant === 'add' && (

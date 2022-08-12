@@ -12,6 +12,7 @@ import {
   ToggleGroup,
   ToggleGroupItem,
   Icon,
+  Tooltip,
 } from 'components';
 
 import { data as categories } from './mock';
@@ -44,18 +45,24 @@ const Dashboard = () => {
               aria-label="Text alignment"
             >
               <ToggleGroupItem value="card" aria-label="Ver formato grid">
-                <Icon name="cards" />
+                <Tooltip content="Ver em formato grid">
+                  <Icon name="cards" />
+                </Tooltip>
               </ToggleGroupItem>
               <ToggleGroupItem value="table" aria-label="Ver formato tabela">
-                <Icon name="table" />
+                <Tooltip content="Ver em formato lista">
+                  <Icon name="table" />
+                </Tooltip>
               </ToggleGroupItem>
             </ToggleGroup>
 
-            <IconButton
-              icon="plus"
-              ariaLabel="Adicione nova categoria"
-              onClick={() => ''}
-            />
+            <Tooltip content="Adicione nova categoria" align="end">
+              <IconButton
+                icon="plus"
+                ariaLabel="Adicione nova categoria"
+                onClick={() => ''}
+              />
+            </Tooltip>
           </Flex>
         </Flex>
 

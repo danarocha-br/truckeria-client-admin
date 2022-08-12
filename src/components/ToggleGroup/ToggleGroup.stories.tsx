@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { ToggleGroup, ToggleGroupProps } from '.';
+import { ToggleGroup, ToggleGroupItem } from '.';
+import { Icon } from 'components/Icon';
 
 export default {
   title: 'Components/ToggleGroup',
@@ -17,6 +18,28 @@ export default {
   args: {},
 } as Meta;
 
-const Template: Story<ToggleGroupProps> = (args) => <ToggleGroup {...args} />;
+const Template: Story = (args) => {
+  const [viewPreference, setViewPreference] = useState('card');
+
+  return (
+    <ToggleGroup
+      {...args}
+      type="single"
+      defaultValue="card"
+      value={viewPreference}
+      onValueChange={(value) => {
+        if (value) setViewPreference(value);
+      }}
+      aria-label="Text alignment"
+    >
+      <ToggleGroupItem value="card" aria-label="Ver formato grid">
+        <Icon name="cards" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="table" aria-label="Ver formato tabela">
+        <Icon name="table" />
+      </ToggleGroupItem>
+    </ToggleGroup>
+  );
+};
 
 export const Default = Template.bind({});

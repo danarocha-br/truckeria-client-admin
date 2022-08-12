@@ -52,7 +52,7 @@ export const parameters = {
       },
       {
         name: 'dark',
-        value: colors.neutral[900],
+        value: colors.neutral[800],
       },
     ],
   },
