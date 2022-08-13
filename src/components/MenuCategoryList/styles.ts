@@ -23,6 +23,8 @@ export const Container = styled('a', {
   '&:hover': {
     transform: 'scale(1.01)',
     opacity: 1,
+    // boxShadow:
+    //   '$colors$surface-base-default 0px 0px 0px 2px, 0px 0px 0px 2.5px $colors$surface-base-transparent',
   },
 
   '&:focus': {
@@ -31,9 +33,8 @@ export const Container = styled('a', {
     opacity: 1,
   },
 
-  [`.${darkTheme} &`]: {
+  [`.dark-theme &`]: {
     bg: '$surface-base-disabled',
-    boxShadow: '0 0 0 1px $colors$surface-base-hover',
   },
 
   '@bp-md': {

@@ -47,8 +47,8 @@ export const MenuCategoryList = ({
           imageALT="Categoria de menu"
           ratio={16 / 16}
           css={{
-            borderTopLeftRadius: 9,
-            borderBottomLeftRadius: 9,
+            borderTopLeftRadius: '$sm',
+            borderBottomLeftRadius: '$sm',
             bg: '$surface-base-hover',
             filter: `${imageURL ? 'initial' : 'grayscale(1)'}`,
             w: '$16',

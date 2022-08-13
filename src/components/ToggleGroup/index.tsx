@@ -1,4 +1,4 @@
-import { darkTheme, styled } from '../../../stitches.config';
+import { lightTheme, styled } from '../../../stitches.config';
 import { Root, Item } from '@radix-ui/react-toggle-group';
 
 export const ToggleGroup = styled(Root, {
@@ -12,7 +12,7 @@ export const ToggleGroup = styled(Root, {
 export const ToggleGroupItem = styled(Item, {
   all: 'unset',
   color: '$text-default',
-  bg: '$transparent',
+  bg: '$surface-base-default',
   h: '$9',
   w: '$9',
 
@@ -45,8 +45,12 @@ export const ToggleGroupItem = styled(Item, {
     position: 'relative',
   },
 
-  [`.${darkTheme} &`]: {
-    bg: '$surface-base-default',
+  [`.${lightTheme} &`]: {
+    bg: '$transparent',
+
+    '&[data-state=on]': {
+      bg: '$white',
+    },
 
     '&:hover': { bg: '$surface-base-hover' },
   },
