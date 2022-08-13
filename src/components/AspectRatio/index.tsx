@@ -3,14 +3,13 @@ import {
   Root as AspectRatioPrimitiveRoot,
   AspectRatioProps as AspectRatioPrimitiveProps,
 } from '@radix-ui/react-aspect-ratio';
-
-import * as S from './styles';
-import { Box } from 'components/Box';
-import { CSS } from '@stitches/react';
 import Image from 'next/image';
 
+import { Box } from 'components/Box';
+import { CSS } from '@stitches/react';
+
 export type AspectRatioProps = {
-  imageURL: string | unknown;
+  imageURL: string;
   imageALT: string;
   ratio?: number;
   css?: CSS;

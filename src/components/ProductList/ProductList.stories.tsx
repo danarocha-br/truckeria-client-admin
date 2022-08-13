@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { ProductList, ProductListProps } from '.';
 
 export default {
-  title: 'Components/ProductList',
+  title: 'Components/Lists/ProductList',
   component: ProductList,
   parameters: {
     layout: 'centered',
@@ -14,7 +14,19 @@ export default {
       url: '',
     },
   },
-  args: {},
+  args: {
+    title: 'Cheeseburger de pinhão',
+    internal_name: 'BG_SUP',
+    image_url: '',
+    description:
+      'Hamburguer, pão brioche, cheddar, tomate, pickles, salada, maionese de ervas, tomate, pickles, salada, maionese de ervas',
+    price: 9.5,
+    isActive: true,
+    internal_barcode: 13345,
+    badges: ['eggs', 'nuts', 'vegan', 'vegetarian'],
+    display_featured: true,
+    display_new_item: true,
+  },
 } as Meta;
 
 const Template: Story<ProductListProps> = (args) => <ProductList {...args} />;

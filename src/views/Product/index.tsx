@@ -70,7 +70,7 @@ const Product = () => {
         cell: (info) => (
           <AspectRatio
             className="product__cover"
-            imageURL={info.getValue() || '/img/bg_empty_cards.png'}
+            imageURL={info.getValue<string>() || '/img/bg_empty_cards.png'}
             imageALT="Categoria de menu"
             ratio={8 / 8}
             css={{

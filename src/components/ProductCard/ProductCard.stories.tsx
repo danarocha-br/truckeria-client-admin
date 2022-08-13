@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { ProductCard, ProductCardProps } from '.';
 
 export default {
-  title: 'Components/ProductCard',
+  title: 'Components/Cards/ProductCard',
   component: ProductCard,
   parameters: {
     layout: 'centered',
