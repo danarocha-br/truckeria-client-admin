@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { MenuCategoryList, MenuCategoryListProps } from '.';
 
 export default {
-  title: 'Components/MenuCategoryList',
+  title: 'Components/Lists/MenuCategoryList',
   component: MenuCategoryList,
   parameters: {
     layout: 'centered',

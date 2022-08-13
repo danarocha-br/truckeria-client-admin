@@ -7,7 +7,8 @@ export const data = [
     image_url: '',
     description:
       'Hamburguer, pão brioche, cheddar , tomate, pickles, salada, maionese de ervas',
-    price: 9.5,
+    cost_price: 9.85,
+    price: 15.0,
     margin: 100.0,
     product_unity: 'unity',
     isActive: true,
@@ -30,7 +31,8 @@ export const data = [
     image_url: '',
     description:
       'Hamburguer, pão brioche, cheddar, tomate, pickles, salada, maionese de ervas, tomate, pickles, salada, maionese de ervas',
-    price: 9.5,
+    cost_price: 9.85,
+    price: 15.0,
     margin: 100.0,
     product_unity: 'unity',
     isActive: true,
@@ -53,7 +55,8 @@ export const data = [
     image_url: '',
     description:
       'Hamburguer, pão brioche, cheddar, tomate, pickles, salada, maionese de ervas, tomate, pickles, salada, maionese de ervas',
-    price: 9.5,
+    cost_price: 9.85,
+    price: 15.0,
     margin: 100.0,
     product_unity: 'unity',
     isActive: true,

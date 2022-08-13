@@ -77,7 +77,7 @@ export const ProductCard = ({
           gap="0"
           css={{ position: 'absolute', top: 6, right: '$1', zIndex: 2 }}
         >
-          <Tooltip content="Edite categoria">
+          <Tooltip content="Edite produto">
             <Button
               label="Editar"
               variant="icon"
@@ -264,7 +264,7 @@ export const ProductCard = ({
                 color={isActive === true ? 'success' : 'danger'}
                 size="xs"
               />
-              Categoria {isActive === true ? 'ativa' : 'inativa'}
+              Produto {isActive === true ? 'ativo' : 'inativo'}
             </Text>
 
             <Flex
@@ -289,6 +289,7 @@ export const ProductCard = ({
                       key={i}
                       foodTag={item}
                       css={{ ml: -6, transition: '$slow' }}
+                      variant="food"
                     />
                   ))
                   .slice(0, 3)}

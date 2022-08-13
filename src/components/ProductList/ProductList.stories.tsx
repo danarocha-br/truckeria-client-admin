@@ -1,11 +1,11 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { ProductCard, ProductCardProps } from '.';
+import { ProductList, ProductListProps } from '.';
 
 export default {
-  title: 'Components/Cards/ProductCard',
-  component: ProductCard,
+  title: 'Components/Lists/ProductList',
+  component: ProductList,
   parameters: {
     layout: 'centered',
     status: 'stable', // beta| deprecated | review | stable,
@@ -29,6 +29,6 @@ export default {
   },
 } as Meta;
 
-const Template: Story<ProductCardProps> = (args) => <ProductCard {...args} />;
+const Template: Story<ProductListProps> = (args) => <ProductList {...args} />;
 
 export const Default = Template.bind({});

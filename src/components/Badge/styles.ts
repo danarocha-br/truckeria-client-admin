@@ -1,4 +1,4 @@
-import { styled } from '../../../stitches.config';
+import { darkTheme, styled } from '../../../stitches.config';
 
 export const Container = styled('div', {
   fontSize: 9,
@@ -28,7 +28,17 @@ export const Container = styled('div', {
         p: '$1',
       },
 
-      default: {},
+      default: {
+        color: '$text-onInteractive',
+        fontSize: '$sm',
+        fontWeight: '$medium',
+
+        borderRadius: '$xs',
+        px: '$3',
+        py: '$1',
+        whiteSpace: 'nowrap',
+        w: 'auto',
+      },
     },
 
     color: {
@@ -36,8 +46,22 @@ export const Container = styled('div', {
         bg: '$neutral400',
       },
 
+      dark: {
+        bg: '$neutral900',
+
+        [`.${darkTheme} &`]: {
+          bg: '$surface-base-default',
+        },
+      },
+
       brand: {
         bg: '$brand',
+      },
+    },
+
+    onDark: {
+      true: {
+        borderColor: '$surface-base-subdued',
       },
     },
   },
@@ -45,5 +69,6 @@ export const Container = styled('div', {
   defaultVariants: {
     variant: 'food',
     color: 'brand',
+    onDark: false,
   },
 });

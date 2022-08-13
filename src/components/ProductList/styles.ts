@@ -1,30 +1,41 @@
 import { darkTheme, styled } from '../../../stitches.config';
 
-export const Container = styled('a', {
+export const Container = styled('div', {
+  color: '$text-subdued',
   bg: '$white',
-  borderRadius: '$sm',
   boxShadow: '0 0 0 1px $colors$surface-base-subdued',
 
   w: '$full',
-  py: '$3',
+  maxWidth: '$full',
   px: '$4',
+  py: '$2',
 
   d: 'flex',
   justifyContent: 'space-between',
-  alignItems: 'center',
   flexDirection: 'column',
-  gap: '$3',
+  gap: '$2',
 
   textDecoration: 'none',
   outline: 'none',
   opacity: 0.8,
   transition: '$slow',
+  position: 'relative',
+
+  // overflow: 'hidden',
+
+  '& .product-list__actions': {
+    // d: 'none',
+    positition: 'absolute',
+    right: 0,
+  },
 
   '&:hover': {
-    transform: 'scale(1.01)',
+    transform: 'scale(1.001)',
     opacity: 1,
-    // boxShadow:
-    //   '$colors$surface-base-default 0px 0px 0px 2px, 0px 0px 0px 2.5px $colors$surface-base-transparent',
+
+    '& .product-list__actions': {
+      d: 'flex',
+    },
   },
 
   '&:focus': {
@@ -39,24 +50,42 @@ export const Container = styled('a', {
 
   '@bp-md': {
     flexDirection: 'row',
-    gap: '$8',
+    gap: '$0',
 
-    h: '$11',
-    px: '$0',
     py: '$0',
+    px: '$0',
     pr: '$4',
+  },
+});
+
+export const TableItem = styled('div', {
+  color: '$text-default',
+  fontSize: '$sm',
+  whiteSpace: 'nowrap',
+
+  h: '$full',
+
+  '@bp-md': {
+    borderLeft: '2px solid $action-transparent-transparent',
+
+    d: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    px: '$6',
   },
 });
 
 export const Tag = styled('div', {
   color: '$text-onInteractive',
-  fontSize: '$tiny',
+  fontSize: '$sm',
   fontWeight: '$medium',
 
-  bg: '$neutral800',
+  bg: '$neutral900',
   borderRadius: '$xs',
   px: '$3',
   py: '$1',
+  whiteSpace: 'nowrap',
   w: 'auto',
 
   [`.${darkTheme} &`]: {

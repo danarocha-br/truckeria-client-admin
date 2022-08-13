@@ -3,17 +3,17 @@ import {
   Root as AspectRatioPrimitiveRoot,
   AspectRatioProps as AspectRatioPrimitiveProps,
 } from '@radix-ui/react-aspect-ratio';
+import Image from 'next/image';
 
-import * as S from './styles';
 import { Box } from 'components/Box';
 import { CSS } from '@stitches/react';
-import Image from 'next/image';
 
 export type AspectRatioProps = {
   imageURL: string;
   imageALT: string;
   ratio?: number;
   css?: CSS;
+  className?: string;
 } & AspectRatioPrimitiveProps;
 
 export const AspectRatio = ({
@@ -21,6 +21,7 @@ export const AspectRatio = ({
   imageURL,
   ratio = 16 / 9,
   css,
+  className = '',
   ...props
 }: AspectRatioProps) => (
   <Box
@@ -29,6 +30,7 @@ export const AspectRatio = ({
       overflow: 'hidden',
       ...css,
     }}
+    className={className}
   >
     <AspectRatioPrimitiveRoot ratio={ratio} {...props}>
       <Image
