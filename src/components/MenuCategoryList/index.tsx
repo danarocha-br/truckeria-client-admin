@@ -67,7 +67,16 @@ export const MenuCategoryList = ({
         />
 
         <Flex direction="column" css={{ maxHeight: 50 }}>
-          <Text size="lg" weight="medium">
+          <Text
+            size="lg"
+            weight="medium"
+            css={{
+              overflow: 'hidden',
+              d: '-webkit-box',
+              '-webkit-line-clamp': 1,
+              '-webkit-box-orient': 'vertical',
+            }}
+          >
             {title}
           </Text>
 
@@ -122,7 +131,9 @@ export const MenuCategoryList = ({
             {count} {count > 1 ? 'itens' : 'item'}
           </S.Tag>
 
-          <Flex css={{ w: 'auto' }}>
+          {/** Actions */}
+
+          <Flex gap="1" css={{ w: 'auto' }}>
             <Tooltip content="Edite categoria">
               <Button
                 label="Editar"

@@ -78,6 +78,8 @@ const Dashboard = () => {
         <Grid
           gap={viewPreference === 'card' ? '8' : '3'}
           css={{
+            w: '$full',
+            overflow: 'scroll',
             gridTemplateColumns:
               viewPreference === 'card'
                 ? 'repeat(2, minmax(0, 1fr))'

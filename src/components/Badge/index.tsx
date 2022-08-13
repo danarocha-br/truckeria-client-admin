@@ -10,19 +10,21 @@ import { CSS } from '../../../stitches.config';
 export type BadgeProps = {
   variant?: 'food' | 'default' | 'circle';
   foodTag?: string;
-  label?: string;
-  color?: 'neutral' | 'brand';
+  label?: string | number | unknown;
+  color?: 'neutral' | 'brand' | 'dark';
   css?: CSS;
   className?: string;
+  onDark?: boolean;
 };
 
 export const Badge = ({
-  variant = 'food',
+  variant = 'default',
   foodTag,
   label,
   color,
   css,
   className,
+  onDark = false,
   ...props
 }: BadgeProps) => {
   const foodColor = useMemo(() => {
@@ -49,6 +51,8 @@ export const Badge = ({
       className={className}
       aria-label={foodTag || label}
       variant={variant}
+      onDark={onDark}
+      color={color}
       css={{
         color: readableColor(getColor, colors.neutral[900], colors.white),
         bg: getColor,

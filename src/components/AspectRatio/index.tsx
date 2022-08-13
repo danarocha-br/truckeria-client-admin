@@ -10,10 +10,11 @@ import { CSS } from '@stitches/react';
 import Image from 'next/image';
 
 export type AspectRatioProps = {
-  imageURL: string;
+  imageURL: string | unknown;
   imageALT: string;
   ratio?: number;
   css?: CSS;
+  className?: string;
 } & AspectRatioPrimitiveProps;
 
 export const AspectRatio = ({
@@ -21,6 +22,7 @@ export const AspectRatio = ({
   imageURL,
   ratio = 16 / 9,
   css,
+  className = '',
   ...props
 }: AspectRatioProps) => (
   <Box
@@ -29,6 +31,7 @@ export const AspectRatio = ({
       overflow: 'hidden',
       ...css,
     }}
+    className={className}
   >
     <AspectRatioPrimitiveRoot ratio={ratio} {...props}>
       <Image

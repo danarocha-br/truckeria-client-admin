@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TriangleDownIcon, RadiobuttonIcon } from '@radix-ui/react-icons';
+import { RadiobuttonIcon } from '@radix-ui/react-icons';
 
 import {
   Avatar,
@@ -78,7 +78,7 @@ export const UserProfile = ({ hideUsername = false }: UserProfileProps) => {
       <S.Container>
         <Avatar user="Dana Rocha" />
         {!hideUsername && <Text size="sm">Dana Rocha</Text>}
-        <TriangleDownIcon />
+        <Icon name="caretDown" size="xs" />
       </S.Container>
     </Dropdown>
   );

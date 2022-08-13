@@ -289,6 +289,7 @@ export const ProductCard = ({
                       key={i}
                       foodTag={item}
                       css={{ ml: -6, transition: '$slow' }}
+                      variant="food"
                     />
                   ))
                   .slice(0, 3)}
