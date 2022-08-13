@@ -1,6 +1,6 @@
 import type * as Stitches from '@stitches/react';
 
-import { colors, font, spacing, radii, shadow } from './src/styles/tokens';
+import { colors, font, spacing, radii } from './src/styles/tokens';
 import { dark, light } from './src/styles/themes';
 import { createStitches } from '@stitches/react';
 

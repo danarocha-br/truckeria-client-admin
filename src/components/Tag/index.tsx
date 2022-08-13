@@ -9,9 +9,7 @@ export type TagProps = {
 };
 
 export const Tag = ({ label, isEmpty = false }: TagProps) => (
-  <>
-    <S.Container aria-label={label} isEmpty={isEmpty}>
-      {isEmpty ? <S.Rect /> : label}
-    </S.Container>
-  </>
+  <S.Container aria-label={label} isEmpty={isEmpty}>
+    {isEmpty ? <S.Rect /> : label}
+  </S.Container>
 );

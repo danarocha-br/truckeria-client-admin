@@ -56,9 +56,13 @@ type Product = {
   direct_sale: boolean;
 };
 
-const Product = () => {
+function Product() {
   const [viewPreference, setViewPreference] = useState('card');
   const [sorting, setSorting] = useState<SortingState>([]);
+
+  const handlePreferenceChange = (value: string) => {
+    if (value) setViewPreference(value);
+  };
 
   const columns = React.useMemo<ColumnDef<Product>[]>(
     () => [
@@ -288,12 +292,10 @@ const Product = () => {
             <Tooltip content="Outras opções">
               <Dropdown
                 items={
-                  <>
-                    <DropdownItem onSelect={() => ''}>
-                      <Icon name="trash" />
-                      Deletar
-                    </DropdownItem>
-                  </>
+                  <DropdownItem onSelect={() => ''}>
+                    <Icon name="trash" />
+                    Deletar
+                  </DropdownItem>
                 }
               >
                 <Button
@@ -366,13 +368,20 @@ const Product = () => {
   };
 
   const TableView = () => {
-    return <Table table={table} tableRef={tableContainerRef} rows={rows} />;
+    return (
+      <Table
+        table={table}
+        tableRef={tableContainerRef}
+        rows={rows}
+        css={{ pt: '$2' }}
+      />
+    );
   };
 
   return (
     <AdminLayout>
       <Box css={{ pb: '$8' }}>
-        <Flex justify="between" fullWidth css={{ p: '$1' }}>
+        <Flex justify="between" fullWidth css={{ p: '$1', mb: '$7' }}>
           <Text
             as="h1"
             size="lg"
@@ -387,9 +396,7 @@ const Product = () => {
               type="single"
               defaultValue="card"
               value={viewPreference}
-              onValueChange={(value) => {
-                if (value) setViewPreference(value);
-              }}
+              onValueChange={(value) => handlePreferenceChange(value)}
               aria-label="Escolha o formato de visualização de preferência"
             >
               <ToggleGroupItem value="card" aria-label="Ver em formato grid">
@@ -413,14 +420,6 @@ const Product = () => {
             </Tooltip>
           </Flex>
         </Flex>
-
-        <Text
-          color="subdued"
-          size="sm"
-          css={{ mb: '$6', mt: '$4', '@bp-md': { mt: '$0' } }}
-        >
-          Configure categorias e defina o seu cardápio.
-        </Text>
 
         <Grid
           gap={viewPreference === 'card' ? '8' : '2'}
@@ -466,6 +465,6 @@ const Product = () => {
       </Box>
     </AdminLayout>
   );
-};
+}
 
 export default Product;

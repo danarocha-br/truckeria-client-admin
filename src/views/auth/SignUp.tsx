@@ -58,9 +58,9 @@ const SignUp = () => {
     { defaultValues: { ...defaultValues }, mode: 'onChange' }
   );
 
-  const onSubmit = async (values: NewUserCredentials) => {
+  const onSubmit = (values: NewUserCredentials) => {
     try {
-      await signUp(values);
+      signUp(values);
     } catch (error) {
       return;
     }

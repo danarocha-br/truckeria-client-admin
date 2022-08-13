@@ -21,15 +21,17 @@ export default {
 const Template: Story = (args) => {
   const [viewPreference, setViewPreference] = useState('card');
 
+  const handlePreferenceChange = (value: string) => {
+    if (value) setViewPreference(value);
+  };
+
   return (
     <ToggleGroup
       {...args}
       type="single"
       defaultValue="card"
       value={viewPreference}
-      onValueChange={(value) => {
-        if (value) setViewPreference(value);
-      }}
+      onValueChange={(value) => handlePreferenceChange(value)}
       aria-label="Text alignment"
     >
       <ToggleGroupItem value="card" aria-label="Ver formato grid">

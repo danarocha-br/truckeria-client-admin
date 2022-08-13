@@ -18,8 +18,12 @@ import {
 
 import { data as categories } from './mock';
 
-const Dashboard = () => {
+function Dashboard() {
   const [viewPreference, setViewPreference] = useState('card');
+
+  const handlePreferenceChange = (value: string) => {
+    if (value) setViewPreference(value);
+  };
 
   return (
     <AdminLayout>
@@ -40,9 +44,7 @@ const Dashboard = () => {
               type="single"
               defaultValue="card"
               value={viewPreference}
-              onValueChange={(value) => {
-                if (value) setViewPreference(value);
-              }}
+              onValueChange={(value) => handlePreferenceChange(value)}
               aria-label="Escolha o formato de visualização de preferência"
             >
               <ToggleGroupItem value="card" aria-label="Ver formato grid">
@@ -144,6 +146,6 @@ const Dashboard = () => {
       </Box>
     </AdminLayout>
   );
-};
+}
 
 export default Dashboard;

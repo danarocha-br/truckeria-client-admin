@@ -19,9 +19,9 @@ export type NumberInputProps<TFormValues> = {
   icon?: keyof typeof iconPath;
   defaultValue?: UnpackNestedValue<PathValue<TFormValues, Path<TFormValues>>>;
   control?: any;
-  loading?: any;
-  disabled?: any;
-  readOnly?: any;
+  loading?: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
 } & Omit<UseControllerProps<TFormValues>, 'control'> &
   TruckeriaNumberInputProps;
 

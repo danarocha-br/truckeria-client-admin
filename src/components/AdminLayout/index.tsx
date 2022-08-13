@@ -7,23 +7,25 @@ export type AdminLayoutProps = {
   children: React.ReactNode;
 };
 
-export const AdminLayout = ({ children }: AdminLayoutProps) => (
-  <S.Container>
-    <Sidebar />
+export function AdminLayout({ children }: AdminLayoutProps) {
+  return (
+    <S.Container>
+      <Sidebar />
 
-    <S.Main>
-      <ScrollArea
-        css={{
-          w: '$full',
-          h: '$full',
-          px: '$5',
-          '@bp-md': {
-            px: '$8',
-          },
-        }}
-      >
-        {children}
-      </ScrollArea>
-    </S.Main>
-  </S.Container>
-);
+      <S.Main>
+        <ScrollArea
+          css={{
+            w: '$full',
+            h: '$full',
+            px: '$5',
+            '@bp-md': {
+              px: '$8',
+            },
+          }}
+        >
+          {children}
+        </ScrollArea>
+      </S.Main>
+    </S.Container>
+  );
+}

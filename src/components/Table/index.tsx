@@ -10,14 +10,21 @@ import * as S from './styles';
 import { ScrollArea } from 'components/ScrollArea';
 import { Icon } from 'components/Icon';
 import { Flex } from 'components/Flex';
+import { CSS } from '../../../stitches.config';
 
 export type TableProps<TData> = {
   table: ReactTableProps<TData>;
   tableRef: React.RefObject<HTMLDivElement>;
   rows: Row<TData>[];
+  css?: CSS;
 };
 
-export const Table = <TData,>({ table, tableRef, rows }: TableProps<TData>) => {
+export const Table = <TData,>({
+  table,
+  tableRef,
+  rows,
+  css,
+}: TableProps<TData>) => {
   const rowVirtualizer = useVirtual({
     parentRef: tableRef,
     size: rows.length,
@@ -34,7 +41,7 @@ export const Table = <TData,>({ table, tableRef, rows }: TableProps<TData>) => {
   return (
     // <S.TableWrapper>
     <ScrollArea css={{ h: 'calc(100vh - 12.5rem)' }}>
-      <S.TableContainer role="table">
+      <S.TableContainer role="table" {...css}>
         <S.THead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>

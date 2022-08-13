@@ -16,9 +16,9 @@ export type InputProps<TFormValues> = {
   icon?: keyof typeof iconPath;
   defaultValue?: UnpackNestedValue<PathValue<TFormValues, Path<TFormValues>>>;
   control?: any;
-  loading?: any;
-  disabled?: any;
-  readOnly?: any;
+  loading?: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'name'> &
   Omit<UseControllerProps<TFormValues>, 'control'>;
 

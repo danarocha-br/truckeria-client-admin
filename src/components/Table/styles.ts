@@ -49,8 +49,8 @@ export const Th = styled('th', {
   textAlign: 'left',
   textTransform: 'uppercase',
   letterSpacing: '1.4px',
-  opacity: 0.6,
-  verticalAlign: 'bottom',
+  opacity: 0.4,
+  verticalAlign: 'top',
 
   px: '$4',
 
