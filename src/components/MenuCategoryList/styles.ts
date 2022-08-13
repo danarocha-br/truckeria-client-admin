@@ -1,9 +1,9 @@
-import { styled } from '../../../stitches.config';
+import { darkTheme, styled } from '../../../stitches.config';
 
 export const Container = styled('a', {
-  bg: '$surface-base-disabled',
+  bg: '$white',
   borderRadius: '$sm',
-  boxShadow: '0 0 0 1px $colors$surface-base-hover',
+  boxShadow: '0 0 0 1px $colors$surface-base-subdued',
 
   w: '$full',
   py: '$3',
@@ -31,6 +31,11 @@ export const Container = styled('a', {
     opacity: 1,
   },
 
+  [`.${darkTheme} &`]: {
+    bg: '$surface-base-disabled',
+    boxShadow: '0 0 0 1px $colors$surface-base-hover',
+  },
+
   '@bp-md': {
     flexDirection: 'row',
     gap: '$8',
@@ -47,9 +52,13 @@ export const Tag = styled('div', {
   fontSize: '$tiny',
   fontWeight: '$medium',
 
-  bg: '$surface-base-default',
+  bg: '$neutral800',
   borderRadius: '$xs',
   px: '$3',
   py: '$1',
   w: 'auto',
+
+  [`.${darkTheme} &`]: {
+    bg: '$surface-base-default',
+  },
 });

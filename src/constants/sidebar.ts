@@ -9,6 +9,11 @@ export default {
     icon: 'book',
     href: '/menu',
   },
+  Products: {
+    label: 'Produtos',
+    icon: 'products',
+    href: '/products',
+  },
   Schedule: {
     label: 'Cronograma',
     icon: 'calendar',

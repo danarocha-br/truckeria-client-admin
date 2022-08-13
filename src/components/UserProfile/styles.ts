@@ -1,4 +1,4 @@
-import { styled } from '../../../stitches.config';
+import { darkTheme, styled } from '../../../stitches.config';
 import { Button } from 'reakit/Button';
 
 export const Container = styled(Button, {
@@ -9,7 +9,11 @@ export const Container = styled(Button, {
   mr: '$3',
   bg: '$transparent',
   position: 'relative',
-  boxShadow: 'rgba(0, 0, 0, 0.08) 0px 4px 12px',
+
+  [`.${darkTheme} &`]: {
+    backgroundColor: '$blue',
+    boxShadow: 'rgba(0, 0, 0, 0.08) 0px 4px 12px',
+  },
 
   borderRadius: '$xs',
   transition: '$base',

@@ -10,6 +10,7 @@ import { Icon } from 'components/Icon';
 import { Tooltip } from 'components/Tooltip';
 import { Button } from 'components/Button';
 import { Dropdown, DropdownItem } from 'components/Dropdown';
+import { darkTheme } from '../../../stitches.config';
 
 export type MenuCategoryListProps = {
   /** to render a wrapper to the a tag */
@@ -129,11 +130,16 @@ export const MenuCategoryList = ({
                 icon="pencil"
                 size="sm"
                 css={{
-                  bg: '$neutral800',
+                  color: '$text-default',
+                  bg: '$surface-base-subdued',
                   p: '$1',
                   transform: 'scale(0.85)',
                   '&:hover': {
                     bg: '$surface-base-hover',
+                  },
+                  [`.${darkTheme} &`]: {
+                    color: '$text-onInteractive',
+                    bg: '$neutral800',
                   },
                 }}
                 onClick={onEdit}
@@ -148,11 +154,16 @@ export const MenuCategoryList = ({
                 icon="settings"
                 size="sm"
                 css={{
-                  bg: '$neutral800',
+                  color: '$text-default',
+                  bg: '$surface-base-subdued',
                   p: '$1',
                   transform: 'scale(0.85)',
                   '&:hover': {
                     bg: '$surface-base-hover',
+                  },
+                  [`.${darkTheme} &`]: {
+                    color: '$text-onInteractive',
+                    bg: '$neutral800',
                   },
                 }}
                 tabIndex={-1}
@@ -176,11 +187,16 @@ export const MenuCategoryList = ({
                   icon="options"
                   size="sm"
                   css={{
-                    bg: '$neutral800',
+                    color: '$text-default',
+                    bg: '$surface-base-subdued',
                     p: '$1',
                     transform: 'scale(0.85)',
                     '&:hover': {
                       bg: '$surface-base-hover',
+                    },
+                    [`.${darkTheme} &`]: {
+                      color: '$text-onInteractive',
+                      bg: '$neutral800',
                     },
                   }}
                   tabIndex={-1}

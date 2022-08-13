@@ -2,11 +2,16 @@ import { darkTheme, styled } from '../../../stitches.config';
 
 export const Container = styled('a', {
   $$bgColorOpacity: 'hsla(0, 0%, 100%, .9)',
-
   color: '$neutral500',
-  borderRadius: '$sm',
+
+  bg: '$$bgColorOpacity',
   boxShadow: '$15',
 
+  [`.${darkTheme} &`]: {
+    color: '$neutral400',
+  },
+
+  borderRadius: '$sm',
   p: '$2',
   pb: '$4',
 
@@ -29,6 +34,8 @@ export const Container = styled('a', {
   },
 
   '&:hover': {
+    bg: '$white',
+
     transform: 'scale(1.01)',
 
     '.card__actions': {
@@ -38,40 +45,11 @@ export const Container = styled('a', {
 
   '&:focus': {
     boxShadow: '$focus-highlight',
+
     bg: '$white',
 
     '.card__actions': {
       opacity: 1,
-    },
-  },
-
-  variants: {
-    variant: {
-      primary: {
-        bg: '$$bgColorOpacity',
-
-        [`.${darkTheme} &`]: {
-          color: '$neutral400',
-        },
-
-        '&:hover': {
-          bg: '$white',
-        },
-      },
-
-      add: {
-        bg: '$transparent',
-        border: '3px dashed $loading-default',
-
-        alignItems: 'center',
-        justifyContent: 'center',
-
-        px: '$6',
-
-        '&:hover': {
-          bg: '$action-transparent-transparent',
-        },
-      },
     },
   },
 });
@@ -85,9 +63,39 @@ export const Tag = styled('div', {
   borderRadius: '$xs',
   px: '$3',
   py: '$1',
-  w: 'auto',
+  whiteSpace: 'nowrap',
 
   [`.${darkTheme} &`]: {
     bg: '$surface-base-default',
   },
+});
+
+export const Badge = styled('div', {
+  color: '$text-onInteractive',
+  fontSize: '$tiny',
+  fontWeight: '$medium',
+
+  bg: '$neutral800',
+  borderRadius: '$xs',
+  px: '$3',
+  py: '$1',
+
+  [`.${darkTheme} &`]: {
+    bg: '$surface-base-default',
+  },
+});
+
+export const ActiveBadge = styled('div', {
+  color: '$text-onInteractive',
+  fontSize: '$tiny',
+  fontWeight: '$medium',
+
+  bg: '$neutral600',
+  borderRadius: '$xs',
+  p: '$2',
+
+  d: 'flex',
+  verticalAlign: 'center',
+
+  zIndex: 1,
 });

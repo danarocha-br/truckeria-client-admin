@@ -56,6 +56,7 @@ export const MenuCategoryCard = ({
               icon="pencil"
               size="sm"
               css={{
+                color: '$white',
                 bg: '$neutral800',
                 p: '$1',
                 transform: 'scale(0.85)',
@@ -75,6 +76,7 @@ export const MenuCategoryCard = ({
               icon="settings"
               size="sm"
               css={{
+                color: '$white',
                 bg: '$neutral800',
                 p: '$1',
                 transform: 'scale(0.85)',
@@ -103,6 +105,7 @@ export const MenuCategoryCard = ({
                 icon="options"
                 size="sm"
                 css={{
+                  color: '$white',
                   bg: '$neutral800',
                   p: '$1',
                   transform: 'scale(0.85)',
@@ -197,7 +200,7 @@ export const MenuCategoryCard = ({
                 size="tiny"
                 weight="medium"
                 css={{
-                  opacity: isActive === true ? 0.5 : 0.7,
+                  opacity: isActive === true ? 0.8 : 0.7,
                   px: '$1',
                   d: 'inline-flex',
                   alignItems: 'center',
@@ -206,7 +209,7 @@ export const MenuCategoryCard = ({
               >
                 <Icon
                   name={isActive === true ? 'checkCircle' : 'closeSquare'}
-                  color={isActive === true ? 'current' : 'danger'}
+                  color={isActive === true ? 'success' : 'danger'}
                   size="xs"
                 />
                 Categoria {isActive === true ? 'ativa' : 'inativa'}

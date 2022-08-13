@@ -37,6 +37,7 @@ export const AspectRatio = ({
         objectPosition="center"
         src={imageURL}
         alt={imageALT}
+        priority
       />
     </AspectRatioPrimitiveRoot>
   </Box>

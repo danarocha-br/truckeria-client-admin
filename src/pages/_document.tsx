@@ -12,7 +12,7 @@ export default class MyDocument extends Document {
             dangerouslySetInnerHTML={{ __html: getCssText() }}
           />
         </Head>
-        <body>
+        <body className="dark-theme">
           <Main />
           <NextScript />
         </body>

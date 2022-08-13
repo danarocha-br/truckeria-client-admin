@@ -1,4 +1,4 @@
-import { styled, keyframes } from '../../../stitches.config';
+import { styled, keyframes, darkTheme } from '../../../stitches.config';
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 
 const slideUpAndFade = keyframes({
@@ -23,12 +23,13 @@ const slideLeftAndFade = keyframes({
 
 const contentStyles = {
   minWidth: 180,
-  bg: '$surface-base-subdued',
+  bg: '$white',
   borderRadius: '$xs',
   p: '$2',
+  m: '$2',
   position: 'relative',
   boxShadow:
-    '0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)',
+    '0px 10px 38px -10px rgba(22, 23, 24, 0.08), 0px 10px 20px 15px rgba(22, 23, 24, 0.03)',
   '@media (prefers-reduced-motion: no-preference)': {
     animationDuration: '400ms',
     animationTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
@@ -39,6 +40,12 @@ const contentStyles = {
       '&[data-side="bottom"]': { animationName: slideUpAndFade },
       '&[data-side="left"]': { animationName: slideRightAndFade },
     },
+  },
+
+  [`.${darkTheme} &`]: {
+    bg: '$surface-base-subdued',
+    boxShadow:
+      '0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)',
   },
 };
 
@@ -51,7 +58,11 @@ export const SubContent = styled(DropdownMenuPrimitive.SubContent, {
 });
 
 export const Arrow = styled(DropdownMenuPrimitive.Arrow, {
-  fill: '$surface-base-subdued',
+  fill: '$white',
+
+  [`.${darkTheme} &`]: {
+    fill: '$surface-base-subdued',
+  },
 });
 
 const itemStyles = {
