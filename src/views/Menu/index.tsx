@@ -100,7 +100,7 @@ const Dashboard = () => {
             '@bp-xl': {
               gridTemplateColumns:
                 viewPreference === 'card'
-                  ? 'repeat(6, minmax(0, 1fr))'
+                  ? 'repeat(5, minmax(0, 1fr))'
                   : 'repeat(1, minmax(0, 1fr))',
             },
           }}

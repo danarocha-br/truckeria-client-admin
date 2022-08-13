@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
+import NextLink from 'next/link';
 
 import {
   AdminLayout,
   Box,
   Flex,
+  Grid,
   Icon,
   IconButton,
+  ProductCard,
   Text,
   ToggleGroup,
   ToggleGroupItem,
   Tooltip,
 } from 'components';
+
+import { data as products } from './mock';
 
 const Product = () => {
   const [viewPreference, setViewPreference] = useState('card');
@@ -67,6 +72,56 @@ const Product = () => {
         >
           Configure categorias e defina o seu cardápio.
         </Text>
+
+        <Grid
+          gap={viewPreference === 'card' ? '8' : '3'}
+          css={{
+            gridTemplateColumns:
+              viewPreference === 'card'
+                ? 'repeat(1, minmax(0, 1fr))'
+                : 'repeat(1, minmax(0, 1fr))',
+
+            '@bp-md': {
+              gridTemplateColumns:
+                viewPreference === 'card'
+                  ? 'repeat(2, minmax(0, 1fr))'
+                  : 'repeat(1, minmax(0, 1fr))',
+            },
+
+            '@bp-lg': {
+              gridTemplateColumns:
+                viewPreference === 'card'
+                  ? 'repeat(4, minmax(0, 1fr))'
+                  : 'repeat(1, minmax(0, 1fr))',
+            },
+
+            '@bp-xl': {
+              gridTemplateColumns:
+                viewPreference === 'card'
+                  ? 'repeat(5, minmax(0, 1fr))'
+                  : 'repeat(1, minmax(0, 1fr))',
+            },
+          }}
+        >
+          {products &&
+            products.length >= 1 &&
+            products.map((product) => (
+              <ProductCard
+                as={NextLink}
+                key={product.id}
+                href={`/products/${product.id}`}
+                title={product.name}
+                description={product.description}
+                price={product.price}
+                isActive={product.isActive}
+                badges={product.badges}
+                asFeatured={product.display_featured}
+                asNew={product.display_new_item}
+                internal_barcode={product.internal_barcode}
+                internal_name={product.internal_name}
+              />
+            ))}
+        </Grid>
       </Box>
     </AdminLayout>
   );

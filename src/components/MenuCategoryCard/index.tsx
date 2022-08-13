@@ -200,7 +200,7 @@ export const MenuCategoryCard = ({
                 size="tiny"
                 weight="medium"
                 css={{
-                  opacity: isActive === true ? 0.5 : 0.7,
+                  opacity: isActive === true ? 0.8 : 0.7,
                   px: '$1',
                   d: 'inline-flex',
                   alignItems: 'center',
@@ -209,7 +209,7 @@ export const MenuCategoryCard = ({
               >
                 <Icon
                   name={isActive === true ? 'checkCircle' : 'closeSquare'}
-                  color={isActive === true ? 'current' : 'danger'}
+                  color={isActive === true ? 'success' : 'danger'}
                   size="xs"
                 />
                 Categoria {isActive === true ? 'ativa' : 'inativa'}
