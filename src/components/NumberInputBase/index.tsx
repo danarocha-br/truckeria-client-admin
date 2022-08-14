@@ -8,7 +8,7 @@ import { iconPath, Icon } from '../Icon';
 import { Spinner } from '../Spinner';
 import { FormError } from '../FormError';
 import { Box } from '../Box';
-import * as TextInput from '../TextInput/styles';
+import * as TextInput from '../TextInputBase/styles';
 import * as S from './styles';
 
 import { config } from '../../../stitches.config';
@@ -61,10 +61,8 @@ export const NumberInput = forwardRef<Ref, NumberInputProps>(
     }, [setFocus]);
 
     const handleInputBlur = useCallback(() => {
-      if (!hasValue) {
-        setFocus(false);
-      }
-    }, [setFocus, hasValue]);
+      setFocus(false);
+    }, [setFocus]);
 
     const areErrorsEmpty = !!errors && Object.keys(errors).length === 0;
 
@@ -75,13 +73,16 @@ export const NumberInput = forwardRef<Ref, NumberInputProps>(
           isDisabled={disabled}
           isLoading={loading}
           readOnly={readOnly}
+          hasFocus={hasFocus}
         >
           <S.Input
+            //@ts-ignore
             ref={ref}
             id={name}
             aria-invalid={!!errors && !areErrorsEmpty ? 'true' : 'false'}
             placeholder={placeholder}
             hasPlaceholder={!!placeholder}
+            hasValue={hasValue}
             hasFocus={hasFocus}
             hasError={!!errors && !areErrorsEmpty ? true : false}
             name={name}
@@ -96,6 +97,7 @@ export const NumberInput = forwardRef<Ref, NumberInputProps>(
             disabled={disabled || loading}
             readOnly={readOnly}
             inputMode="numeric"
+            hasIcon={!!icon}
           />
 
           <TextInput.Label
@@ -104,6 +106,7 @@ export const NumberInput = forwardRef<Ref, NumberInputProps>(
             isDisabled={disabled || loading}
             hasValue={hasValue}
             hasPlaceholder={!!placeholder}
+            hasIcon={!!icon}
           >
             {!!icon && <Icon className="c-input__icon" name={icon} />}
             <span className="c-input__label">{label}</span>

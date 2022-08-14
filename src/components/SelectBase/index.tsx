@@ -1,5 +1,5 @@
 //@ts-noCheck
-import React, { forwardRef, useCallback, useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { CSS } from '@stitches/react';
 import makeAnimated from 'react-select/animated';
 import {
@@ -68,15 +68,13 @@ export const Select = forwardRef<Ref, SelectProps>(
      */
     const [hasFocus, setFocus] = useState(false);
 
-    const handleInputFocus = useCallback(() => {
+    const handleInputFocus = () => {
       setFocus(true);
-    }, [setFocus]);
+    };
 
-    const handleInputBlur = useCallback(() => {
-      if (!hasValue) {
-        setFocus(false);
-      }
-    }, [setFocus, hasValue]);
+    const handleInputBlur = () => {
+      setFocus(false);
+    };
 
     const areErrorsEmpty = !!errors && Object.keys(errors).length === 0;
 
@@ -155,13 +153,14 @@ export const Select = forwardRef<Ref, SelectProps>(
           isLoading={loading}
           readOnly={readOnly}
           hasValue={hasValue || !!placeholder}
+          hasIcon={!!icon}
         >
           <S.SelectInput
             classNamePrefix="c-select"
             name={name}
             id={name || id}
             aria-label={label}
-            placeholder={placeholder}
+            placeholder={placeholder || null}
             //@ts-ignore
             ref={ref}
             closeMenuOnSelect={true}
@@ -180,6 +179,7 @@ export const Select = forwardRef<Ref, SelectProps>(
             defaultValue={defaultValue}
             onFocus={handleInputFocus}
             onBlur={handleInputBlur}
+            hasValue={hasValue}
           />
 
           <S.Label

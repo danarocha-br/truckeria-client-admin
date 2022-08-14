@@ -55,10 +55,8 @@ export const TextInput = forwardRef<Ref, TextInputProps>(
     }, [setFocus]);
 
     const handleInputBlur = useCallback(() => {
-      if (!hasValue) {
-        setFocus(false);
-      }
-    }, [setFocus, hasValue]);
+      setFocus(false);
+    }, [setFocus]);
 
     const areErrorsEmpty = !!errors && Object.keys(errors).length === 0;
 
@@ -69,6 +67,7 @@ export const TextInput = forwardRef<Ref, TextInputProps>(
           isDisabled={disabled}
           isLoading={loading}
           readOnly={readOnly}
+          hasFocus={hasFocus}
         >
           <S.Input
             ref={ref}
@@ -85,6 +84,8 @@ export const TextInput = forwardRef<Ref, TextInputProps>(
             onBlur={handleInputBlur}
             disabled={disabled || loading}
             readOnly={readOnly}
+            hasValue={hasValue}
+            hasIcon={!!icon}
           />
 
           <S.Label

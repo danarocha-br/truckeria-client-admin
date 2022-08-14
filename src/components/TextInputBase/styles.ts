@@ -13,23 +13,24 @@ const animateIcon = {
 const hasValueState = {
   '& + label:before': {
     ...inputBorder,
-    borderTopWidth: ' 1.8em !important',
+    borderTopWidth: ' 1.85em !important',
     borderColor: '$form-subdued',
   },
 
   '& + label > .c-input__label': {
-    transform: 'translate3d(-42px, -25px, 0) scale3d(0.85, 0.85, 1)',
+    transform: 'translate3d(0px, -25px, 0) scale(0.88)',
+    transformOrigin: '0% 50%',
+    fontWeight: '$regular',
   },
 
   '& + label > svg.c-input__icon': {
     ...animateIcon,
     transform: 'translate3d(-0.4em, -25px, 0) scale3d(0.85, 0.85, 1)',
-    color: '$form-focus',
   },
   '& + label > svg.c-input__error-icon': {
     ...animateIcon,
     transform: 'translate3d(6px, -25px, 0) scale3d(0.85, 0.85, 1)',
-    color: '$form-focus',
+    color: '$form-error',
   },
 };
 
@@ -59,6 +60,15 @@ export const Container = styled('div', {
     hasError: {
       true: {
         borderColor: '$form-error',
+      },
+    },
+    hasFocus: {
+      true: {
+        borderColor: '$form-focus',
+
+        '&  label > svg.c-input__icon': {
+          color: '$form-focus',
+        },
       },
     },
     isDisabled: {
@@ -99,9 +109,18 @@ export const Container = styled('div', {
         },
 
         '& label': {
-          pl: '$6',
-          pt: '$4',
           bg: '$form-subdued',
+        },
+
+        '& label > svg.c-input__icon': {
+          ...animateIcon,
+          transform: 'translate3d(-5px, -20px, 0) scale3d(0.85, 0.85, 1)',
+        },
+
+        '& label > .c-input__label': {
+          transform: 'translate3d(0px, -20px, 0) scale(0.88)',
+          transformOrigin: '0% 50%',
+          fontWeight: '$regular',
         },
       },
     },
@@ -118,6 +137,7 @@ export const Container = styled('div', {
 
   defaultVariants: {
     hasError: false,
+    hasFocus: false,
     readOnly: false,
     isDisabled: false,
     isLoading: false,
@@ -168,7 +188,17 @@ export const inputStyles = {
 
     hasIcon: {
       true: {
-        borderColor: '$form-error',
+        '& + label > .c-input__label': {
+          transform: 'translate3d(-6px, -25px, 0) scale(0.88)',
+          transformOrigin: '0% 50%',
+          fontWeight: '$regular',
+        },
+      },
+    },
+
+    hasValue: {
+      true: {
+        ...hasValueState,
       },
     },
 
@@ -189,6 +219,7 @@ export const inputStyles = {
   },
 
   defaultVariants: {
+    hasValue: false,
     hasFocus: false,
     hasError: false,
     hasIcon: false,
