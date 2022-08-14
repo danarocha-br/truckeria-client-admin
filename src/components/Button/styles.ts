@@ -124,7 +124,7 @@ export const Container = styled(Button, {
       sm: {
         fontSize: '$sm',
         borderRadius: '$xs',
-        h: '$10',
+        h: '$9',
         py: '$2',
         px: '$8',
       },

@@ -112,10 +112,10 @@ function Product() {
               },
             }}
           >
-            <NextLink href="/" passHref>
+            <NextLink href={`/products/${info.row.original.id}`} passHref>
               <Text
                 as="a"
-                href="/"
+                href={`/products/${info.row.original.id}`}
                 size="lg"
                 weight="medium"
                 css={{

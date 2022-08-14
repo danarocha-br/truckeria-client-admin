@@ -105,28 +105,38 @@ export const Tr = styled('tr', {
 
   borderBottom: '7px solid $background-subdued',
 
+  '& td:first-child::before': {
+    content: '',
+    position: 'absolute',
+    h: '$full',
+    w: '6px',
+    bg: '$yellow300',
+    zIndex: 2,
+    opacity: 0,
+    transition: '$slow',
+  },
+
   '&:hover': {
     opacity: 1,
 
-    '@bp-md': {
-      '& td:last-child': {
-        opacity: 1,
-      },
-
-      '& .table__actions': {
-        transform: 'translateX(0px)',
-      },
+    '& .table__actions': {
+      transform: 'translateX(0px)',
     },
+
+    '& td:first-child::before': {
+      opacity: 1,
+    },
+
+    // boxShadow: '10px 0px 0px -5px orange inset',
   },
 
   '&:focus': {
-    boxShadow: '$focus-sm',
-    bg: '$surface-base-lighter',
     opacity: 1,
   },
 
   '@bp-md': {
     borderBottom: 'none',
+    opacity: 0.86,
   },
 });
 
@@ -196,7 +206,7 @@ export const Td = styled('td', {
       boxShadow: '10px 4px 10px rgba(0, 0, 0, 0.1)',
 
       '&.table__actions': {
-        bg: '$surface-base-disabled',
+        // bg: '$surface-base-disabled',
       },
     },
 

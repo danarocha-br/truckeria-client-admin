@@ -18,7 +18,7 @@ const hasValueState = {
   },
 
   '& + label > .c-input__label': {
-    transform: 'translate3d(-46px, -26px, 0) scale3d(0.8, 0.8, 1)',
+    transform: 'translate3d(-42px, -25px, 0) scale3d(0.85, 0.85, 1)',
   },
 
   '& + label > svg.c-input__icon': {
@@ -48,7 +48,6 @@ export const Container = styled('div', {
   w: '$full',
   minWidth: '15rem',
   h: '$11',
-  zIndex: 1,
 
   transition: 'all cubic-bezier(0.4, 0, 0.2, 1) 150ms',
 
@@ -135,7 +134,6 @@ export const inputStyles = {
   position: 'absolute',
   fontSize: '$base',
   w: '$full',
-  zIndex: 2,
 
   d: 'flex',
 

@@ -23,12 +23,21 @@ export const Container = styled('div', {
 export const Main = styled('main', {
   w: '$full',
   h: '$full',
-  py: '$5',
+
   pb: '$0',
+  py: '$5',
 
   '@bp-md': {
     borderTopLeftRadius: '$lg',
     borderBottomLeftRadius: '$lg',
     bg: '$background-subdued',
+  },
+
+  variants: {
+    removePadding: {
+      true: {
+        py: '$0',
+      },
+    },
   },
 });

@@ -28,7 +28,7 @@ export type SelectProps = {
   name: string;
   isMulti?: boolean;
   isClearable?: boolean;
-  options: OptionsOrGroups<string, GroupBase<string>> | undefined;
+  options: OptionsOrGroups<GroupBase<string>> | undefined;
   defaultValue?: string;
   disabled?: boolean;
   loading?: boolean;
