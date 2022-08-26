@@ -5,6 +5,7 @@ export * from 'components/AspectRatio';
 export * from 'components/Avatar';
 export * from 'components/Badge';
 export * from 'components/Box';
+export * from 'components/Breadcrumb';
 export * from 'components/Button';
 export * from 'components/Callout';
 export * from 'components/Dropdown';
