@@ -30,6 +30,7 @@ export * from 'components/Sidebar';
 export * from 'components/Spinner';
 export * from 'components/Stepper';
 export * from 'components/Table';
+export * from 'components/Tabs';
 export * from 'components/Tag';
 export * from 'components/Text';
 export * from 'components/TextInput';

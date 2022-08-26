@@ -1,4 +1,4 @@
-import { darkTheme, styled } from '../../../stitches.config';
+import { styled } from '../../../stitches.config';
 
 export const Container = styled('div', {
   fontSize: 9,
@@ -57,7 +57,6 @@ export const Container = styled('div', {
 
   defaultVariants: {
     variant: 'food',
-    color: 'brand',
     onDark: false,
   },
 });
