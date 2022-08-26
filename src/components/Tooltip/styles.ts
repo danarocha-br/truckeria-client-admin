@@ -24,10 +24,12 @@ const slideLeftAndFade = keyframes({
 export const TooltipContent = styled(TooltipPrimitive.Content, {
   color: '$neutral900',
   fontSize: '$sm',
-  lineHeight: 1,
-  bg: '$neutral300',
+  lineHeight: '1.2rem',
+  bg: '$neutral200',
   borderRadius: '$xs',
-  p: '$2',
+  py: '$2',
+  px: '$3',
+  maxWidth: 300,
   boxShadow:
     'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
   userSelect: 'none',

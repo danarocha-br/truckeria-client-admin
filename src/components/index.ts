@@ -10,6 +10,7 @@ export * from 'components/Callout';
 export * from 'components/Dropdown';
 export * from 'components/Icon';
 export * from 'components/IconButton';
+export * from 'components/InfoButton';
 export * from 'components/FormControl';
 export * from 'components/FormError';
 export * from 'components/Link';
