@@ -62,6 +62,9 @@ export const Text = styled('span', {
       contrast: {
         color: '$text-contrast',
       },
+      'contrast-subdued': {
+        color: '$neutral500',
+      },
     },
 
     weight: {

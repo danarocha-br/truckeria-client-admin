@@ -1,17 +1,18 @@
 import { styled } from '../../../stitches.config';
 
 export const Container = styled('span', {
-  color: '$text-default',
   fontSize: '$sm',
   fontWeight: '$medium',
   lineHeight: '1.5rem',
+  textTransform: 'capitalize',
+
   d: 'flex',
   justifyContent: 'center',
   alignContent: 'center',
-  border: '1px solid $brand',
+  border: '1.3px solid $brand',
   borderRadius: '$xs',
-  px: '$5',
-  pb: '$1',
+  px: '$4',
+  py: 2,
 
   variants: {
     isEmpty: {
@@ -20,10 +21,16 @@ export const Container = styled('span', {
         px: '$2',
       },
     },
+
+    color: {
+      default: { color: '$text-default' },
+      contrast: { color: '$text-contrast' },
+    },
   },
 
   defaultVariants: {
     isEmpty: false,
+    color: 'default',
   },
 });
 

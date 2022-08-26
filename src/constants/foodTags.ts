@@ -1,3 +1,10 @@
+export type FOOD_TAG_PROPS = {
+  key: string;
+  label: string;
+  value: string;
+  color: string;
+};
+
 export default [
   {
     key: 'lactose',

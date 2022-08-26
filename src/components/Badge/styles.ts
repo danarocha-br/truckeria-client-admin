@@ -8,6 +8,7 @@ export const Container = styled('div', {
   d: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  gap: '$2',
 
   variants: {
     variant: {
@@ -39,23 +40,11 @@ export const Container = styled('div', {
         whiteSpace: 'nowrap',
         w: 'auto',
       },
-    },
 
-    color: {
-      neutral: {
-        bg: '$neutral400',
-      },
-
-      dark: {
-        bg: '$neutral900',
-
-        [`.${darkTheme} &`]: {
-          bg: '$surface-base-default',
-        },
-      },
-
-      brand: {
-        bg: '$brand',
+      icon: {
+        borderRadius: '$xs',
+        px: '$1',
+        py: 3,
       },
     },
 

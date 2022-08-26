@@ -6,12 +6,15 @@ import { FOOD_TAGS } from 'constants/index';
 import { colors } from 'styles/tokens';
 import { transformTextToInitials } from 'utils/transformTextToInitials';
 import { CSS } from '../../../stitches.config';
+import { Icon, iconPath } from '../Icon';
 
 export type BadgeProps = {
-  variant?: 'food' | 'default' | 'circle';
+  variant?: 'food' | 'default' | 'circle' | 'icon';
   foodTag?: string;
-  label?: string | number | unknown;
+  label?: string | number;
+  ariaLabel?: string;
   color?: 'neutral' | 'brand' | 'dark';
+  icon?: keyof typeof iconPath;
   css?: CSS;
   className?: string;
   onDark?: boolean;
@@ -21,8 +24,10 @@ export const Badge = ({
   variant = 'default',
   foodTag,
   label,
+  ariaLabel,
   color,
   css,
+  icon,
   className,
   onDark = false,
   ...props
@@ -43,16 +48,15 @@ export const Badge = ({
       : color === 'brand'
       ? colors.brand
       : color === 'neutral'
-      ? colors.neutral[400]
+      ? colors.neutral[500]
       : colors.neutral[800];
 
   return (
     <S.Container
       className={className}
-      aria-label={foodTag || label}
+      aria-label={ariaLabel}
       variant={variant}
       onDark={onDark}
-      color={color}
       css={{
         color: readableColor(getColor, colors.neutral[900], colors.white),
         bg: getColor,
@@ -60,6 +64,15 @@ export const Badge = ({
       }}
       {...props}
     >
+      {!!icon && (
+        <Icon
+          name={icon}
+          size="sm"
+          css={{ transform: 'scale(0.85)' }}
+          color="onInteractive"
+        />
+      )}
+
       {foodTag && !label && foodTag.length > 4
         ? transformTextToInitials(foodLabel || '0')
         : foodLabel}
