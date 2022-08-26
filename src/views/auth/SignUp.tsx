@@ -101,7 +101,7 @@ const SignUp = () => {
           control={control}
           inputMode="email"
           icon="mail"
-          autoComplete="username"
+          autoComplete="email"
         />
         <TextInput
           name="password"

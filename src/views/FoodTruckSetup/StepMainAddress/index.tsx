@@ -26,12 +26,14 @@ const StepMainAddress = ({ methods }: StepProps) => {
         icon="pin"
         format="#####-###"
         control={methods?.control}
+        autoComplete="postal-code"
       />
       <TextInput
         name="main_address_street"
         label="Rua"
         icon="location"
         control={methods?.control}
+        autoComplete="street-address"
       />
       <TextInput
         name="main_address_number"
