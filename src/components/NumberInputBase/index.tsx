@@ -8,6 +8,7 @@ import { iconPath, Icon } from '../Icon';
 import { Spinner } from '../Spinner';
 import { FormError } from '../FormError';
 import { Box } from '../Box';
+import { InfoButton } from '../InfoButton';
 import * as TextInput from '../TextInputBase/styles';
 import * as S from './styles';
 
@@ -24,6 +25,7 @@ export type NumberInputProps = {
   hasValue?: boolean;
   icon?: keyof typeof iconPath;
   errors?: any | undefined;
+  tooltip?: string;
   css?: CSS<typeof config>;
 } & InputHTMLAttributes<HTMLInputElement> &
   NumberFormatProps;
@@ -46,6 +48,7 @@ export const NumberInput = forwardRef<Ref, NumberInputProps>(
       allowNegative,
       decimalScale,
       errors,
+      tooltip,
       ...props
     },
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -124,6 +127,19 @@ export const NumberInput = forwardRef<Ref, NumberInputProps>(
               <Box css={{ position: 'absolute', right: '$4' }}>
                 <Spinner size="xs" />
               </Box>
+            )}
+
+            {!!tooltip && areErrorsEmpty && (
+              <InfoButton
+                content={tooltip}
+                size="sm"
+                css={{
+                  position: 'absolute',
+                  top: 1,
+                  right: '$1',
+                  opacity: 0.6,
+                }}
+              />
             )}
           </TextInput.Label>
         </TextInput.Container>

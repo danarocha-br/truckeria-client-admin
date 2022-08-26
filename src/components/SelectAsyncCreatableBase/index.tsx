@@ -19,6 +19,7 @@ import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Spinner } from '../Spinner';
 import { Text } from '../Text';
+import { InfoButton } from '../InfoButton';
 import {
   Container as SelectContainer,
   Label as SelectLabel,
@@ -42,6 +43,7 @@ export type SelectAsyncCreatableProps = {
   errors?: any | undefined;
   css?: CSS<typeof config>;
   createLabel?: string;
+  tooltip?: string;
 } & React.InputHTMLAttributes<HTMLSelectElement>;
 
 type Ref = HTMLSelectElement | null;
@@ -65,6 +67,7 @@ export const SelectAsyncCreatable = forwardRef<Ref, SelectAsyncCreatableProps>(
       isMulti = false,
       css,
       createLabel = 'Adicione',
+      tooltip,
       ...props
     },
     ref
@@ -210,6 +213,20 @@ export const SelectAsyncCreatable = forwardRef<Ref, SelectAsyncCreatableProps>(
                 name="alert"
                 className="c-input__error-icon"
                 css={{ position: 'absolute', right: '$4' }}
+              />
+            )}
+            {/** //TODO fix tooltip not appearing */}
+
+            {!!tooltip && areErrorsEmpty && (
+              <InfoButton
+                content={tooltip}
+                size="sm"
+                css={{
+                  position: 'absolute',
+                  top: 1,
+                  right: '$1',
+                  opacity: 0.6,
+                }}
               />
             )}
           </SelectLabel>

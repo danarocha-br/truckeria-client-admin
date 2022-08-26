@@ -17,6 +17,7 @@ export type SelectAsyncProps<TFormValues> = {
   control?: any;
   defaultOptions?: string[];
   icon?: keyof typeof iconPath;
+  tooltip?: string;
 } & TruckeriaSelectProps &
   Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'name'> &
   Omit<UseControllerProps<TFormValues>, 'control'>;
@@ -34,6 +35,7 @@ export const SelectAsyncCreatable = <TFormValues extends Record<string, any>>({
   isMulti,
   isClearable,
   defaultOptions,
+  tooltip,
   ...props
 }: SelectAsyncProps<TFormValues>) => {
   const {
@@ -63,6 +65,7 @@ export const SelectAsyncCreatable = <TFormValues extends Record<string, any>>({
       isMulti={isMulti}
       isClearable={isClearable}
       defaultOptions={defaultOptions}
+      tooltip={tooltip}
     />
   );
 };

@@ -16,6 +16,7 @@ export type SelectProps<TFormValues> = {
   defaultValue?: UnpackNestedValue<PathValue<TFormValues, Path<TFormValues>>>;
   control?: any;
   icon?: keyof typeof iconPath;
+  tooltip?: string;
 } & TruckeriaSelectProps &
   Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'name'> &
   Omit<UseControllerProps<TFormValues>, 'control'>;
@@ -33,6 +34,7 @@ export const Select = <TFormValues extends Record<string, any>>({
   isMulti,
   isClearable,
   options,
+  tooltip,
   ...props
 }: SelectProps<TFormValues>) => {
   const {
@@ -62,6 +64,7 @@ export const Select = <TFormValues extends Record<string, any>>({
       isMulti={isMulti}
       isClearable={isClearable}
       options={options}
+      tooltip={tooltip}
     />
   );
 };

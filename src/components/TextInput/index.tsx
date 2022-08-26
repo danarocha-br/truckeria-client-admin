@@ -20,6 +20,7 @@ export type InputProps<TFormValues> = {
   loading?: boolean;
   disabled?: boolean;
   readOnly?: boolean;
+  tooltip?: string;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'name'> &
   Omit<UseControllerProps<TFormValues>, 'control'>;
 
@@ -33,6 +34,7 @@ export const TextInput = <TFormValues extends Record<string, any>>({
   loading = false,
   readOnly = false,
   control,
+  tooltip,
   ...props
 }: InputProps<TFormValues>) => {
   const {
@@ -60,6 +62,7 @@ export const TextInput = <TFormValues extends Record<string, any>>({
       hasValue={!!field.value || !!defaultValue}
       errors={!!errors}
       defaultValue={defaultValue}
+      tooltip={tooltip}
     />
   );
 };

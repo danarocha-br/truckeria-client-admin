@@ -19,6 +19,7 @@ import { Spinner } from '../Spinner';
 import * as S from './styles';
 import { Text } from '../Text';
 import { Box } from '../Box';
+import { InfoButton } from '../InfoButton';
 
 import { config } from '../../../stitches.config';
 
@@ -37,6 +38,7 @@ export type SelectProps = {
   icon?: keyof typeof iconPath;
   errors?: any | undefined;
   css?: CSS<typeof config>;
+  tooltip?: string;
 } & React.InputHTMLAttributes<HTMLSelectElement>;
 
 type Ref = HTMLSelectElement | null;
@@ -59,6 +61,7 @@ export const Select = forwardRef<Ref, SelectProps>(
       isClearable = true,
       isMulti = false,
       css,
+      tooltip,
       ...props
     },
     ref
@@ -206,6 +209,19 @@ export const Select = forwardRef<Ref, SelectProps>(
                 name="alert"
                 className="c-input__error-icon"
                 css={{ position: 'absolute', right: '$4' }}
+              />
+            )}
+
+            {!!tooltip && areErrorsEmpty && (
+              <InfoButton
+                content={tooltip}
+                size="sm"
+                css={{
+                  position: 'absolute',
+                  top: 1,
+                  right: '$1',
+                  opacity: 0.6,
+                }}
               />
             )}
           </S.Label>
