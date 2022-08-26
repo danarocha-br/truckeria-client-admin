@@ -1,6 +1,8 @@
 import React from 'react';
+import { transparentize } from 'polished';
 
 import { Flex, iconPath, Text, Icon } from 'components';
+import { colors } from 'styles/tokens';
 
 type SectionBlockProps = {
   title: string;
@@ -20,27 +22,37 @@ function SectionBlock({
       justify="between"
       as="section"
       css={{
-        bg: '$background-default',
+        bg: transparentize(0.35, colors.neutral[900]),
         borderRadius: '$md',
-        p: '$6',
+        py: '$6',
 
         flexDirection: 'column',
 
-        '@bp-md': {
+        '@bp-xl': {
+          px: '$4',
           flexDirection: 'row',
         },
       }}
     >
       <Flex
+        as="fieldset"
         direction="column"
         css={{
           pr: '$8',
-          '@bp-md': {
-            w: 300,
+
+          border: 'none',
+
+          '@bp-xl': {
+            w: 230,
+            maxWidth: 400,
           },
         }}
       >
-        <Text as="h2" size="lg" css={{ mb: '$4', d: 'inline-flex', gap: '$4' }}>
+        <Text
+          as="legend"
+          size="lg"
+          css={{ mb: '$4', d: 'inline-flex', gap: '$4' }}
+        >
           {!!icon && <Icon name={icon} />}
           {title}
         </Text>
@@ -55,7 +67,17 @@ function SectionBlock({
         </Text>
       </Flex>
 
-      <Flex direction="column" gap="5">
+      <Flex
+        direction="column"
+        gap="5"
+        css={{
+          w: '$full',
+          '@bp-md': {
+            px: '$6',
+          },
+          '@bp-xl': { pr: '$1', px: '$0' },
+        }}
+      >
         {children}
       </Flex>
     </Flex>

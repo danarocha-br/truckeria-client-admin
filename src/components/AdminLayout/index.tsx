@@ -36,7 +36,7 @@ export function AdminLayout({
           css={{
             w: '$full',
             h: '$full',
-            px: '$5',
+            px: removePadding ? '$0' : '$5',
 
             '@bp-md': {
               px: removePadding ? '$0' : '$8',

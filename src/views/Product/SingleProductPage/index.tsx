@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { transparentize } from 'polished';
@@ -14,6 +14,16 @@ import {
   Text,
   TextInput,
   SelectAsyncCreatable,
+  Icon,
+  Toggle,
+  Tooltip,
+  InfoButton,
+  Tabs,
+  TabList,
+  TabTitle,
+  TabContent,
+  Breadcrumb,
+  BreadcrumbItem,
 } from 'components';
 import SectionBlock from './SectionBlock';
 
@@ -21,6 +31,9 @@ import { data as product } from './mock';
 import { schema } from './form.utils';
 import { PRODUCT_UNITY_TYPES } from 'constants/index';
 import { colors } from 'styles/tokens';
+
+import ProductCardBlock from './ProductCardBlock';
+import Link from 'next/link';
 
 interface IProduct {
   id?: string;
@@ -39,6 +52,7 @@ interface IProduct {
   product_category?: string[];
   tags?: string[];
   calories?: number;
+  product_weight?: number;
   barcode?: number | string;
   internal_barcode?: number | string;
   item_stock_quantity?: number | '';
@@ -64,6 +78,8 @@ interface IProduct {
 }
 
 function SingleProductPage() {
+  const [isPanelActive, setPanelActive] = useState(true);
+
   const defaultValues: IProduct = {
     image_url: product.image_url || '',
     name: product.name || '',
@@ -113,12 +129,14 @@ function SingleProductPage() {
   //   setValue('price', getPriceValue);
   // }, [costPrice, marginPrice, getPriceValue, setValue]);
 
+  //TODO animation on panel toggle
   return (
     <AdminLayout
       removePadding
-      bgColor={transparentize(0.7, colors.neutral[200])}
+      bgColor={transparentize(0.5, colors.neutral[600])}
     >
       <Flex
+        gap="0"
         css={{
           h: '$full',
           flexDirection: 'column',
@@ -127,253 +145,327 @@ function SingleProductPage() {
             flexDirection: 'row',
           },
         }}
+        fullWidth
       >
         <Box
           css={{
-            '@bp-md': {
-              flex: 2,
-              borderRadius: '$md',
+            '@media (prefers-reduced-motion: no-preference)': {
+              transition: '$base',
+              animationDuration: '400ms',
+              animationTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+              willChange: 'width',
+            },
+
+            '@bp-lg': {
+              w: isPanelActive ? '66%' : '100%',
             },
           }}
         >
-          {/** Nav */}
-          <Flex
-            align="center"
+          <Box
             css={{
-              bg: transparentize(0.6, colors.neutral[300]),
-              h: '$9',
-              px: '$4',
               w: '$full',
 
               '@bp-md': {
-                px: '$8',
+                flex: 2,
+                borderRadius: '$md',
+              },
+            }}
+          >
+            <Toggle
+              ariaLabel="Fechar/abrir painel"
+              defaultPressed={true}
+              pressed={isPanelActive}
+              onPressedChange={() => setPanelActive(!isPanelActive)}
+              css={{
+                d: 'none',
+                position: 'absolute',
+                top: '$2',
+                right: '$4',
+                zIndex: 3,
+                bg: '$neutral800',
+                w: '$7',
+                h: '$7',
+                p: 6,
+                borderRadius: '$round',
+                '@bp-lg': {
+                  d: 'block',
+                },
+              }}
+            >
+              <Tooltip
+                content={isPanelActive ? 'Fechar painel' : 'Abrir painel'}
+                side="left"
+              >
+                <Icon
+                  name={isPanelActive ? 'close' : 'panel'}
+                  aria-label={isPanelActive ? 'fechar' : 'abrir'}
+                  size="sm"
+                />
+              </Tooltip>
+            </Toggle>
+          </Box>
+
+          <Tabs
+            defaultValue="Detalhes básicos"
+            css={{
+              bg: transparentize(0.2, colors.neutral[300]),
+              h: '$9',
+
+              '@bp-md': {
+                px: '$7',
                 borderTopLeftRadius: '$lg',
               },
 
               '@dark': {
-                bg: transparentize(0.4, colors.neutral[800]),
+                bg: transparentize(0.3, colors.neutral[500]),
               },
             }}
           >
-            <Button
-              variant="icon"
-              icon="chevronLeft"
-              label="voltar"
-              size="sm"
-              css={{ ml: '$-5' }}
-            />
-            Detalhes
-          </Flex>
-
-          <Box
-            css={{
-              h: '$full',
-              '@bp-md': {
-                mr: '$4',
-                p: '$7',
-              },
-            }}
-          >
-            {/** Toolbar */}
-            <Flex
-              justify="between"
-              align="center"
-              css={{ mt: '$-3', mb: '$4' }}
-            >
-              <Text size="sm">Produtos | Nome do produto</Text>
-
+            <TabList ariaLabel="Navegação de edição do produto">
               <Button
+                variant="icon"
+                icon="chevronLeft"
+                label="voltar"
                 size="sm"
-                label="Salvar"
-                variant="success"
-                disabled={!isValid}
-                loading={isSubmitting}
+                css={{
+                  h: '$8',
+                  px: 4,
+                  mr: 8,
+                  mt: 4,
+
+                  '@bp-md': {
+                    ml: '$-5',
+                  },
+                }}
               />
-            </Flex>
+              <TabTitle title="Detalhes básicos" />
+              <TabTitle title="Complementos" />
+            </TabList>
 
-            <FormControl onSubmit={handleSubmit(onSubmit)}>
-              <SectionBlock
-                title="Detalhes"
-                icon="document"
-                description="Upload a photo from your computer or select an image from
-              our free image library. Give your item an internal name. (It
-              will only show up in your admin area) Enter a description to
-              give your customers extra details about your item. Set
-              separate prices for delivery and pickup options."
+            <TabContent title="Detalhes básicos">
+              <Box
+                css={{
+                  h: '$full',
+                  mt: '$4',
+                  px: '$4',
+
+                  '@bp-md': { pr: '$7' },
+                }}
               >
-                <TextInput
-                  name="name"
-                  id="name"
-                  label="Nome do produto"
-                  control={control}
-                  icon="products"
-                />
+                {/** Toolbar */}
+                <Flex justify="between" align="center" css={{ mb: '$4' }}>
+                  <Breadcrumb ariaLabel="Navegação">
+                    <BreadcrumbItem
+                      as={Link}
+                      href="/products"
+                      label="Produtos"
+                    />
+                    <BreadcrumbItem
+                      as={Link}
+                      href={`/products/${product.id}`}
+                      label={product.name}
+                      isActive
+                    />
+                  </Breadcrumb>
 
-                <Flex>
-                  <TextInput
-                    name="internal_name"
-                    id="internal_name"
-                    label="Nome interno (reduzido)"
-                    icon="file"
-                    control={control}
-                  />
-                  <Select
-                    name="product_type"
-                    id="product_type"
-                    label="Tipo de produto"
-                    icon="type"
-                    options={[
-                      { label: 'Simples', value: 'single' },
-                      { label: 'Combo', value: 'combo' },
-                    ]}
-                    control={control}
+                  <Button
+                    size="sm"
+                    label="Salvar"
+                    variant="success"
+                    disabled={!isValid}
+                    loading={isSubmitting}
                   />
                 </Flex>
 
-                <TextInput
-                  name="description"
-                  id="description"
-                  label="Informações adicionais"
-                  control={control}
-                  icon="fileAdd"
-                />
+                <FormControl onSubmit={handleSubmit(onSubmit)}>
+                  <SectionBlock
+                    title="Detalhes"
+                    icon="document"
+                    description="Informações básicas do seu produto. Dê ao seu produto um nome interno (ele aparecerá na sua área admin)."
+                  >
+                    <TextInput
+                      name="name"
+                      id="name"
+                      label="Nome do produto"
+                      control={control}
+                      icon="products"
+                    />
 
-                <Select
-                  name="product_unity"
-                  id="product_unity"
-                  label="Unidade"
-                  options={PRODUCT_UNITY_TYPES}
-                  control={control}
-                  icon="box"
-                />
-              </SectionBlock>
+                    <Flex>
+                      <TextInput
+                        name="internal_name"
+                        id="internal_name"
+                        label="Nome interno (reduzido)"
+                        // icon="file"
+                        control={control}
+                        tooltip="Para seu controle interno"
+                      />
+                      <Select
+                        name="product_type"
+                        id="product_type"
+                        label="Tipo de produto"
+                        // icon="type"
+                        options={[
+                          { label: 'Simples', value: 'single' },
+                          { label: 'Combo', value: 'combo' },
+                        ]}
+                        control={control}
+                      />
+                    </Flex>
 
-              <SectionBlock
-                title="Preço"
-                icon="currency"
-                description="Informações de preço."
-              >
-                <NumberInput
-                  name="cost_price"
-                  label="Preço de custo"
-                  prefix={'R$ '}
-                  decimalScale={2}
-                  thousandSeparator="."
-                  decimalSeparator=","
-                  allowLeadingZeros
-                  control={control}
-                  icon="currency"
-                />
-                <NumberInput
-                  name="margin_price"
-                  label="Margem bruta (%)"
-                  suffix=" %"
-                  control={control}
-                  icon="discount"
-                />
-                <NumberInput
-                  name="price"
-                  label="Preço de venda"
-                  prefix={'R$ '}
-                  thousandSeparator="."
-                  decimalSeparator=","
-                  allowLeadingZeros
-                  control={control}
-                  readOnly
-                  icon="currency"
-                />
+                    <TextInput
+                      name="description"
+                      id="description"
+                      label="Descrição"
+                      control={control}
+                      icon="fileAdd"
+                    />
 
-                <Text size="sm" color="lighter">
-                  Quantidade de venda
-                </Text>
-                <Flex>
-                  <NumberInput
-                    name="default_quantity"
-                    label="Quantidade inicial"
-                    control={control}
-                    icon="pile"
-                  />
-                  <NumberInput
-                    name="max_quantity"
-                    label="Quantidade máxima"
-                    control={control}
-                    icon="pile"
-                  />
-                </Flex>
-              </SectionBlock>
+                    <Select
+                      name="product_unity"
+                      id="product_unity"
+                      label="Unidade"
+                      options={PRODUCT_UNITY_TYPES}
+                      control={control}
+                      icon="box"
+                    />
+                  </SectionBlock>
 
-              <SectionBlock
-                title="Outros"
-                icon="shop"
-                description="Enter tags for your item to increase visibility in search results. Enter barcode or stock number to keep track of your item. Add allergy icons to inform your customers."
-              >
-                <NumberInput
-                  name="barcode"
-                  label="Código de barras"
-                  control={control}
-                  icon="barcode"
-                />
-                <NumberInput
-                  name="internal_barcode"
-                  label="Código interno"
-                  control={control}
-                />
-                <NumberInput
-                  name="item_stock_quantity"
-                  label="Quantidade em estoque (opcional)"
-                  control={control}
-                  icon="document"
-                />
+                  <SectionBlock
+                    title="Preço"
+                    icon="currency"
+                    description="Informações de preço."
+                  >
+                    {product.product_type === 'single' && (
+                      <>
+                        <NumberInput
+                          name="cost_price"
+                          label="Preço de custo"
+                          prefix={'R$ '}
+                          decimalScale={2}
+                          thousandSeparator="."
+                          decimalSeparator=","
+                          allowLeadingZeros
+                          control={control}
+                          icon="currency"
+                        />
+                        <NumberInput
+                          name="margin_price"
+                          label="Margem bruta (%)"
+                          suffix=" %"
+                          control={control}
+                          icon="discount"
+                          tooltip="O preço de venda é calculado com base na margem bruta."
+                        />
+                      </>
+                    )}
 
-                <SelectAsyncCreatable
-                  name="tags"
-                  label="Tags"
-                  control={control}
-                  isMulti
-                  defaultOptions={[]}
-                  icon="tags"
-                />
-                {/* <SelectAsyncCreatable
+                    {product.product_type === 'combo' && (
+                      <Text color="subdued" size="sm">
+                        O preço de um combo não pode ser editado, pois depende
+                        do preço informado nos produtos incluídos no combo.
+                      </Text>
+                    )}
+
+                    <NumberInput
+                      name="price"
+                      label="Preço de venda"
+                      prefix={'R$ '}
+                      thousandSeparator="."
+                      decimalSeparator=","
+                      allowLeadingZeros
+                      control={control}
+                      readOnly
+                      icon="currency"
+                    />
+
+                    <Text
+                      size="sm"
+                      color="lighter"
+                      css={{
+                        d: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '$1',
+                      }}
+                    >
+                      Quantidade de venda
+                      <InfoButton content="Use a quantidade máxima caso queira limitar a compra unitária por pedido." />
+                    </Text>
+                    <Flex>
+                      <NumberInput
+                        name="default_quantity"
+                        label="Quantidade inicial"
+                        control={control}
+                        icon="pile"
+                      />
+                      <NumberInput
+                        name="max_quantity"
+                        label="Quantidade máxima"
+                        control={control}
+                        icon="pile"
+                      />
+                    </Flex>
+                  </SectionBlock>
+
+                  <SectionBlock
+                    title="Outros"
+                    icon="shop"
+                    description="Enter tags for your item to increase visibility in search results. Enter barcode or stock number to keep track of your item. Add allergy icons to inform your customers."
+                  >
+                    <NumberInput
+                      name="barcode"
+                      label="Código de barras"
+                      control={control}
+                      icon="barcode"
+                    />
+                    <NumberInput
+                      name="internal_barcode"
+                      label="Código interno"
+                      control={control}
+                      icon="document"
+                      tooltip="Utilize para facilitar sua busca."
+                    />
+                    <NumberInput
+                      name="item_stock_quantity"
+                      label="Quantidade em estoque (opcional)"
+                      control={control}
+                      icon="pile"
+                    />
+
+                    <SelectAsyncCreatable
+                      name="tags"
+                      label="Tags"
+                      control={control}
+                      isMulti
+                      defaultOptions={[]}
+                      icon="tags"
+                      tooltip="Use tags para filtrar suas listas."
+                    />
+                    {/* <SelectAsyncCreatable
                     name="badges"
                     label="Símbolos"
                     control={control}
                     isMulti
                   /> */}
-              </SectionBlock>
+                  </SectionBlock>
 
-              <SectionBlock
-                title="Display Options"
-                icon="eye"
-                description="Change display of your item.
+                  <SectionBlock
+                    title="Display Options"
+                    icon="eye"
+                    description="Change display of your item.
 "
-              >
-                hey
-              </SectionBlock>
-            </FormControl>
-          </Box>
+                  >
+                    hey
+                  </SectionBlock>
+                </FormControl>
+              </Box>
+            </TabContent>
+
+            <TabContent title="Complementos">ho</TabContent>
+          </Tabs>
         </Box>
 
-        <Flex
-          css={{
-            d: 'none',
-
-            '@bp-md': {
-              d: 'flex',
-              flex: 1,
-              h: 'calc(100vh - 2rem)',
-              bg: '$white',
-              borderTopLeftRadius: '$lg',
-              borderBottomLeftRadius: '$lg',
-              px: '$6',
-              ml: -23,
-              zIndex: 2,
-              position: 'sticky',
-              top: 0,
-            },
-          }}
-        >
-          hey
-        </Flex>
+        {isPanelActive && <ProductCardBlock data={product} />}
       </Flex>
     </AdminLayout>
   );

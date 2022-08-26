@@ -97,11 +97,18 @@ function Dashboard() {
             '@bp-lg': {
               gridTemplateColumns:
                 viewPreference === 'card'
-                  ? 'repeat(4, minmax(0, 1fr))'
+                  ? 'repeat(3, minmax(0, 1fr))'
                   : 'repeat(1, minmax(0, 1fr))',
             },
 
             '@bp-xl': {
+              gridTemplateColumns:
+                viewPreference === 'card'
+                  ? 'repeat(4, minmax(0, 1fr))'
+                  : 'repeat(1, minmax(0, 1fr))',
+            },
+
+            '@bp-2xl': {
               gridTemplateColumns:
                 viewPreference === 'card'
                   ? 'repeat(5, minmax(0, 1fr))'
