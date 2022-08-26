@@ -59,7 +59,7 @@ export const Sidebar = () => {
   return (
     <>
       <S.Container>
-        <Flex direction="column" gap="6">
+        <Flex as="nav" direction="column" gap="6">
           <Logo css={{ mb: '$8' }} />
 
           {Object.entries(SIDEBAR_NAVIGATION).map(([key, value]) => (

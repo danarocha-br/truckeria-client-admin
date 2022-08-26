@@ -80,6 +80,7 @@ export const NumberInput = forwardRef<Ref, NumberInputProps>(
             ref={ref}
             id={name}
             aria-invalid={!!errors && !areErrorsEmpty ? 'true' : 'false'}
+            aria-describedby={!errors && !areErrorsEmpty && errors.message}
             placeholder={placeholder}
             hasPlaceholder={!!placeholder}
             hasValue={hasValue}

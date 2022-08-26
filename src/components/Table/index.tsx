@@ -19,7 +19,7 @@ export type TableProps<TData> = {
   css?: CSS;
 };
 
-export const Table = <TData,>({
+export const Table = <TData extends Record<string, any>>({
   table,
   tableRef,
   rows,

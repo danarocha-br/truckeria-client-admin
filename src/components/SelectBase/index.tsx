@@ -160,6 +160,8 @@ export const Select = forwardRef<Ref, SelectProps>(
             name={name}
             id={name || id}
             aria-label={label}
+            aria-invalid={!!errors && !areErrorsEmpty ? 'true' : 'false'}
+            aria-describedby={!errors && !areErrorsEmpty && errors.message}
             placeholder={placeholder || null}
             //@ts-ignore
             ref={ref}

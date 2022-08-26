@@ -73,6 +73,7 @@ export const TextInput = forwardRef<Ref, TextInputProps>(
             ref={ref}
             id={name}
             aria-invalid={!!errors && !areErrorsEmpty ? 'true' : 'false'}
+            aria-describedby={!errors && !areErrorsEmpty && errors.message}
             placeholder={placeholder}
             hasPlaceholder={!!placeholder}
             hasFocus={hasFocus}
