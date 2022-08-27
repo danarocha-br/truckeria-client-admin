@@ -143,3 +143,7 @@ HasError.args = {
     message: 'I am an error message.',
   },
 };
+export const HasTooltip = Template.bind({});
+HasTooltip.args = {
+  tooltip: 'I am a tooltip',
+};

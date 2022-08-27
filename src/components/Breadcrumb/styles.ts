@@ -20,7 +20,7 @@ export const ListItem = styled('li', {
 
 export const Anchor = styled('a', {
   color: '$text-default',
-  opacity: 0.6,
+  opacity: 0.5,
   textDecoration: 'none',
   // outline: 'none',
   position: 'relative',

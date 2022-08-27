@@ -9,7 +9,7 @@ export const yellow = {
 };
 
 export const red = {
-  500: 'hsla(0, 70%, 60%, 1)',
+  500: 'hsla(0, 70%, 55%, 1)',
   300: 'hsla(0, 70%, 76%, 1)',
   100: 'hsla(0, 68%, 90%, 1)',
 };

@@ -74,3 +74,8 @@ export const isMulti = Template.bind({});
 isMulti.args = {
   isMulti: true,
 };
+
+export const HasTooltip = Template.bind({});
+HasTooltip.args = {
+  tooltip: 'I am a tooltip',
+};
