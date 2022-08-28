@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import NextLink from 'next/link';
 
 import {
-  AdminLayout,
   Flex,
   Box,
   Text,
   IconButton,
   MenuCategoryCard,
-  Grid,
+  Page,
+  Layout,
   ToggleGroup,
-  ToggleGroupItem,
   Icon,
   Tooltip,
   MenuCategoryList,
@@ -26,7 +25,7 @@ function Dashboard() {
   };
 
   return (
-    <AdminLayout>
+    <Page>
       <Box css={{ pb: '$8' }}>
         <Flex justify="between" fullWidth css={{ p: '$1' }}>
           <Text
@@ -40,24 +39,27 @@ function Dashboard() {
           </Text>
 
           <Flex justify="end" gap={6}>
-            <ToggleGroup
+            <ToggleGroup.Root
               type="single"
               defaultValue="card"
               value={viewPreference}
               onValueChange={(value) => handlePreferenceChange(value)}
               aria-label="Escolha o formato de visualização de preferência"
             >
-              <ToggleGroupItem value="card" aria-label="Ver formato grid">
+              <ToggleGroup.Item value="card" aria-label="Ver em formato grid">
                 <Tooltip content="Ver em formato grid">
                   <Icon name="cards" />
                 </Tooltip>
-              </ToggleGroupItem>
-              <ToggleGroupItem value="table" aria-label="Ver formato tabela">
+              </ToggleGroup.Item>
+              <ToggleGroup.Item
+                value="table"
+                aria-label="Ver em formato tabela"
+              >
                 <Tooltip content="Ver em formato lista">
                   <Icon name="table" />
                 </Tooltip>
-              </ToggleGroupItem>
-            </ToggleGroup>
+              </ToggleGroup.Item>
+            </ToggleGroup.Root>
 
             <Tooltip content="Adicione nova categoria" align="end">
               <IconButton
@@ -77,45 +79,7 @@ function Dashboard() {
           Configure categorias e defina o seu cardápio.
         </Text>
 
-        <Grid
-          gap={viewPreference === 'card' ? '8' : '3'}
-          css={{
-            w: '$full',
-            overflow: 'scroll',
-            gridTemplateColumns:
-              viewPreference === 'card'
-                ? 'repeat(2, minmax(0, 1fr))'
-                : 'repeat(1, minmax(0, 1fr))',
-
-            '@bp-md': {
-              gridTemplateColumns:
-                viewPreference === 'card'
-                  ? 'repeat(3, minmax(0, 1fr))'
-                  : 'repeat(1, minmax(0, 1fr))',
-            },
-
-            '@bp-lg': {
-              gridTemplateColumns:
-                viewPreference === 'card'
-                  ? 'repeat(3, minmax(0, 1fr))'
-                  : 'repeat(1, minmax(0, 1fr))',
-            },
-
-            '@bp-xl': {
-              gridTemplateColumns:
-                viewPreference === 'card'
-                  ? 'repeat(4, minmax(0, 1fr))'
-                  : 'repeat(1, minmax(0, 1fr))',
-            },
-
-            '@bp-2xl': {
-              gridTemplateColumns:
-                viewPreference === 'card'
-                  ? 'repeat(5, minmax(0, 1fr))'
-                  : 'repeat(1, minmax(0, 1fr))',
-            },
-          }}
-        >
+        <Layout appearance={viewPreference === 'card' ? 'grid' : 'list'}>
           {categories.length > 1 ? (
             categories.map((category) => {
               return viewPreference === 'card' ? (
@@ -149,9 +113,9 @@ function Dashboard() {
               title="Adicione uma nova categoria ao seu cardápio"
             />
           )}
-        </Grid>
+        </Layout>
       </Box>
-    </AdminLayout>
+    </Page>
   );
 }
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { AdminLayout, AdminLayoutProps } from '.';
+import { Layout, LayoutProps } from '.';
 
 export default {
-  title: 'Components/AdminLayout',
-  component: AdminLayout,
+  title: 'Components/Layout',
+  component: Layout,
   parameters: {
     layout: 'centered',
     status: 'stable', // beta| deprecated | review | stable,
@@ -17,6 +17,6 @@ export default {
   args: {},
 } as Meta;
 
-const Template: Story<AdminLayoutProps> = (args) => <AdminLayout {...args} />;
+const Template: Story<LayoutProps> = (args) => <Layout {...args} />;
 
 export const Default = Template.bind({});

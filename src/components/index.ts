@@ -1,5 +1,4 @@
 export * from 'components/Allow';
-export * from 'components/AdminLayout';
 export * from 'components/AuthLayout';
 export * from 'components/AspectRatio';
 export * from 'components/Avatar';
@@ -41,6 +40,6 @@ export * from 'components/Textarea';
 export * from 'components/TextInput';
 export * from 'components/Toast';
 export * from 'components/Toggle';
-export * from 'components/ToggleGroup';
+export * as ToggleGroup from 'components/ToggleGroup';
 export * from 'components/Tooltip';
 export * from 'components/UserProfile';

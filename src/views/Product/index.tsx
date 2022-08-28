@@ -9,7 +9,6 @@ import {
 } from '@tanstack/react-table';
 
 import {
-  AdminLayout,
   AspectRatio,
   Badge,
   Box,
@@ -17,14 +16,15 @@ import {
   Dropdown,
   DropdownItem,
   Flex,
-  Grid,
   Icon,
   IconButton,
+  Layout,
+  Link,
+  Page,
   ProductCard,
   Table,
   Text,
   ToggleGroup,
-  ToggleGroupItem,
   Tooltip,
 } from 'components';
 
@@ -43,7 +43,7 @@ type Product = {
   margin: number;
   cost_price: number;
   product_unity: string;
-  isActive?: boolean;
+  is_active?: boolean;
   barcode?: number | string;
   badges?: string[];
   default_quantity: number;
@@ -165,7 +165,7 @@ function Product() {
         header: 'Código de barras',
       },
       {
-        accessorKey: 'isActive',
+        accessorKey: 'is_active',
         header: 'Status',
         size: 40,
         cell: (info) => (
@@ -359,7 +359,7 @@ function Product() {
             title={product.name}
             description={product.description}
             price={product.price}
-            isActive={product.isActive}
+            isActive={product.is_active}
             badges={product.badges}
             asFeatured={product.display_featured}
             asNew={product.display_new_item}
@@ -383,37 +383,51 @@ function Product() {
   };
 
   return (
-    <AdminLayout>
+    <Page>
       <Box css={{ pb: '$8' }}>
-        <Flex justify="between" fullWidth css={{ p: '$1', mb: '$7' }}>
-          <Text
-            as="h1"
-            size="lg"
-            weight="semibold"
-            css={{ mt: '$2', whiteSpace: 'nowrap' }}
-          >
-            Produtos e materiais
-          </Text>
+        <Flex
+          justify="between"
+          align="center"
+          gap="8"
+          fullWidth
+          css={{ p: '$1', mb: '$7' }}
+        >
+          <Link
+            as={NextLink}
+            href="/products"
+            label="Produtos e materiais"
+            variant="page-header"
+            isActive
+          />
+          <Link
+            as={NextLink}
+            href="/products/addons"
+            label="Grupo de adicionais"
+            variant="page-header"
+          />
 
           <Flex justify="end" gap={6}>
-            <ToggleGroup
+            <ToggleGroup.Root
               type="single"
               defaultValue="card"
               value={viewPreference}
               onValueChange={(value) => handlePreferenceChange(value)}
               aria-label="Escolha o formato de visualização de preferência"
             >
-              <ToggleGroupItem value="card" aria-label="Ver em formato grid">
+              <ToggleGroup.Item value="card" aria-label="Ver em formato grid">
                 <Tooltip content="Ver em formato grid">
                   <Icon name="cards" />
                 </Tooltip>
-              </ToggleGroupItem>
-              <ToggleGroupItem value="table" aria-label="Ver em formato tabela">
+              </ToggleGroup.Item>
+              <ToggleGroup.Item
+                value="table"
+                aria-label="Ver em formato tabela"
+              >
                 <Tooltip content="Ver em formato lista">
                   <Icon name="table" />
                 </Tooltip>
-              </ToggleGroupItem>
-            </ToggleGroup>
+              </ToggleGroup.Item>
+            </ToggleGroup.Root>
 
             <Tooltip content="Adicione novo produto" align="end">
               <IconButton
@@ -425,56 +439,11 @@ function Product() {
           </Flex>
         </Flex>
 
-        <Grid
-          gap={viewPreference === 'card' ? '8' : '2'}
-          css={{
-            gridTemplateColumns:
-              viewPreference === 'card'
-                ? 'repeat(1, minmax(0, 1fr))'
-                : 'repeat(1, minmax(0, 1fr))',
-
-            '@bp-md': {
-              gridTemplateColumns:
-                viewPreference === 'card'
-                  ? 'repeat(2, minmax(0, 1fr))'
-                  : 'repeat(1, minmax(0, 1fr))',
-            },
-
-            '@bp-lg': {
-              gridTemplateColumns:
-                viewPreference === 'card'
-                  ? 'repeat(3, minmax(0, 1fr))'
-                  : 'repeat(1, minmax(0, 1fr))',
-            },
-
-            '@bp-xl': {
-              gridTemplateColumns:
-                viewPreference === 'card'
-                  ? 'repeat(4, minmax(0, 1fr))'
-                  : 'repeat(1, minmax(0, 1fr))',
-            },
-
-            '@bp-2xl': {
-              gridTemplateColumns:
-                viewPreference === 'card'
-                  ? 'repeat(5, minmax(0, 1fr))'
-                  : 'repeat(1, minmax(0, 1fr))',
-            },
-
-            '& > div:first-child': {
-              borderTopLeftRadius: '$sm',
-              borderTopRightRadius: '$sm',
-            },
-            '& > div:last-child': {
-              borderBottomLeftRadius: '$sm',
-              borderBottomRightRadius: '$sm',
-            },
-          }}
-        >
+        <Layout appearance={viewPreference === 'card' ? 'grid' : 'list'}>
           {viewPreference === 'card' ? <CardView /> : <TableView />}
-        </Grid>
+        </Layout>
       </Box>
-    </AdminLayout>
+    </Page>
   );
 }
 

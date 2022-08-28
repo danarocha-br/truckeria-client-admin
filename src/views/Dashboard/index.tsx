@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { AdminLayout } from 'components';
+import { Page } from 'components';
 
 function Dashboard() {
-  return <AdminLayout>hey</AdminLayout>;
+  return <Page>hey</Page>;
 }
 
 export default Dashboard;
