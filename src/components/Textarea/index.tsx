@@ -58,7 +58,6 @@ export const Textarea = <TFormValues extends Record<string, any>>({
       disabled={disabled}
       loading={loading}
       readOnly={readOnly}
-      hasValue={!!field.value || !!defaultValue}
       errors={!!errors}
       defaultValue={defaultValue}
       tooltip={tooltip}

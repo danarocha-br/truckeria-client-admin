@@ -32,31 +32,7 @@ const ProductCardBlock = ({ data }: ProductCardBlockProps) => {
   }, [data.badges]);
 
   return (
-    <Flex
-      direction="column"
-      gap="5"
-      css={{
-        d: 'none',
-
-        '@bp-lg': {
-          d: 'flex',
-          h: 'calc(100vh - 2rem)',
-          bg: '$white',
-          borderTopLeftRadius: '$lg',
-          borderBottomLeftRadius: '$lg',
-          p: '$4',
-          zIndex: 2,
-          position: 'fixed',
-          w: '30%',
-          top: '$4',
-          right: 0,
-        },
-
-        '@bp-xl': {
-          w: '30.5%',
-        },
-      }}
-    >
+    <>
       <Box css={{ position: 'relative' }}>
         <Image
           src={'/img/bg_empty_cards.png'}
@@ -90,17 +66,17 @@ const ProductCardBlock = ({ data }: ProductCardBlockProps) => {
         {data.description}
       </Text>
 
-      <Flex justify="between" css={{ borderBottom: '1px solid $neutral200' }}>
+      <Flex justify="between" css={{ borderBottom: '1px solid $neutral100' }}>
         {data.product_weight && (
           <Text color="contrast">{data.product_weight}g</Text>
         )}
         <Box
-          css={{ borderRight: '1px solid $neutral200', h: '$8' }}
+          css={{ borderRight: '1px solid $neutral100', h: '$8' }}
           aria-hidden="true"
         />
         {data.calories && <Text color="contrast">{data.calories}kcal</Text>}
         <Box
-          css={{ borderRight: '1px solid $neutral200', h: '$8' }}
+          css={{ borderRight: '1px solid $neutral100', h: '$8' }}
           aria-hidden="true"
         />
         <Badge
@@ -110,11 +86,9 @@ const ProductCardBlock = ({ data }: ProductCardBlockProps) => {
         />
       </Flex>
 
-      <Flex css={{ borderBottom: '1px solid $neutral200', pb: '$3' }}>
-        <Tag label={data.product_type} color="contrast" />
+      <Flex css={{ borderBottom: '1px solid $neutral100', pb: '$5' }}>
         <Flex
           align="center"
-          justify="end"
           gap="0"
           css={{
             transition: '$slow',
@@ -161,8 +135,10 @@ const ProductCardBlock = ({ data }: ProductCardBlockProps) => {
             />
           )}
         </Flex>
+
+        <Tag label={data.product_type} color="contrast" />
       </Flex>
-    </Flex>
+    </>
   );
 };
 

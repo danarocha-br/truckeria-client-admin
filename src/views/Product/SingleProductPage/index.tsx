@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { transparentize } from 'polished';
+import Link from 'next/link';
 
 import {
-  AdminLayout,
+  Page,
+  Layout,
   Box,
   Button,
   Flex,
@@ -24,18 +26,19 @@ import {
   TabContent,
   Breadcrumb,
   BreadcrumbItem,
+  Switch,
+  Textarea,
 } from 'components';
 import SectionBlock from './SectionBlock';
+import ProductCardBlock from './ProductCardBlock';
+import ComboForm from './ComboForm';
 
 import { data as product } from './mock';
 import { schema } from './form.utils';
 import { PRODUCT_UNITY_TYPES } from 'constants/index';
 import { colors } from 'styles/tokens';
 
-import ProductCardBlock from './ProductCardBlock';
-import Link from 'next/link';
-
-interface IProduct {
+export interface IProduct {
   id?: string;
   menu_category_id?: string[];
   name: string;
@@ -57,8 +60,8 @@ interface IProduct {
   internal_barcode?: number | string;
   item_stock_quantity?: number | '';
   badges?: string[];
-  isActive?: boolean;
-  direct_sale: boolean;
+  is_active?: boolean;
+  direct_sale?: boolean;
   display_featured: boolean;
   display_new_item: boolean;
   // additional_items?: {
@@ -100,13 +103,14 @@ function SingleProductPage() {
     direct_sale: product.direct_sale || false,
     display_featured: product.display_featured || false,
     display_new_item: product.display_featured || false,
+    is_active: product.is_active || true,
   };
 
   const {
     handleSubmit,
     formState: { isSubmitting, isValid },
     control,
-    // watch,
+    watch,
     // setValue,
   } = useForm<IProduct>({
     resolver: yupResolver(schema),
@@ -117,6 +121,9 @@ function SingleProductPage() {
   function onSubmit(values: IProduct) {
     console.log(values);
   }
+
+  const productType = watch('product_type');
+  console.log(productType);
 
   // const costPrice = watch('cost_price');
   // const marginPrice = watch('margin_price');
@@ -130,23 +137,10 @@ function SingleProductPage() {
   // }, [costPrice, marginPrice, getPriceValue, setValue]);
 
   //TODO animation on panel toggle
-  return (
-    <AdminLayout
-      removePadding
-      bgColor={transparentize(0.5, colors.neutral[600])}
-    >
-      <Flex
-        gap="0"
-        css={{
-          h: '$full',
-          flexDirection: 'column',
 
-          '@bp-md': {
-            flexDirection: 'row',
-          },
-        }}
-        fullWidth
-      >
+  return (
+    <Page removePadding bgColor={transparentize(0.5, colors.neutral[600])}>
+      <Layout sidePanel={isPanelActive && <ProductCardBlock data={product} />}>
         <Box
           css={{
             '@media (prefers-reduced-motion: no-preference)': {
@@ -239,7 +233,9 @@ function SingleProductPage() {
                 }}
               />
               <TabTitle title="Detalhes básicos" />
-              <TabTitle title="Complementos" />
+              <TabTitle
+                title={productType === 'single' ? 'Complementos' : 'Combo'}
+              />
             </TabList>
 
             <TabContent title="Detalhes básicos">
@@ -313,7 +309,7 @@ function SingleProductPage() {
                       />
                     </Flex>
 
-                    <TextInput
+                    <Textarea
                       name="description"
                       id="description"
                       label="Descrição"
@@ -450,24 +446,51 @@ function SingleProductPage() {
                   </SectionBlock>
 
                   <SectionBlock
-                    title="Display Options"
-                    icon="eye"
-                    description="Change display of your item.
+                    title="Cardápio"
+                    icon="book"
+                    description="Configure a visualização deste produto.
 "
                   >
-                    hey
+                    <Flex direction="column" gap="8">
+                      <Switch
+                        name="display_featured"
+                        label="Exibir como favorito"
+                        control={control}
+                        tooltip="Marque para que esse produto seja exibido como destaque no Menu e no POS."
+                      />
+
+                      <Switch
+                        name="display_new_item"
+                        label="Exibir como novo produto"
+                        control={control}
+                        tooltip="Marque para que esse produto seja exibido com o selo de 'Novo' no Menu e no POS."
+                      />
+
+                      <Switch
+                        name="is_active"
+                        label="Produto disponível"
+                        control={control}
+                        tooltip="Marque para que esse produto seja exibido em lista de buscas."
+                      />
+                    </Flex>
                   </SectionBlock>
                 </FormControl>
               </Box>
             </TabContent>
 
-            <TabContent title="Complementos">ho</TabContent>
+            {productType === 'single' && (
+              <TabContent title="Complementos">ho</TabContent>
+            )}
+
+            {productType === 'combo' && (
+              <TabContent title="Combo">
+                <ComboForm />
+              </TabContent>
+            )}
           </Tabs>
         </Box>
-
-        {isPanelActive && <ProductCardBlock data={product} />}
-      </Flex>
-    </AdminLayout>
+      </Layout>
+    </Page>
   );
 }
 

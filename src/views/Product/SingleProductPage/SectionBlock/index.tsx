@@ -22,7 +22,7 @@ function SectionBlock({
       justify="between"
       as="section"
       css={{
-        bg: transparentize(0.35, colors.neutral[900]),
+        bg: transparentize(0.3, colors.neutral[900]),
         borderRadius: '$md',
         py: '$6',
 
@@ -51,9 +51,13 @@ function SectionBlock({
         <Text
           as="legend"
           size="lg"
-          css={{ mb: '$4', d: 'inline-flex', gap: '$4' }}
+          css={{ mb: '$4', d: 'inline-flex', gap: '$4', alignItems: 'center' }}
         >
-          {!!icon && <Icon name={icon} />}
+          {!!icon && (
+            <i>
+              <Icon name={icon} />
+            </i>
+          )}
           {title}
         </Text>
         <Text

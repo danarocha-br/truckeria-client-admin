@@ -13,7 +13,7 @@ export const data = {
   product_type: 'combo',
   product_category: ['hamburger'],
   tags: ['hamburger', 'double'],
-  isActive: true,
+  is_active: true,
   default_quantity: 1,
   max_quantity: 10,
   calories: 670,

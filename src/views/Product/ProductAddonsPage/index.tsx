@@ -9,113 +9,54 @@ import {
 } from '@tanstack/react-table';
 
 import {
-  AspectRatio,
   Badge,
   Box,
   Button,
   Dropdown,
   DropdownItem,
   Flex,
+  Layout,
   Icon,
   IconButton,
-  Layout,
   Link,
   Page,
-  ProductCard,
   Table,
   Text,
-  ToggleGroup,
   Tooltip,
 } from 'components';
 
-import { data as products } from './mock';
+import { data as groups } from './mock';
 import { formatCurrency } from 'utils/formatCurrency';
-import { darkTheme } from '../../../stitches.config';
+import { darkTheme } from '../../../../stitches.config';
+import { Product } from '..';
 
-export type Product = {
-  id: string;
-  category_id: string;
+type ProductAddon = {
+  id?: string;
   name: string;
   internal_name?: string;
-  image_URL?: string | unknown;
-  description?: string;
-  price: number;
-  margin: number;
-  cost_price: number;
-  product_unity: string;
-  is_active?: boolean;
-  barcode?: number | string;
-  badges?: string[];
-  default_quantity: number;
-  max_quantity: number;
-  calories: number;
-  internal_barcode: number;
-  item_stock_quantity: number;
-  display_featured: boolean;
-  display_new_item: boolean;
-  direct_sale: boolean;
+  title?: string;
+  price?: number;
+  /** type: 'multi' | 'single' */
+  type: string;
+  groups?: Product[] | number;
 };
 
-function Product() {
-  const [viewPreference, setViewPreference] = useState('card');
+function ProductAddonsPage() {
   const [sorting, setSorting] = useState<SortingState>([]);
 
-  const handlePreferenceChange = (value: string) => {
-    if (value) setViewPreference(value);
-  };
-
-  const columns = React.useMemo<ColumnDef<Product>[]>(
+  const columns = React.useMemo<ColumnDef<ProductAddon>[]>(
     () => [
-      {
-        accessorKey: 'image_URL',
-        header: 'Produto',
-        size: 100,
-        maxSize: 100,
-        cell: (info) => (
-          <AspectRatio
-            className="product__cover"
-            imageURL={info.getValue<string>() || '/img/bg_empty_cards.png'}
-            imageALT="Categoria de menu"
-            ratio={8 / 8}
-            css={{
-              bg: '$neutral500',
-              filter: `${info.getValue() ? 'initial' : 'grayscale(1)'}`,
-              h: 100,
-              d: 'none',
-
-              '@bp-md': {
-                d: 'block',
-                minWidth: '$11',
-                maxWidth: '$11',
-              },
-              '@bp-lg': {
-                d: 'block',
-                minWidth: '$12',
-                maxWidth: '$12',
-              },
-            }}
-          />
-        ),
-      },
-
       {
         accessorKey: 'name',
         cell: (info) => (
-          <Flex
-            direction="column"
-            justify="center"
-            css={{
-              h: '$full',
-
-              '@bp-md': {
-                minWidth: '15rem',
-              },
-            }}
-          >
-            <NextLink href={`/products/${info.row.original.id}`} passHref>
+          <Flex direction="column" justify="center" css={{ pl: '$6' }}>
+            <NextLink
+              href={`/products/addons/${info.row.original.id}`}
+              passHref
+            >
               <Text
                 as="a"
-                href={`/products/${info.row.original.id}`}
+                href={`/products/addons/${info.row.original.id}`}
                 size="lg"
                 weight="medium"
                 css={{
@@ -131,24 +72,9 @@ function Product() {
                 {info.getValue<string>()}
               </Text>
             </NextLink>
-
-            <Box
-              as="span"
-              css={{
-                color: '$text-subdued',
-                mt: '$-1',
-                textAlign: 'left',
-                overflow: 'hidden',
-                d: '-webkit-box',
-                '-webkit-line-clamp': 1,
-                '-webkit-box-orient': 'vertical',
-              }}
-            >
-              {info.row.original.description}
-            </Box>
           </Flex>
         ),
-        header: 'Nome do produto',
+        header: 'Nome do grupo',
       },
       {
         accessorKey: 'internal_name',
@@ -156,84 +82,42 @@ function Product() {
         cell: (info) => `[${info.getValue()}]` || '__',
       },
       {
-        accessorKey: 'internal_barcode',
-        header: 'Código interno',
+        accessorKey: 'title',
+        header: 'Título',
         cell: (info) => info.getValue() || '__',
+        minSize: 300,
       },
       {
-        accessorKey: 'barcode',
-        header: 'Código de barras',
-      },
-      {
-        accessorKey: 'is_active',
-        header: 'Status',
-        size: 40,
+        accessorKey: 'type',
+        header: 'Tipo',
         cell: (info) => (
-          <Icon
-            color={info.getValue() ? 'success' : 'danger'}
-            name={info.getValue() ? 'checkCircle' : 'closeSquare'}
-            css={{ opacity: 0.7 }}
+          <Badge
+            label={info.getValue<string>()}
+            color={info.getValue<string>() === 'single' ? 'dark' : 'brand'}
           />
         ),
       },
       {
-        accessorKey: 'product_type',
-        header: 'Tipo do produto',
-      },
-      {
         accessorKey: 'price',
-        header: 'Preço de venda',
+        header: 'Valor total',
         cell: (info) => (
           <Badge label={formatCurrency(info.getValue<number>())} color="dark" />
         ),
       },
       {
-        accessorKey: 'cost_price',
-        header: 'Preço de custo',
-        cell: (info) => (
-          <Badge label={formatCurrency(info.getValue<number>())} color="dark" />
-        ),
+        accessorKey: 'products',
+        header: 'Produtos',
+        cell: (info) =>
+          info.getValue<Product[]>().length >= 1
+            ? info.getValue<Product[]>().length +
+              `${info.getValue<Product[]>().length > 1 ? ' opções' : ' opção'} `
+            : '___',
       },
-      {
-        accessorKey: 'badges',
-        header: 'Selos',
-        cell: (info) => (
-          <Flex
-            align="center"
-            justify="end"
-            gap="0"
-            css={{
-              transition: '$slow',
-              w: '7rem',
-              minWidth: '7rem',
-              maxWidth: '12rem',
 
-              '&:hover': {
-                '& .badge-food': {
-                  ml: 1,
-                },
-              },
-            }}
-          >
-            {info
-              .getValue<string[]>()
-              .map((item: string, i: number) => (
-                <Badge
-                  className="badge-food"
-                  key={i}
-                  foodTag={item}
-                  css={{ ml: -6, transition: '$slow' }}
-                  variant="food"
-                />
-              ))
-              .slice(0, 3)}
-          </Flex>
-        ),
-      },
       {
         accessorKey: 'actions',
         header: '',
-        size: -1,
+        // size: -1,
         cell: () => (
           <Flex
             gap="1"
@@ -332,7 +216,7 @@ function Product() {
   );
 
   const table = useReactTable({
-    data: products,
+    data: groups,
     //@ts-ignore
     columns,
     state: {
@@ -347,29 +231,6 @@ function Product() {
   const tableContainerRef = useRef<HTMLDivElement>(null);
 
   const { rows } = table.getRowModel();
-
-  const CardView = () => {
-    return (
-      <>
-        {products.map((product) => (
-          <ProductCard
-            as={NextLink}
-            key={product.id}
-            href={`/products/${product.id}`}
-            title={product.name}
-            description={product.description}
-            price={product.price}
-            isActive={product.is_active}
-            badges={product.badges}
-            asFeatured={product.display_featured}
-            asNew={product.display_new_item}
-            internal_barcode={product.internal_barcode}
-            internal_name={product.internal_name}
-          />
-        ))}
-      </>
-    );
-  };
 
   const TableView = () => {
     return (
@@ -397,38 +258,16 @@ function Product() {
             href="/products"
             label="Produtos e materiais"
             variant="page-header"
-            isActive
           />
           <Link
             as={NextLink}
             href="/products/addons"
             label="Grupo de adicionais"
             variant="page-header"
+            isActive
           />
 
           <Flex justify="end" gap={6}>
-            <ToggleGroup.Root
-              type="single"
-              defaultValue="card"
-              value={viewPreference}
-              onValueChange={(value) => handlePreferenceChange(value)}
-              aria-label="Escolha o formato de visualização de preferência"
-            >
-              <ToggleGroup.Item value="card" aria-label="Ver em formato grid">
-                <Tooltip content="Ver em formato grid">
-                  <Icon name="cards" />
-                </Tooltip>
-              </ToggleGroup.Item>
-              <ToggleGroup.Item
-                value="table"
-                aria-label="Ver em formato tabela"
-              >
-                <Tooltip content="Ver em formato lista">
-                  <Icon name="table" />
-                </Tooltip>
-              </ToggleGroup.Item>
-            </ToggleGroup.Root>
-
             <Tooltip content="Adicione novo produto" align="end">
               <IconButton
                 icon="plus"
@@ -439,12 +278,12 @@ function Product() {
           </Flex>
         </Flex>
 
-        <Layout appearance={viewPreference === 'card' ? 'grid' : 'list'}>
-          {viewPreference === 'card' ? <CardView /> : <TableView />}
+        <Layout>
+          <TableView />
         </Layout>
       </Box>
     </Page>
   );
 }
 
-export default Product;
+export default ProductAddonsPage;

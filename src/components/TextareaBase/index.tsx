@@ -75,8 +75,6 @@ export const Textarea = forwardRef<Ref, TextareaProps>(
             aria-invalid={!!errors && !areErrorsEmpty ? 'true' : 'false'}
             aria-describedby={!errors && !areErrorsEmpty && errors.message}
             placeholder={placeholder}
-            hasPlaceholder={!!placeholder}
-            hasFocus={hasFocus}
             name={name}
             defaultValue={defaultValue}
             {...props}
@@ -86,15 +84,12 @@ export const Textarea = forwardRef<Ref, TextareaProps>(
             readOnly={readOnly}
             hasIcon={!!icon}
             rows={8}
-            isDisabled={disabled || loading}
-            isLoading={loading}
           />
 
           <S.Label
             aria-labelledby={label}
             htmlFor={name}
             isDisabled={disabled || loading}
-            hasPlaceholder={!!placeholder}
             hasIcon={!!icon}
           >
             {!!icon && <Icon className="c-input__icon" name={icon} />}

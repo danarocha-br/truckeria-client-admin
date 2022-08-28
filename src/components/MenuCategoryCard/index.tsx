@@ -119,7 +119,9 @@ export const MenuCategoryCard = ({
 
         {variant === 'add' && (
           <>
-            <Icon name="plus" size="lg" />
+            <i>
+              <Icon name="plus" size="lg" />
+            </i>
             <Text align="center" size="lg">
               {title}
             </Text>

@@ -55,6 +55,9 @@ export const Sidebar = () => {
   const { asPath } = useRouter();
 
   const currentPath = asPath.includes('?') ? asPath.split('?')[0] : asPath;
+  // const currentPath = (route: string) => {
+  //   router.pathname.startsWith(route)
+  // }
 
   return (
     <>
