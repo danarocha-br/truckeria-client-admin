@@ -93,7 +93,6 @@ export const Container = styled('div', {
         borderStyle: 'dashed',
         borderColor: '$form-default',
         bg: '$form-disabled',
-        // pointerEvents: 'none',
 
         '&:hover': {
           borderColor: '$form-default',
@@ -162,6 +161,7 @@ export const selectInputStyles = {
   borderRadius: '$xs',
   position: 'absolute !important',
   zIndex: 1,
+  pointerEvents: 'auto',
 
   '& .c-select': {
     '&__control': {
@@ -174,16 +174,16 @@ export const selectInputStyles = {
       appearance: 'none',
       w: '$full',
       h: '$full',
-      borderRadius: '$xs',
       boxShadow: 'none',
+
+      '&--is-disabled': {
+        cursor: 'not-allowed !important',
+        opacity: 0.4,
+      },
     },
 
     '&:focus': {
       outline: 'none',
-    },
-    '&:disabled': {
-      cursor: 'not-allowed',
-      opacity: 0.4,
     },
 
     '&--is-focused': {
@@ -381,6 +381,7 @@ export const Label = styled('label', {
       true: {
         userSelect: 'none',
         pointerEvents: 'none',
+        opacity: 0.4,
       },
     },
 

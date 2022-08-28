@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TabsProps as PrimitiveTabsProps } from '@radix-ui/react-tabs';
 
 import * as S from './styles';

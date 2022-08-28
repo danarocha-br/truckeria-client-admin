@@ -1,5 +1,4 @@
 import { styled } from '../../../stitches.config';
-import { Input as ReakitInput } from 'reakit/Input';
 
 const inputBorder = {
   border: '8px solid',
@@ -8,31 +7,6 @@ const inputBorder = {
 
 const animateIcon = {
   transform: 'translateZ(1px)',
-};
-
-const hasValueState = {
-  '& + label:before': {
-    ...inputBorder,
-    borderTopWidth: ' 1.85em !important',
-    borderColor: '$form-subdued',
-  },
-
-  '& + label > .c-input__label': {
-    transform: 'translate3d(-5px, -25px, 0) scale(0.88) !important',
-    transformOrigin: '0% 50%',
-    fontWeight: '$regular',
-  },
-
-  '& + label > svg.c-input__icon': {
-    ...animateIcon,
-    transform:
-      'translate3d(-0.4em, -25px, 0) scale3d(0.85, 0.85, 1) !important',
-  },
-  '& + label > svg.c-input__error-icon': {
-    ...animateIcon,
-    transform: 'translate3d(6px, -25px, 0) scale3d(0.85, 0.85, 1) !important',
-    color: '$form-error',
-  },
 };
 
 export const Container = styled('div', {
@@ -49,7 +23,8 @@ export const Container = styled('div', {
 
   w: '$full',
   minWidth: '15rem',
-  h: '$11',
+  h: '$14',
+  minHeight: '$14',
 
   transition: 'all cubic-bezier(0.4, 0, 0.2, 1) 150ms',
 
@@ -77,6 +52,7 @@ export const Container = styled('div', {
         borderStyle: 'dashed',
         borderColor: '$form-default',
         bg: '$form-disabled',
+        //TODO fix issue with adding the disabled prop correctly on the input
         pointerEvents: 'none',
 
         '&:hover': {
@@ -123,7 +99,7 @@ export const Container = styled('div', {
         },
 
         '& label > .c-input__label': {
-          transform: 'translate3d(0px, -20px, 0) scale(0.88) !important',
+          transform: 'translate3d(0px, -18px, 0) scale(0.88) !important',
           transformOrigin: '0% 50%',
           fontWeight: '$regular',
         },
@@ -162,50 +138,30 @@ export const Container = styled('div', {
   },
 });
 
-export const inputStyles = {
+export const Textarea = styled('textarea', {
   color: '$text-default !important',
-  bg: '$transparent !important',
+  bg: '$transparent',
   border: 'none',
   appearance: 'none',
-  p: '1.24rem 1.4rem 0',
-  h: '$full',
-  borderRadius: '$md',
+  // mt: '5rem',
+  p: '0.7rem 1.4rem 0',
+  h: 'calc(100% - 42px)',
+  w: 'calc(100% - 9px)',
+
+  resize: 'none',
 
   position: 'absolute',
+  top: '$7',
   fontSize: '$base',
-  w: '$full',
 
   d: 'flex',
+  zIndex: 1,
 
   '&:focus': {
     outline: 'none',
   },
 
   variants: {
-    hasFocus: {
-      true: {
-        ...hasValueState,
-      },
-    },
-
-    hasError: {
-      true: {
-        borderColor: '$form-error',
-      },
-    },
-
-    hasPlaceholder: {
-      true: {
-        ...hasValueState,
-
-        '& + label > svg.c-input__icon': {
-          ...animateIcon,
-          color: '$text-default',
-          transform: 'translate3d(-0.6em, -1.5em, 0) scale3d(0.85, 0.85, 1)',
-        },
-      },
-    },
-
     hasIcon: {
       true: {
         '& + label > .c-input__label': {
@@ -213,12 +169,6 @@ export const inputStyles = {
           transformOrigin: '0% 50%',
           fontWeight: '$regular',
         },
-      },
-    },
-
-    hasValue: {
-      true: {
-        ...hasValueState,
       },
     },
 
@@ -239,17 +189,9 @@ export const inputStyles = {
   },
 
   defaultVariants: {
-    hasValue: false,
-    hasFocus: false,
-    hasError: false,
     hasIcon: false,
-    hasPlaceholder: false,
     disabled: false,
   },
-};
-
-export const Input = styled(ReakitInput, {
-  ...inputStyles,
 });
 
 export const Label = styled('label', {
@@ -271,7 +213,8 @@ export const Label = styled('label', {
 
   '&:before': {
     content: '',
-    borderColor: '$form-default',
+    ...inputBorder,
+    borderColor: '$form-subdued',
     borderStyle: 'solid',
     borderRadius: '$xs',
     position: 'absolute',
@@ -281,33 +224,45 @@ export const Label = styled('label', {
     w: '$full',
     h: '$full',
     transition: 'border-width 0.3s, border-color 0.5s',
+    zIndex: 0,
+    userSelect: 'none',
+    borderTopWidth: ' 1.85em !important',
   },
 
   '& .c-input__label': {
     d: 'flex',
     w: '$full',
     position: 'absolute',
-    top: '1.8rem',
     left: '$5',
+    top: '1.84rem',
     transition: 'transform',
     transitionDuration: '300ms',
-    transform: 'translate3d(0px, 0px, 0) !important',
-    transformOrigin: '0% 50%',
     textRendering: 'geometricPrecision',
+    transform: 'translate3d(-5px, -25px, 0) scale(0.88) !important',
+    transformOrigin: '0% 50%',
+    fontWeight: '$regular',
   },
 
   '& svg.c-input__icon': {
+    position: 'absolute',
+    top: '1.8rem',
     ml: '$1',
-    mt: -8,
     transition: 'transform',
     transitionDuration: '300ms',
+    ...animateIcon,
+    transform:
+      'translate3d(-0.4em, -25px, 0) scale3d(0.85, 0.85, 1) !important',
   },
 
   '& svg.c-input__error-icon': {
+    position: 'absolute',
+    top: '1.75rem',
     ml: '$1',
-    mt: -8,
     transition: 'transform',
     transitionDuration: '300ms',
+    ...animateIcon,
+    transform: 'translate3d(6px, -25px, 0) scale3d(0.85, 0.85, 1) !important',
+    color: '$form-error',
   },
 
   '& input:disabled + label:before': {
@@ -326,20 +281,10 @@ export const Label = styled('label', {
         },
       },
     },
+
     isDisabled: {
       true: {
         userSelect: 'none',
-      },
-    },
-
-    hasValue: {
-      true: {
-        '& > i': {
-          position: 'absolute',
-          right: 8,
-          top: 6,
-          transform: 'scale(0.75)',
-        },
       },
     },
 
@@ -354,7 +299,6 @@ export const Label = styled('label', {
 
   defaultVariants: {
     isDisabled: false,
-    hasValue: false,
     hasIcon: false,
     hasPlaceholder: false,
   },

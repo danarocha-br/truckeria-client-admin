@@ -32,7 +32,7 @@ export const SwitchRoot = styled(SwitchPrimitive.Root, {
       content: '',
       w: 29,
       h: 34,
-      bg: '$form-focus',
+      bg: '$surface-success-default',
       position: 'absolute',
       top: -2,
       right: -3,
@@ -51,6 +51,10 @@ export const SwitchRoot = styled(SwitchPrimitive.Root, {
     outlineStyle: 'dashed',
     outlineWidth: 2.5,
     boxShadow: 'none',
+  },
+
+  '&:focus': {
+    boxShadow: `0 0 0 3px $colors$loading-subdued`,
   },
 
   variants: {
@@ -86,6 +90,10 @@ export const SwitchThumb = styled(SwitchPrimitive.Thumb, {
   '&[data-state="checked"]': {
     opacity: 1,
     transform: 'translateX(28px) translateY(-1px)',
+  },
+
+  '&:hover': {
+    opacity: 1,
   },
 });
 
