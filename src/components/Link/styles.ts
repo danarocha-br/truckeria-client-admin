@@ -69,7 +69,6 @@ export const Anchor = styled(Clickable, {
 });
 
 export const AnchorInline = styled(Clickable, {
-  color: '$interactive-default',
   fontWeigth: '$medium',
   d: 'inline-block',
   position: 'relative',
@@ -78,38 +77,93 @@ export const AnchorInline = styled(Clickable, {
 
   '&:hover': {
     color: '$interactive-hover',
+  },
 
-    '&:before': {
-      opacity: 1,
-      animation: `${lineUp} 0.3s ease forwards`,
+  variants: {
+    appearance: {
+      inline: {
+        color: '$interactive-default',
+
+        '&:before, &:after': {
+          content: '',
+          w: '$full',
+          h: '1px',
+          position: 'absolute',
+          left: 0,
+          pointerEvents: 'none',
+          bg: 'currentColor',
+          top: '100%',
+        },
+
+        '&:before': {
+          opacity: 0,
+          h: '3px',
+        },
+
+        '&:after': {
+          opacity: 0,
+          transitionProperty: 'opacity',
+          transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+          transitionDuration: '150ms',
+        },
+
+        '&:hover': {
+          '&:before': {
+            opacity: 1,
+            animation: `${lineUp} 0.3s ease forwards`,
+          },
+
+          '&:after': {
+            opacity: 1,
+            transitionDelay: '300ms',
+          },
+        },
+      },
+
+      'page-header': {
+        color: '$text-default',
+        fontSize: '$lg',
+        fontWeight: '$medium',
+        textDecoration: 'none',
+        opacity: 0.4,
+        borderRadius: 2,
+
+        outline: 'none',
+        p: '$0',
+        m: '$0',
+        transitionProperty: 'opacity',
+        transitionDuration: 300,
+
+        '&:hover': {
+          opacity: 1,
+        },
+
+        '&:focus': {
+          outlineStyle: 'dashed',
+          outlineOffset: 6,
+          outlineWidth: 2,
+          outlineColor: '$action-transparent-transparent',
+          opacity: 1,
+        },
+      },
     },
 
-    '&:after': {
-      opacity: 1,
-      transitionDelay: '300ms',
+    isActive: {
+      true: {},
     },
   },
 
-  '&:before, &:after': {
-    content: '',
-    w: '$full',
-    h: '1px',
-    position: 'absolute',
-    left: 0,
-    pointerEvents: 'none',
-    bg: 'currentColor',
-    top: '100%',
-  },
+  compoundVariants: [
+    {
+      isActive: true,
+      appearance: 'page-header',
+      css: {
+        opacity: 1,
+      },
+    },
+  ],
 
-  '&:before': {
-    opacity: 0,
-    h: '3px',
-  },
-
-  '&:after': {
-    opacity: 0,
-    transitionProperty: 'opacity',
-    transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
-    transitionDuration: '150ms',
+  defaultVariants: {
+    appearance: 'inline',
   },
 });

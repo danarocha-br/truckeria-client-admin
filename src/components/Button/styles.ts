@@ -126,7 +126,8 @@ export const Container = styled(Button, {
         borderRadius: '$xs',
         h: '$9',
         py: '$2',
-        px: '$8',
+        pb: 11,
+        px: '$7',
       },
 
       md: {
