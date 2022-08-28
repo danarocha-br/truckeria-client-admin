@@ -6,7 +6,8 @@ import {
   useController,
   UseControllerProps,
 } from 'react-hook-form';
-import { TextInput as TruckeriaTextInput, iconPath } from 'truckeria-design';
+import { TextInput as TruckeriaTextInput } from 'components/TextInputBase';
+import { iconPath } from 'components/Icon';
 
 export type InputProps<TFormValues> = {
   name: Path<TFormValues>;
@@ -16,9 +17,10 @@ export type InputProps<TFormValues> = {
   icon?: keyof typeof iconPath;
   defaultValue?: UnpackNestedValue<PathValue<TFormValues, Path<TFormValues>>>;
   control?: any;
-  loading?: any;
-  disabled?: any;
-  readOnly?: any;
+  loading?: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
+  tooltip?: string;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'name'> &
   Omit<UseControllerProps<TFormValues>, 'control'>;
 
@@ -32,6 +34,7 @@ export const TextInput = <TFormValues extends Record<string, any>>({
   loading = false,
   readOnly = false,
   control,
+  tooltip,
   ...props
 }: InputProps<TFormValues>) => {
   const {
@@ -56,8 +59,10 @@ export const TextInput = <TFormValues extends Record<string, any>>({
       disabled={disabled}
       loading={loading}
       readOnly={readOnly}
-      hasValue={!!field.value}
+      hasValue={!!field.value || !!defaultValue}
       errors={!!errors}
+      defaultValue={defaultValue}
+      tooltip={tooltip}
     />
   );
 };

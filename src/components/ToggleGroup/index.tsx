@@ -1,7 +1,10 @@
 import { lightTheme, styled } from '../../../stitches.config';
-import { Root, Item } from '@radix-ui/react-toggle-group';
+import {
+  Root as PrimitiveToggleGroupRoot,
+  Item as PrimitiveToggleGroupItem,
+} from '@radix-ui/react-toggle-group';
 
-export const ToggleGroup = styled(Root, {
+export const Root = styled(PrimitiveToggleGroupRoot, {
   display: 'inline-flex',
   borderRadius: 16,
   border: '3px solid $surface-base-subdued',
@@ -9,7 +12,7 @@ export const ToggleGroup = styled(Root, {
   transform: 'scale(0.89)',
 });
 
-export const ToggleGroupItem = styled(Item, {
+export const Item = styled(PrimitiveToggleGroupItem, {
   all: 'unset',
   color: '$text-default',
   bg: '$surface-base-default',

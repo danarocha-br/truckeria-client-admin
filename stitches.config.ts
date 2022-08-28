@@ -1,6 +1,6 @@
 import type * as Stitches from '@stitches/react';
 
-import { colors, font, spacing, radii, shadow } from './src/styles/tokens';
+import { colors, font, spacing, radii } from './src/styles/tokens';
 import { dark, light } from './src/styles/themes';
 import { createStitches } from '@stitches/react';
 
@@ -99,7 +99,8 @@ export const {
     'bp-sm': '(min-width: 520px)',
     'bp-md': '(min-width: 900px)',
     'bp-lg': '(min-width: 1200px)',
-    'bp-xl': '(min-width: 1800px)',
+    'bp-xl': '(min-width: 1440px)',
+    'bp-2xl': '(min-width: 1800px)',
     motion: '(prefers-reduced-motion)',
     hover: '(any-hover: hover)',
     dark: '(prefers-color-scheme: dark)',

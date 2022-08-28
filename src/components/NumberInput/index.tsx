@@ -19,9 +19,10 @@ export type NumberInputProps<TFormValues> = {
   icon?: keyof typeof iconPath;
   defaultValue?: UnpackNestedValue<PathValue<TFormValues, Path<TFormValues>>>;
   control?: any;
-  loading?: any;
-  disabled?: any;
-  readOnly?: any;
+  loading?: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
+  tooltip?: string;
 } & Omit<UseControllerProps<TFormValues>, 'control'> &
   TruckeriaNumberInputProps;
 
@@ -35,6 +36,7 @@ export const NumberInput = <TFormValues extends Record<string, any>>({
   loading = false,
   readOnly = false,
   control,
+  tooltip,
   ...props
 }: NumberInputProps<TFormValues>) => {
   const {
@@ -61,6 +63,7 @@ export const NumberInput = <TFormValues extends Record<string, any>>({
       readOnly={readOnly}
       hasValue={!!field.value}
       errors={!!errors}
+      tooltip={tooltip}
     />
   );
 };

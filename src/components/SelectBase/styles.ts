@@ -18,18 +18,19 @@ const hasValueState = {
   },
 
   '& label > .c-input__label': {
-    transform: 'translate3d(-46px, -26px, 0) scale3d(0.8, 0.8, 1)',
+    transform: 'translate3d(0px, -25px, 0) scale(0.88)',
+    transformOrigin: '0% 50%',
+    fontWeight: '$regular',
   },
 
   '& label > svg.c-input__icon': {
     ...animateIcon,
     transform: 'translate3d(-0.4em, -25px, 0) scale3d(0.85, 0.85, 1)',
-    color: '$form-focus',
   },
   '& label > svg.c-input__error-icon': {
     ...animateIcon,
     transform: 'translate3d(6px, -25px, 0) scale3d(0.85, 0.85, 1)',
-    color: '$form-focus',
+    color: '$form-error',
   },
   '& .c-input__dropdown-indicator': {
     transform: 'translate3d(0px, 0px, 0) scale3d(1.2, 1.2, 1.2)',
@@ -63,10 +64,23 @@ export const Container = styled('div', {
   },
 
   variants: {
+    hasIcon: {
+      true: {
+        '& label > .c-input__label': {
+          transform: 'translate3d(-6px, -25px, 0) scale(0.88)',
+          transformOrigin: '0% 50%',
+          fontWeight: '$regular',
+        },
+      },
+    },
     isFocused: {
       true: {
-        borderColor: '$form-focus',
         ...hasValueState,
+        // borderColor: '$form-focus',
+
+        '& label > svg.c-input__icon': {
+          color: '$form-focus',
+        },
       },
     },
     hasError: {
@@ -79,7 +93,6 @@ export const Container = styled('div', {
         borderStyle: 'dashed',
         borderColor: '$form-default',
         bg: '$form-disabled',
-        // pointerEvents: 'none',
 
         '&:hover': {
           borderColor: '$form-default',
@@ -148,28 +161,29 @@ export const selectInputStyles = {
   borderRadius: '$xs',
   position: 'absolute !important',
   zIndex: 1,
+  pointerEvents: 'auto',
 
   '& .c-select': {
     '&__control': {
       color: '$text-default',
       fontSize: '$base',
       bg: '$transparent !important',
-      p: '1.24em 0.5em 0',
+      p: '1.24em 0.7em 0',
       d: 'flex',
       border: 'none',
       appearance: 'none',
       w: '$full',
       h: '$full',
-      borderRadius: '$xs',
       boxShadow: 'none',
+
+      '&--is-disabled': {
+        cursor: 'not-allowed !important',
+        opacity: 0.4,
+      },
     },
 
     '&:focus': {
       outline: 'none',
-    },
-    '&:disabled': {
-      cursor: 'not-allowed',
-      opacity: 0.4,
     },
 
     '&--is-focused': {
@@ -249,6 +263,7 @@ export const selectInputStyles = {
       hasFocus: {
         true: {
           ...hasValueState,
+          borderColor: '$form-focus',
         },
       },
       hasError: {
@@ -266,12 +281,6 @@ export const selectInputStyles = {
             color: '$text-default',
             transform: 'translate3d(-0.6em, -1.5em, 0) scale3d(0.85, 0.85, 1)',
           },
-        },
-      },
-
-      hasIcon: {
-        true: {
-          borderColor: '$form-error',
         },
       },
 
@@ -372,12 +381,14 @@ export const Label = styled('label', {
       true: {
         userSelect: 'none',
         pointerEvents: 'none',
+        opacity: 0.4,
       },
     },
 
     hasFocus: {
       true: {
         ...hasValueState,
+
         '& > i': {
           position: 'absolute',
           right: 8,

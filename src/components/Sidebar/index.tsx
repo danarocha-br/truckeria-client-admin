@@ -55,11 +55,14 @@ export const Sidebar = () => {
   const { asPath } = useRouter();
 
   const currentPath = asPath.includes('?') ? asPath.split('?')[0] : asPath;
+  // const currentPath = (route: string) => {
+  //   router.pathname.startsWith(route)
+  // }
 
   return (
     <>
       <S.Container>
-        <Flex direction="column" gap="6">
+        <Flex as="nav" direction="column" gap="6">
           <Logo css={{ mb: '$8' }} />
 
           {Object.entries(SIDEBAR_NAVIGATION).map(([key, value]) => (

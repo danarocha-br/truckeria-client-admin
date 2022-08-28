@@ -13,23 +13,25 @@ const animateIcon = {
 const hasValueState = {
   '& + label:before': {
     ...inputBorder,
-    borderTopWidth: ' 1.8em !important',
+    borderTopWidth: ' 1.85em !important',
     borderColor: '$form-subdued',
   },
 
   '& + label > .c-input__label': {
-    transform: 'translate3d(-46px, -26px, 0) scale3d(0.8, 0.8, 1)',
+    transform: 'translate3d(-5px, -25px, 0) scale(0.88) !important',
+    transformOrigin: '0% 50%',
+    fontWeight: '$regular',
   },
 
   '& + label > svg.c-input__icon': {
     ...animateIcon,
-    transform: 'translate3d(-0.4em, -25px, 0) scale3d(0.85, 0.85, 1)',
-    color: '$form-focus',
+    transform:
+      'translate3d(-0.4em, -25px, 0) scale3d(0.85, 0.85, 1) !important',
   },
   '& + label > svg.c-input__error-icon': {
     ...animateIcon,
-    transform: 'translate3d(6px, -25px, 0) scale3d(0.85, 0.85, 1)',
-    color: '$form-focus',
+    transform: 'translate3d(6px, -25px, 0) scale3d(0.85, 0.85, 1) !important',
+    color: '$form-error',
   },
 };
 
@@ -48,7 +50,6 @@ export const Container = styled('div', {
   w: '$full',
   minWidth: '15rem',
   h: '$11',
-  zIndex: 1,
 
   transition: 'all cubic-bezier(0.4, 0, 0.2, 1) 150ms',
 
@@ -60,6 +61,15 @@ export const Container = styled('div', {
     hasError: {
       true: {
         borderColor: '$form-error',
+      },
+    },
+    hasFocus: {
+      true: {
+        borderColor: '$form-focus',
+
+        '&  label > svg.c-input__icon': {
+          color: '$form-focus',
+        },
       },
     },
     isDisabled: {
@@ -89,7 +99,9 @@ export const Container = styled('div', {
     },
     readOnly: {
       true: {
-        bg: '$transparent',
+        userSelect: 'none',
+        borderColor: '$transparent',
+        transition: 'none',
 
         '&:hover': {
           borderColor: '$transparent',
@@ -97,12 +109,23 @@ export const Container = styled('div', {
 
         '&:focus': {
           outline: 'none',
+          borderColor: '$form-default',
         },
 
         '& label': {
-          pl: '$6',
-          pt: '$4',
-          bg: '$form-subdued',
+          bg: '$form-subdued !important',
+        },
+
+        '& label > svg.c-input__icon': {
+          ...animateIcon,
+          transform:
+            'translate3d(-5px, -20px, 0) scale3d(0.85, 0.85, 1) !important',
+        },
+
+        '& label > .c-input__label': {
+          transform: 'translate3d(0px, -20px, 0) scale(0.88) !important',
+          transformOrigin: '0% 50%',
+          fontWeight: '$regular',
         },
       },
     },
@@ -110,15 +133,29 @@ export const Container = styled('div', {
 
   compoundVariants: [
     {
+      hasFocus: true,
       readOnly: true,
       css: {
-        borderColor: '$form-default',
+        opacity: 1,
+
+        '& label': {
+          bg: 'none',
+
+          '&:before': {
+            transition: 'none',
+          },
+        },
+
+        '&  label > svg.c-input__icon': {
+          color: '$text-subdued',
+        },
       },
     },
   ],
 
   defaultVariants: {
     hasError: false,
+    hasFocus: false,
     readOnly: false,
     isDisabled: false,
     isLoading: false,
@@ -126,16 +163,17 @@ export const Container = styled('div', {
 });
 
 export const inputStyles = {
-  color: '$text-default',
-  bg: '$transparent',
+  color: '$text-default !important',
+  bg: '$transparent !important',
   border: 'none',
   appearance: 'none',
   p: '1.24rem 1.4rem 0',
+  h: '$full',
+  borderRadius: '$md',
 
   position: 'absolute',
   fontSize: '$base',
   w: '$full',
-  zIndex: 2,
 
   d: 'flex',
 
@@ -170,7 +208,17 @@ export const inputStyles = {
 
     hasIcon: {
       true: {
-        borderColor: '$form-error',
+        '& + label > .c-input__label': {
+          transform: 'translate3d(-6px, -25px, 0) scale(0.88)',
+          transformOrigin: '0% 50%',
+          fontWeight: '$regular',
+        },
+      },
+    },
+
+    hasValue: {
+      true: {
+        ...hasValueState,
       },
     },
 
@@ -191,6 +239,7 @@ export const inputStyles = {
   },
 
   defaultVariants: {
+    hasValue: false,
     hasFocus: false,
     hasError: false,
     hasIcon: false,
@@ -242,6 +291,8 @@ export const Label = styled('label', {
     left: '$5',
     transition: 'transform',
     transitionDuration: '300ms',
+    transform: 'translate3d(0px, 0px, 0) !important',
+    transformOrigin: '0% 50%',
     textRendering: 'geometricPrecision',
   },
 
@@ -278,7 +329,6 @@ export const Label = styled('label', {
     isDisabled: {
       true: {
         userSelect: 'none',
-        pointerEvents: 'none',
       },
     },
 

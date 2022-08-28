@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { AdminLayout } from 'components';
+import { Page } from 'components';
 
-const Dashboard: React.FC = () => {
-  return <AdminLayout>hey</AdminLayout>;
-};
+function Dashboard() {
+  return <Page>hey</Page>;
+}
 
 export default Dashboard;

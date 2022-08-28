@@ -6,6 +6,7 @@ import { Flex } from '../Flex';
 import { iconPath, Icon } from '../Icon';
 import { Spinner } from '../Spinner';
 import { FormError } from '../FormError';
+import { InfoButton } from '../InfoButton';
 import { Box } from '../Box';
 import * as S from './styles';
 
@@ -22,6 +23,7 @@ export type TextInputProps = {
   hasValue?: boolean;
   icon?: keyof typeof iconPath;
   errors?: any | undefined;
+  tooltip?: string;
   css?: CSS<typeof config>;
 } & InputHTMLAttributes<HTMLInputElement>;
 
@@ -40,6 +42,7 @@ export const TextInput = forwardRef<Ref, TextInputProps>(
       readOnly = false,
       hasValue = false,
       errors,
+      tooltip,
       ...props
     },
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -55,10 +58,8 @@ export const TextInput = forwardRef<Ref, TextInputProps>(
     }, [setFocus]);
 
     const handleInputBlur = useCallback(() => {
-      if (!hasValue) {
-        setFocus(false);
-      }
-    }, [setFocus, hasValue]);
+      setFocus(false);
+    }, [setFocus]);
 
     const areErrorsEmpty = !!errors && Object.keys(errors).length === 0;
 
@@ -69,11 +70,13 @@ export const TextInput = forwardRef<Ref, TextInputProps>(
           isDisabled={disabled}
           isLoading={loading}
           readOnly={readOnly}
+          hasFocus={hasFocus}
         >
           <S.Input
             ref={ref}
             id={name}
             aria-invalid={!!errors && !areErrorsEmpty ? 'true' : 'false'}
+            aria-describedby={!errors && !areErrorsEmpty && errors.message}
             placeholder={placeholder}
             hasPlaceholder={!!placeholder}
             hasFocus={hasFocus}
@@ -85,6 +88,8 @@ export const TextInput = forwardRef<Ref, TextInputProps>(
             onBlur={handleInputBlur}
             disabled={disabled || loading}
             readOnly={readOnly}
+            hasValue={hasValue}
+            hasIcon={!!icon}
           />
 
           <S.Label
@@ -110,6 +115,19 @@ export const TextInput = forwardRef<Ref, TextInputProps>(
               <Box css={{ position: 'absolute', right: '$4' }}>
                 <Spinner size="xs" />
               </Box>
+            )}
+
+            {!!tooltip && areErrorsEmpty && (
+              <InfoButton
+                content={tooltip}
+                size="sm"
+                css={{
+                  position: 'absolute',
+                  top: 1,
+                  right: '$1',
+                  opacity: 0.6,
+                }}
+              />
             )}
           </S.Label>
         </S.Container>

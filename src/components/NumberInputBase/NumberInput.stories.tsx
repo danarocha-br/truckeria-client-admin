@@ -45,3 +45,8 @@ const Template: Story<NumberInputProps> = (args) => {
 };
 
 export const Default = Template.bind({});
+
+export const HasTooltip = Template.bind({});
+HasTooltip.args = {
+  tooltip: 'I am a tooltip',
+};

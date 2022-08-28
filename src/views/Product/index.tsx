@@ -9,7 +9,6 @@ import {
 } from '@tanstack/react-table';
 
 import {
-  AdminLayout,
   AspectRatio,
   Badge,
   Box,
@@ -17,14 +16,15 @@ import {
   Dropdown,
   DropdownItem,
   Flex,
-  Grid,
   Icon,
   IconButton,
+  Layout,
+  Link,
+  Page,
   ProductCard,
   Table,
   Text,
   ToggleGroup,
-  ToggleGroupItem,
   Tooltip,
 } from 'components';
 
@@ -32,7 +32,7 @@ import { data as products } from './mock';
 import { formatCurrency } from 'utils/formatCurrency';
 import { darkTheme } from '../../../stitches.config';
 
-type Product = {
+export type Product = {
   id: string;
   category_id: string;
   name: string;
@@ -43,7 +43,7 @@ type Product = {
   margin: number;
   cost_price: number;
   product_unity: string;
-  isActive?: boolean;
+  is_active?: boolean;
   barcode?: number | string;
   badges?: string[];
   default_quantity: number;
@@ -56,9 +56,13 @@ type Product = {
   direct_sale: boolean;
 };
 
-const Product = () => {
+function Product() {
   const [viewPreference, setViewPreference] = useState('card');
   const [sorting, setSorting] = useState<SortingState>([]);
+
+  const handlePreferenceChange = (value: string) => {
+    if (value) setViewPreference(value);
+  };
 
   const columns = React.useMemo<ColumnDef<Product>[]>(
     () => [
@@ -108,10 +112,10 @@ const Product = () => {
               },
             }}
           >
-            <NextLink href="/" passHref>
+            <NextLink href={`/products/${info.row.original.id}`} passHref>
               <Text
                 as="a"
-                href="/"
+                href={`/products/${info.row.original.id}`}
                 size="lg"
                 weight="medium"
                 css={{
@@ -161,7 +165,7 @@ const Product = () => {
         header: 'Código de barras',
       },
       {
-        accessorKey: 'isActive',
+        accessorKey: 'is_active',
         header: 'Status',
         size: 40,
         cell: (info) => (
@@ -171,6 +175,10 @@ const Product = () => {
             css={{ opacity: 0.7 }}
           />
         ),
+      },
+      {
+        accessorKey: 'product_type',
+        header: 'Tipo do produto',
       },
       {
         accessorKey: 'price',
@@ -288,12 +296,10 @@ const Product = () => {
             <Tooltip content="Outras opções">
               <Dropdown
                 items={
-                  <>
-                    <DropdownItem onSelect={() => ''}>
-                      <Icon name="trash" />
-                      Deletar
-                    </DropdownItem>
-                  </>
+                  <DropdownItem onSelect={() => ''}>
+                    <Icon name="trash" />
+                    Deletar
+                  </DropdownItem>
                 }
               >
                 <Button
@@ -353,7 +359,7 @@ const Product = () => {
             title={product.name}
             description={product.description}
             price={product.price}
-            isActive={product.isActive}
+            isActive={product.is_active}
             badges={product.badges}
             asFeatured={product.display_featured}
             asNew={product.display_new_item}
@@ -366,43 +372,62 @@ const Product = () => {
   };
 
   const TableView = () => {
-    return <Table table={table} tableRef={tableContainerRef} rows={rows} />;
+    return (
+      <Table
+        table={table}
+        tableRef={tableContainerRef}
+        rows={rows}
+        css={{ pt: '$2' }}
+      />
+    );
   };
 
   return (
-    <AdminLayout>
+    <Page>
       <Box css={{ pb: '$8' }}>
-        <Flex justify="between" fullWidth css={{ p: '$1' }}>
-          <Text
-            as="h1"
-            size="lg"
-            weight="semibold"
-            css={{ mt: '$2', whiteSpace: 'nowrap' }}
-          >
-            Produtos e materiais
-          </Text>
+        <Flex
+          justify="between"
+          align="center"
+          gap="8"
+          fullWidth
+          css={{ p: '$1', mb: '$7' }}
+        >
+          <Link
+            as={NextLink}
+            href="/products"
+            label="Produtos e materiais"
+            variant="page-header"
+            isActive
+          />
+          <Link
+            as={NextLink}
+            href="/products/addons"
+            label="Grupo de adicionais"
+            variant="page-header"
+          />
 
           <Flex justify="end" gap={6}>
-            <ToggleGroup
+            <ToggleGroup.Root
               type="single"
               defaultValue="card"
               value={viewPreference}
-              onValueChange={(value) => {
-                if (value) setViewPreference(value);
-              }}
+              onValueChange={(value) => handlePreferenceChange(value)}
               aria-label="Escolha o formato de visualização de preferência"
             >
-              <ToggleGroupItem value="card" aria-label="Ver em formato grid">
+              <ToggleGroup.Item value="card" aria-label="Ver em formato grid">
                 <Tooltip content="Ver em formato grid">
                   <Icon name="cards" />
                 </Tooltip>
-              </ToggleGroupItem>
-              <ToggleGroupItem value="table" aria-label="Ver em formato tabela">
+              </ToggleGroup.Item>
+              <ToggleGroup.Item
+                value="table"
+                aria-label="Ver em formato tabela"
+              >
                 <Tooltip content="Ver em formato lista">
                   <Icon name="table" />
                 </Tooltip>
-              </ToggleGroupItem>
-            </ToggleGroup>
+              </ToggleGroup.Item>
+            </ToggleGroup.Root>
 
             <Tooltip content="Adicione novo produto" align="end">
               <IconButton
@@ -414,58 +439,12 @@ const Product = () => {
           </Flex>
         </Flex>
 
-        <Text
-          color="subdued"
-          size="sm"
-          css={{ mb: '$6', mt: '$4', '@bp-md': { mt: '$0' } }}
-        >
-          Configure categorias e defina o seu cardápio.
-        </Text>
-
-        <Grid
-          gap={viewPreference === 'card' ? '8' : '2'}
-          css={{
-            gridTemplateColumns:
-              viewPreference === 'card'
-                ? 'repeat(1, minmax(0, 1fr))'
-                : 'repeat(1, minmax(0, 1fr))',
-
-            '@bp-md': {
-              gridTemplateColumns:
-                viewPreference === 'card'
-                  ? 'repeat(2, minmax(0, 1fr))'
-                  : 'repeat(1, minmax(0, 1fr))',
-            },
-
-            '@bp-lg': {
-              gridTemplateColumns:
-                viewPreference === 'card'
-                  ? 'repeat(4, minmax(0, 1fr))'
-                  : 'repeat(1, minmax(0, 1fr))',
-            },
-
-            '@bp-xl': {
-              gridTemplateColumns:
-                viewPreference === 'card'
-                  ? 'repeat(5, minmax(0, 1fr))'
-                  : 'repeat(1, minmax(0, 1fr))',
-            },
-
-            '& > div:first-child': {
-              borderTopLeftRadius: '$sm',
-              borderTopRightRadius: '$sm',
-            },
-            '& > div:last-child': {
-              borderBottomLeftRadius: '$sm',
-              borderBottomRightRadius: '$sm',
-            },
-          }}
-        >
+        <Layout appearance={viewPreference === 'card' ? 'grid' : 'list'}>
           {viewPreference === 'card' ? <CardView /> : <TableView />}
-        </Grid>
+        </Layout>
       </Box>
-    </AdminLayout>
+    </Page>
   );
-};
+}
 
 export default Product;

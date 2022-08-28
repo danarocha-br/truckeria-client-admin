@@ -13,7 +13,9 @@ export type LinkProps = {
   /** if you need special link description */
   ariaLabel?: string;
   className?: string;
-  variant?: 'standalone' | 'inline';
+  variant?: 'standalone' | 'inline' | 'page-header';
+  /** to be used with the variant page-header */
+  isActive?: boolean;
   css?: CSS<typeof config>;
 };
 
@@ -24,6 +26,7 @@ export const Link = ({
   ariaLabel,
   className,
   variant = 'standalone',
+  isActive = false,
   css,
   ...props
 }: LinkProps) => {
@@ -47,6 +50,8 @@ export const Link = ({
           className={className}
           aria-label={ariaLabel ? ariaLabel : label}
           css={css}
+          appearance={variant === 'page-header' ? 'page-header' : 'inline'}
+          isActive={isActive}
           {...props}
         >
           {label}

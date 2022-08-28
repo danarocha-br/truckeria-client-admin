@@ -1,9 +1,9 @@
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
-import { Text, NumberInput, TextInput, SelectAsyncCreatable } from 'components';
+import { Text, NumberInput, TextInput } from 'components';
 
-import { FOOD_TYPES } from 'constants/index';
+// import { FOOD_TYPES } from 'constants/index';
 
 export type StepProps = {
   // eslint-disable-next-line @typescript-eslint/ban-types
@@ -36,7 +36,7 @@ const StepFoodTruck = ({ methods }: StepProps) => {
         control={methods?.control}
         format="##.###.###/####-##"
       />
-      <SelectAsyncCreatable
+      {/* <SelectAsyncCreatable
         name="cuisine_types"
         label="Categoria"
         icon="tag"
@@ -44,7 +44,7 @@ const StepFoodTruck = ({ methods }: StepProps) => {
         isMulti
         placeholder="Selecione categoria(s)"
         defaultOptions={FOOD_TYPES}
-      />
+      /> */}
     </>
   );
 };

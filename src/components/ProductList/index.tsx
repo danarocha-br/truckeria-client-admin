@@ -253,12 +253,10 @@ export const ProductList = ({
         <Tooltip content="Outras opções">
           <Dropdown
             items={
-              <>
-                <DropdownItem onSelect={onDelete}>
-                  <Icon name="trash" />
-                  Deletar
-                </DropdownItem>
-              </>
+              <DropdownItem onSelect={onDelete}>
+                <Icon name="trash" />
+                Deletar
+              </DropdownItem>
             }
           >
             <Button

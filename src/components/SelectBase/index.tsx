@@ -1,5 +1,5 @@
 //@ts-noCheck
-import React, { forwardRef, useCallback, useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { CSS } from '@stitches/react';
 import makeAnimated from 'react-select/animated';
 import {
@@ -19,6 +19,7 @@ import { Spinner } from '../Spinner';
 import * as S from './styles';
 import { Text } from '../Text';
 import { Box } from '../Box';
+import { InfoButton } from '../InfoButton';
 
 import { config } from '../../../stitches.config';
 
@@ -28,7 +29,7 @@ export type SelectProps = {
   name: string;
   isMulti?: boolean;
   isClearable?: boolean;
-  options: OptionsOrGroups<string, GroupBase<string>> | undefined;
+  options: OptionsOrGroups<GroupBase<string>> | undefined;
   defaultValue?: string;
   disabled?: boolean;
   loading?: boolean;
@@ -37,6 +38,7 @@ export type SelectProps = {
   icon?: keyof typeof iconPath;
   errors?: any | undefined;
   css?: CSS<typeof config>;
+  tooltip?: string;
 } & React.InputHTMLAttributes<HTMLSelectElement>;
 
 type Ref = HTMLSelectElement | null;
@@ -59,6 +61,7 @@ export const Select = forwardRef<Ref, SelectProps>(
       isClearable = true,
       isMulti = false,
       css,
+      tooltip,
       ...props
     },
     ref
@@ -68,15 +71,13 @@ export const Select = forwardRef<Ref, SelectProps>(
      */
     const [hasFocus, setFocus] = useState(false);
 
-    const handleInputFocus = useCallback(() => {
+    const handleInputFocus = () => {
       setFocus(true);
-    }, [setFocus]);
+    };
 
-    const handleInputBlur = useCallback(() => {
-      if (!hasValue) {
-        setFocus(false);
-      }
-    }, [setFocus, hasValue]);
+    const handleInputBlur = () => {
+      setFocus(false);
+    };
 
     const areErrorsEmpty = !!errors && Object.keys(errors).length === 0;
 
@@ -155,13 +156,16 @@ export const Select = forwardRef<Ref, SelectProps>(
           isLoading={loading}
           readOnly={readOnly}
           hasValue={hasValue || !!placeholder}
+          hasIcon={!!icon}
         >
           <S.SelectInput
             classNamePrefix="c-select"
             name={name}
             id={name || id}
             aria-label={label}
-            placeholder={placeholder}
+            aria-invalid={!!errors && !areErrorsEmpty ? 'true' : 'false'}
+            aria-describedby={!errors && !areErrorsEmpty && errors.message}
+            placeholder={placeholder || null}
             //@ts-ignore
             ref={ref}
             closeMenuOnSelect={true}
@@ -180,6 +184,7 @@ export const Select = forwardRef<Ref, SelectProps>(
             defaultValue={defaultValue}
             onFocus={handleInputFocus}
             onBlur={handleInputBlur}
+            hasValue={hasValue}
           />
 
           <S.Label
@@ -204,6 +209,19 @@ export const Select = forwardRef<Ref, SelectProps>(
                 name="alert"
                 className="c-input__error-icon"
                 css={{ position: 'absolute', right: '$4' }}
+              />
+            )}
+
+            {!!tooltip && areErrorsEmpty && (
+              <InfoButton
+                content={tooltip}
+                size="sm"
+                css={{
+                  position: 'absolute',
+                  top: 1,
+                  right: '$1',
+                  opacity: 0.6,
+                }}
               />
             )}
           </S.Label>

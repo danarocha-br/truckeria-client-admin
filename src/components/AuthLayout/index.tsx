@@ -10,11 +10,11 @@ type AuthLayoutProps = {
   position?: 'left' | 'right';
 };
 
-export const AuthLayout = ({
+export function AuthLayout({
   children,
   title,
   position = 'left',
-}: AuthLayoutProps) => {
+}: AuthLayoutProps) {
   return (
     <Flex
       justify="between"
@@ -67,4 +67,4 @@ export const AuthLayout = ({
       </Box>
     </Flex>
   );
-};
+}

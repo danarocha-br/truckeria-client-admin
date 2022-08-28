@@ -13,21 +13,27 @@ export const Text = styled('span', {
     size: {
       tiny: {
         fontSize: '$tiny',
+        lineHeight: '1.1rem',
       },
       xs: {
         fontSize: '$xs',
+        lineHeight: '1.2rem',
       },
       sm: {
         fontSize: '$sm',
+        lineHeight: '1.3rem',
       },
       base: {
         fontSize: '$base',
+        lineHeight: '1.5rem',
       },
       lg: {
         fontSize: '$lg',
+        lineHeight: '1.8rem',
       },
       xl: {
         fontSize: '$xl',
+        lineHeight: '2rem',
       },
       '2xl': {
         fontSize: '$2xl',
@@ -61,6 +67,9 @@ export const Text = styled('span', {
       },
       contrast: {
         color: '$text-contrast',
+      },
+      'contrast-subdued': {
+        color: '$neutral500',
       },
     },
 

@@ -95,26 +95,30 @@ export default {
 const Template: Story<TextInputProps> = (args) => {
   const [inputValue, setInputValue] = useState('');
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    return setInputValue(event.target.value);
+  };
+
   return (
     <Flex direction="column" gap={6} css={{ w: 400 }}>
       <TextInput
         {...args}
         hasValue={!!inputValue}
         value={inputValue}
-        onChange={(event) => setInputValue(event.target.value)}
+        onChange={(event) => handleChange(event)}
       />
       <TextInput
         {...args}
         hasValue={!!inputValue}
         value={inputValue}
-        onChange={(event) => setInputValue(event.target.value)}
+        onChange={(event) => handleChange(event)}
         disabled
       />
       <TextInput
         {...args}
         hasValue={!!inputValue}
         value={inputValue}
-        onChange={(event) => setInputValue(event.target.value)}
+        onChange={(event) => handleChange(event)}
         loading
       />
       <TextInput
@@ -138,4 +142,8 @@ HasError.args = {
   errors: {
     message: 'I am an error message.',
   },
+};
+export const HasTooltip = Template.bind({});
+HasTooltip.args = {
+  tooltip: 'I am a tooltip',
 };

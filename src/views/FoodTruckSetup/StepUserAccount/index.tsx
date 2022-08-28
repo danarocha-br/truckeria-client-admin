@@ -25,12 +25,14 @@ const StepUserAccount = ({ methods }: StepProps) => {
         label="Nome"
         icon="user"
         control={methods?.control}
+        autoComplete="given-name"
       />
       <TextInput
         name="last_name"
         label="Sobrenome"
         icon="user"
         control={methods?.control}
+        autoComplete="family-name"
       />
       <NumberInput
         name="cpf"

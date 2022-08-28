@@ -77,19 +77,21 @@ export const FormWizard = forwardRef(
       formState: { isSubmitting, isValid },
     } = methods;
 
+    const handleOnSubmit = () => {
+      if (step === childrenArray.length - 1) {
+        handleSubmit(onSubmit);
+      } else {
+        setStep((currentStep) => currentStep + 1);
+      }
+    };
+
     return (
       <FormProvider {...methods}>
         <Stepper steps={steps} activeIndex={step} />
 
         <ScrollArea hideScrollHorizontal>
           <FormControl
-            onSubmit={() => {
-              if (step === childrenArray.length - 1) {
-                handleSubmit(onSubmit);
-              } else {
-                setStep((currentStep) => currentStep + 1);
-              }
-            }}
+            onSubmit={handleOnSubmit}
             {...props}
             css={{
               px: '$1',

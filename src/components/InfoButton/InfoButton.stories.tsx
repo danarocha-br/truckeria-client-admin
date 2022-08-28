@@ -1,11 +1,11 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { AdminLayout, AdminLayoutProps } from '.';
+import { InfoButton, InfoButtonProps } from '.';
 
 export default {
-  title: 'Components/AdminLayout',
-  component: AdminLayout,
+  title: 'Components/InfoButton',
+  component: InfoButton,
   parameters: {
     layout: 'centered',
     status: 'stable', // beta| deprecated | review | stable,
@@ -17,6 +17,6 @@ export default {
   args: {},
 } as Meta;
 
-const Template: Story<AdminLayoutProps> = (args) => <AdminLayout {...args} />;
+const Template: Story<InfoButtonProps> = (args) => <InfoButton {...args} />;
 
 export const Default = Template.bind({});
