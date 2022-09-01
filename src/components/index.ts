@@ -15,6 +15,7 @@ export * from 'components/FormControl';
 export * from 'components/FormError';
 export * from 'components/Layout';
 export * from 'components/Link';
+export * from 'components/LinkWrapper';
 export * from 'components/Logo';
 export * from 'components/Flex';
 export * from 'components/FormWizard';
