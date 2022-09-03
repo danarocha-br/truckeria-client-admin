@@ -54,6 +54,17 @@ export const Container = styled('svg', {
           color: '$action-success-pressed',
         },
       },
+      flat: {
+        color: '$action-transparent-default',
+
+        '&:hover': {
+          color: '$action-transparent-hover',
+        },
+
+        '&:focus, &:active': {
+          color: '$action-transparent-pressed',
+        },
+      },
     },
   },
 

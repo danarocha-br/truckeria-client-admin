@@ -6,7 +6,7 @@ import * as S from './styles';
 
 export type IconButtonProps = {
   ariaLabel: string;
-  variant?: 'primary' | 'success';
+  variant?: 'primary' | 'success' | 'flat';
   icon: keyof typeof iconPath;
   css?: CSS;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;

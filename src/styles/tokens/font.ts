@@ -7,13 +7,13 @@ export default {
 
   size: {
     tiny: convertRemToPixels(12),
-    xs: convertRemToPixels(14),
+    xs: convertRemToPixels(13.17),
     sm: convertRemToPixels(15),
     base: convertRemToPixels(17),
-    lg: convertRemToPixels(23),
-    xl: convertRemToPixels(26),
-    '2xl': convertRemToPixels(32),
-    '3xl': convertRemToPixels(45),
+    lg: convertRemToPixels(20.4),
+    xl: convertRemToPixels(24.48),
+    '2xl': convertRemToPixels(29.38),
+    '3xl': convertRemToPixels(42.3),
   },
 
   weight: {

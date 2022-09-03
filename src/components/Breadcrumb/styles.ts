@@ -29,6 +29,7 @@ export const Anchor = styled('a', {
   transform: 'scale(1)',
   border: '2px dashed $transparent',
   px: '$1',
+  whiteSpace: 'nowrap',
 
   '&:before, &:after': {
     content: '',
