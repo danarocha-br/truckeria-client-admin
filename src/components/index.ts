@@ -1,4 +1,5 @@
 export * from 'components/Allow';
+export * from 'components/Accordion';
 export * from 'components/AuthLayout';
 export * from 'components/AspectRatio';
 export * from 'components/Avatar';

@@ -26,13 +26,14 @@ import {
   Text,
   ToggleGroup,
   Tooltip,
+  LinkWrapper,
 } from 'components';
 
 import { data as products } from './mock';
 import { formatCurrency } from 'utils/formatCurrency';
 import { darkTheme } from '../../../stitches.config';
 
-export type Product = {
+export interface IProduct {
   id: string;
   category_id: string;
   name: string;
@@ -54,7 +55,7 @@ export type Product = {
   display_featured: boolean;
   display_new_item: boolean;
   direct_sale: boolean;
-};
+}
 
 function Product() {
   const [viewPreference, setViewPreference] = useState('card');
@@ -112,7 +113,10 @@ function Product() {
               },
             }}
           >
-            <NextLink href={`/products/${info.row.original.id}`} passHref>
+            <LinkWrapper
+              as={NextLink}
+              href={`/products/${info.row.original.id}`}
+            >
               <Text
                 as="a"
                 href={`/products/${info.row.original.id}`}
@@ -130,7 +134,7 @@ function Product() {
               >
                 {info.getValue<string>()}
               </Text>
-            </NextLink>
+            </LinkWrapper>
 
             <Box
               as="span"
