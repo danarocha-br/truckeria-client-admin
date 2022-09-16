@@ -122,7 +122,7 @@ export const AnchorInline = styled(Clickable, {
 
       'page-header': {
         color: '$text-default',
-        fontSize: '$lg',
+        fontSize: '$md',
         fontWeight: '$medium',
         textDecoration: 'none',
         opacity: 0.4,
@@ -144,6 +144,10 @@ export const AnchorInline = styled(Clickable, {
           outlineWidth: 2,
           outlineColor: '$action-transparent-transparent',
           opacity: 1,
+        },
+
+        '@bp-md': {
+          fontSize: '$lg',
         },
       },
     },

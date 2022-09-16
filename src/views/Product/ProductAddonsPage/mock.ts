@@ -106,4 +106,13 @@ export const data = [
       },
     ],
   },
+  {
+    id: '3',
+    name: 'Combo',
+    title: 'Escolha os combos',
+    internal_name: 'combos',
+    type: 'multi',
+    price: 0,
+    products: [],
+  },
 ];

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NextLink from 'next/link';
 import Image from 'next/image';
 import { RadiobuttonIcon } from '@radix-ui/react-icons';
@@ -32,56 +32,193 @@ const MultiProductsList = ({
   name,
   price,
   internal_name,
-}: IProduct) => (
-  <Flex
-    gap="6"
-    align="center"
-    css={{
-      p: '$3',
-      bg: '$surface-base-default',
-      boxShadow: `0 0 0 2px $colors$background-subdued`,
-      borderRadius: '$xs',
-      mb: '$3',
-    }}
-  >
-    <Image
-      src={image_URL ? image_URL : '/img/bg_empty_cards.png'}
-      alt="Foto do produto"
-      height={45}
-      width={45}
-      objectFit="cover"
-      style={{
-        borderRadius: 4,
-        backgroundColor: colors.neutral[100],
-        filter: `${image_URL ? 'initial' : 'grayscale(1)'}`,
-      }}
-    />
-    <Text css={{ whiteSpace: 'nowrap' }}>{name}</Text>
-    <Text size="xs" color="subdued" css={{ whiteSpace: 'nowrap' }}>
-      [{internal_name}]
-    </Text>
-    <Flex justify="end" css={{ mr: '$3' }}>
-      <Text>{formatCurrency(price)}</Text>
-    </Flex>
-  </Flex>
-);
+}: IProduct) => {
+  const [isHovered, setHovered] = useState(false);
 
-const SingleProductList = ({ name }: IProduct) => (
-  <Flex
-    gap="6"
-    align="center"
-    css={{
-      p: '$3',
-      bg: '$surface-base-default',
-      boxShadow: `0 0 0 2px $colors$background-subdued`,
-      borderRadius: '$xs',
-      mb: '$3',
-    }}
-  >
-    <RadiobuttonIcon />
-    <Text>{name}</Text>
-  </Flex>
-);
+  return (
+    <Flex
+      gap="6"
+      align="center"
+      css={{
+        p: '$3',
+        bg: '$surface-base-default',
+        boxShadow: `0 0 0 2px $colors$background-subdued`,
+        borderRadius: '$xs',
+        mb: '$3',
+        position: 'relative',
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <Image
+        src={image_URL ? image_URL : '/img/bg_empty_cards.png'}
+        alt="Foto do produto"
+        height={45}
+        width={45}
+        objectFit="cover"
+        style={{
+          borderRadius: 4,
+          backgroundColor: colors.neutral[100],
+          filter: `${image_URL ? 'initial' : 'grayscale(1)'}`,
+        }}
+      />
+      <Text css={{ whiteSpace: 'nowrap' }}>{name}</Text>
+      <Text size="xs" color="subdued" css={{ whiteSpace: 'nowrap' }}>
+        [{internal_name}]
+      </Text>
+
+      <Flex
+        justify="end"
+        css={{
+          mr: '$3',
+          transition: '$fast',
+          // transform: `${isHovered ? 'translateX(-80px)' : 'translateX(0)'}`,
+          opacity: `${isHovered ? 0 : 1}`,
+        }}
+      >
+        <Text>{formatCurrency(price)}</Text>
+      </Flex>
+
+      {isHovered && (
+        <Flex
+          css={{
+            transform: 'scale(0.8)',
+            transformOrigin: 'right top',
+            position: 'absolute',
+            right: '$2',
+            top: '$4',
+            w: 'auto',
+            transition: '$base',
+            opacity: isHovered ? 1 : 0,
+          }}
+        >
+          <Tooltip content="Editar item">
+            <Button
+              icon="pencil"
+              label="edite"
+              variant="icon"
+              size="sm"
+              css={{
+                color: '$text-default',
+                bg: '$surface-base-subdued',
+                p: '$1',
+                '&:hover': {
+                  bg: '$surface-base-hover',
+                },
+                [`.${darkTheme} &`]: {
+                  color: '$text-onInteractive',
+                  bg: transparentize(0.5, colors.neutral[700]),
+                },
+              }}
+            />
+          </Tooltip>
+
+          <Tooltip content="Deletar item">
+            <Button
+              icon="trash"
+              label="delete"
+              variant="icon"
+              size="sm"
+              css={{
+                color: '$text-default',
+                bg: '$surface-base-subdued',
+                p: '$1',
+                '&:hover': {
+                  bg: '$surface-base-hover',
+                },
+                [`.${darkTheme} &`]: {
+                  color: '$text-onInteractive',
+                  bg: transparentize(0.5, colors.neutral[700]),
+                },
+              }}
+            />
+          </Tooltip>
+        </Flex>
+      )}
+    </Flex>
+  );
+};
+
+const SingleProductList = ({ name }: IProduct) => {
+  const [isHovered, setHovered] = useState(false);
+
+  return (
+    <Flex
+      gap="6"
+      align="center"
+      css={{
+        p: '$3',
+        bg: '$surface-base-default',
+        boxShadow: `0 0 0 2px $colors$background-subdued`,
+        borderRadius: '$xs',
+        mb: '$3',
+        position: 'relative',
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <RadiobuttonIcon />
+      <Text>{name}</Text>
+
+      {isHovered && (
+        <Flex
+          css={{
+            transform: 'scale(0.8)',
+            transformOrigin: 'right top',
+            position: 'absolute',
+            right: '$2',
+            top: '$3',
+            w: 'auto',
+            transition: '$base',
+            opacity: isHovered ? 1 : 0,
+          }}
+        >
+          <Tooltip content="Editar item">
+            <Button
+              icon="pencil"
+              label="edite"
+              variant="icon"
+              size="sm"
+              css={{
+                color: '$text-default',
+                bg: '$surface-base-subdued',
+                p: '$1',
+                '&:hover': {
+                  bg: '$surface-base-hover',
+                },
+                [`.${darkTheme} &`]: {
+                  color: '$text-onInteractive',
+                  bg: transparentize(0.5, colors.neutral[700]),
+                },
+              }}
+            />
+          </Tooltip>
+
+          <Tooltip content="Deletar item">
+            <Button
+              icon="trash"
+              label="delete"
+              variant="icon"
+              size="sm"
+              css={{
+                color: '$text-default',
+                bg: '$surface-base-subdued',
+                p: '$1',
+                '&:hover': {
+                  bg: '$surface-base-hover',
+                },
+                [`.${darkTheme} &`]: {
+                  color: '$text-onInteractive',
+                  bg: transparentize(0.5, colors.neutral[700]),
+                },
+              }}
+            />
+          </Tooltip>
+        </Flex>
+      )}
+    </Flex>
+  );
+};
 
 function ProductAddonsPage() {
   const addNewAddonPanel = useDialogState({});
@@ -252,7 +389,8 @@ function ProductAddonsPage() {
                           </Tooltip>
                         </Flex>
                       </Flex>
-                      {group.products &&
+
+                      {group.products && group.products.length >= 1 ? (
                         group.products.map((product) =>
                           group.type === 'single' ? (
                             <SingleProductList
@@ -268,7 +406,28 @@ function ProductAddonsPage() {
                               internal_name={product.internal_name}
                             />
                           )
-                        )}
+                        )
+                      ) : (
+                        <Flex
+                          align="center"
+                          justify="center"
+                          direction="column"
+                          gap="6"
+                          css={{
+                            border: '2px dashed $surface-base-default',
+                            p: '$6',
+                            borderRadius: '$xs',
+                          }}
+                        >
+                          <IconButton
+                            icon="plus"
+                            ariaLabel="Adicione produtos"
+                          />
+                          <Text color="subdued">
+                            Adicione produtos ao seu grupo.
+                          </Text>
+                        </Flex>
+                      )}
                     </AccordionItem>
                   </Accordion>
                 ))}
