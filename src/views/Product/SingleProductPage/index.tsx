@@ -123,7 +123,6 @@ function SingleProductPage() {
   }
 
   const productType = watch('product_type');
-  console.log(productType);
 
   // const costPrice = watch('cost_price');
   // const marginPrice = watch('margin_price');

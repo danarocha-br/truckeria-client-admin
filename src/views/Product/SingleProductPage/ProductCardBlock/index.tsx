@@ -32,7 +32,7 @@ const ProductCardBlock = ({ data }: ProductCardBlockProps) => {
   }, [data.badges]);
 
   return (
-    <>
+    <Flex direction="column" gap="5" css={{ p: '$4' }}>
       <Box css={{ position: 'relative' }}>
         <Image
           src={'/img/bg_empty_cards.png'}
@@ -138,7 +138,7 @@ const ProductCardBlock = ({ data }: ProductCardBlockProps) => {
 
         <Tag label={data.product_type} color="contrast" />
       </Flex>
-    </>
+    </Flex>
   );
 };
 

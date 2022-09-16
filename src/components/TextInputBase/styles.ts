@@ -48,7 +48,7 @@ export const Container = styled('div', {
   verticalAlign: 'top',
 
   w: '$full',
-  minWidth: '15rem',
+  minWidth: '12rem',
   h: '$11',
 
   transition: 'all cubic-bezier(0.4, 0, 0.2, 1) 150ms',
