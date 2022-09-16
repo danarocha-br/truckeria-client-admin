@@ -169,7 +169,7 @@ export const inputStyles = {
   appearance: 'none',
   p: '1.24rem 1.4rem 0',
   h: '$full',
-  borderRadius: '$md',
+  borderRadius: '$xs',
 
   position: 'absolute',
   fontSize: '$base',

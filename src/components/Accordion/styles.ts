@@ -51,7 +51,7 @@ export const AccordionTrigger = styled(AccordionPrimitive.Trigger, {
   fontWeight: '$medium',
   py: '$1',
   px: '$4',
-  minHeight: 32,
+  minHeight: 44,
   w: '$full',
   flex: 1,
   d: 'flex',
@@ -59,7 +59,7 @@ export const AccordionTrigger = styled(AccordionPrimitive.Trigger, {
   justifyContent: 'space-between',
   lineHeight: 1,
   color: '$text-default',
-  transition: '$base',
+  transition: '$slow',
   whiteSpace: 'nowrap',
 
   '&[data-state="closed"]': { bg: '$action-transparent-transparent' },

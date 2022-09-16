@@ -135,9 +135,10 @@ export const NumberInput = forwardRef<Ref, NumberInputProps>(
                 size="sm"
                 css={{
                   position: 'absolute',
-                  top: 1,
-                  right: '$1',
+                  top: hasValue || hasFocus ? 2 : 26,
+                  right: hasValue ? '$1' : '$2',
                   opacity: 0.6,
+                  transition: '$slow',
                 }}
               />
             )}

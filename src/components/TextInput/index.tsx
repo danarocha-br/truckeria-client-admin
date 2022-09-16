@@ -4,7 +4,6 @@ import {
   PathValue,
   UnpackNestedValue,
   useController,
-  UseControllerProps,
 } from 'react-hook-form';
 import { TextInput as TruckeriaTextInput } from 'components/TextInputBase';
 import { iconPath } from 'components/Icon';
@@ -21,8 +20,7 @@ export type InputProps<TFormValues> = {
   disabled?: boolean;
   readOnly?: boolean;
   tooltip?: string;
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'name'> &
-  Omit<UseControllerProps<TFormValues>, 'control'>;
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'name'>;
 
 export const TextInput = <TFormValues extends Record<string, any>>({
   name,
