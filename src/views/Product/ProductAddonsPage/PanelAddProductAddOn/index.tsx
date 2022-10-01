@@ -103,46 +103,6 @@ const PanelAddProductAddOn = ({ dialog }: AddProductAddonProps) => {
             control={control}
           />
         </Flex>
-
-        {/* <Flex
-          align="center"
-          justify="center"
-          direction="column"
-          gap="6"
-          css={{
-            border: '2px dashed $surface-base-default',
-            p: '$8',
-            borderRadius: '$xs',
-          }}
-        >
-          <IconButton icon="plus" ariaLabel="Adicione produtos" />
-          <Text color="subdued">Adicione produtos ao seu grupo.</Text>
-        </Flex> */}
-
-        {/* <Flex
-          direction="column"
-          fullWidth
-          css={{
-            border: '2px solid $background-subdued',
-            p: '$3',
-            borderRadius: '$sm',
-          }}
-        >
-          <Text size="xs">Grupo 1</Text>
-          <Select
-            name="product_id"
-            label="Selecione um produto"
-            control={control}
-            options={[{ label: 1, value: 1 }]}
-          />
-
-          <NumberInput
-            name="product_price"
-            label="Preço no grupo"
-            control={control}
-            tooltip="Preço unitário a ser cobrado pelo produto quando vendido nesse grupo."
-          />
-        </Flex> */}
       </FormControl>
     </SidePanel>
   );

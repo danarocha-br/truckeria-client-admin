@@ -8,6 +8,7 @@ export * from 'components/Box';
 export * from 'components/Breadcrumb';
 export * from 'components/Button';
 export * from 'components/Callout';
+export * from 'components/Dialog';
 export * from 'components/Dropdown';
 export * from 'components/Icon';
 export * from 'components/IconButton';

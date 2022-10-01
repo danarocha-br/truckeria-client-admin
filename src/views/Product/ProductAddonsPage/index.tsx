@@ -17,6 +17,7 @@ import {
   Tooltip,
   Accordion,
   AccordionItem,
+  Dialog,
 } from 'components';
 
 import { IProduct } from '../';
@@ -26,6 +27,7 @@ import { colors } from 'styles/tokens';
 
 import { data as groups } from './mock';
 import PanelAddProductAddOn from './PanelAddProductAddOn';
+import DialogAddSingleItemToGroup from './DialogAddSingleItemToGroup';
 
 const MultiProductsList = ({
   image_URL,
@@ -222,6 +224,8 @@ const SingleProductList = ({ name }: IProduct) => {
 
 function ProductAddonsPage() {
   const addNewAddonPanel = useDialogState({});
+  const addNewSingleItemToAddonGroupPanel = useDialogState({});
+  const removeAddonGroupDialog = useDialogState({});
 
   return (
     <>
@@ -326,24 +330,32 @@ function ProductAddonsPage() {
                           }}
                         >
                           <Tooltip content="Adicione novo item">
-                            <Button
-                              icon="plus"
-                              label="adicione"
-                              variant="icon"
-                              size="sm"
-                              css={{
-                                color: '$text-default',
-                                bg: '$surface-base-subdued',
-                                p: '$1',
-                                '&:hover': {
-                                  bg: '$surface-base-hover',
-                                },
-                                [`.${darkTheme} &`]: {
-                                  color: '$text-onInteractive',
-                                  bg: transparentize(0.5, colors.neutral[700]),
-                                },
-                              }}
-                            />
+                            <DialogDisclosure
+                              {...addNewSingleItemToAddonGroupPanel}
+                              style={{ all: 'unset' }}
+                            >
+                              <Button
+                                icon="plus"
+                                label="adicione"
+                                variant="icon"
+                                size="sm"
+                                css={{
+                                  color: '$text-default',
+                                  bg: '$surface-base-subdued',
+                                  p: '$1',
+                                  '&:hover': {
+                                    bg: '$surface-base-hover',
+                                  },
+                                  [`.${darkTheme} &`]: {
+                                    color: '$text-onInteractive',
+                                    bg: transparentize(
+                                      0.5,
+                                      colors.neutral[700]
+                                    ),
+                                  },
+                                }}
+                              />
+                            </DialogDisclosure>
                           </Tooltip>
 
                           <Tooltip content="Edite esse grupo">
@@ -367,26 +379,34 @@ function ProductAddonsPage() {
                             />
                           </Tooltip>
 
-                          <Tooltip content="Delete esse grupo">
-                            <Button
-                              icon="trash"
-                              label="delete"
-                              variant="icon"
-                              size="sm"
-                              css={{
-                                color: '$text-default',
-                                bg: '$surface-base-subdued',
-                                p: '$1',
-                                '&:hover': {
-                                  bg: '$surface-base-hover',
-                                },
-                                [`.${darkTheme} &`]: {
-                                  color: '$text-onInteractive',
-                                  bg: transparentize(0.5, colors.neutral[700]),
-                                },
-                              }}
-                            />
-                          </Tooltip>
+                          <DialogDisclosure
+                            {...removeAddonGroupDialog}
+                            style={{ all: 'unset' }}
+                          >
+                            <Tooltip content="Delete esse grupo">
+                              <Button
+                                icon="trash"
+                                label="delete"
+                                variant="icon"
+                                size="sm"
+                                css={{
+                                  color: '$text-default',
+                                  bg: '$surface-base-subdued',
+                                  p: '$1',
+                                  '&:hover': {
+                                    bg: '$surface-base-hover',
+                                  },
+                                  [`.${darkTheme} &`]: {
+                                    color: '$text-onInteractive',
+                                    bg: transparentize(
+                                      0.5,
+                                      colors.neutral[700]
+                                    ),
+                                  },
+                                }}
+                              />
+                            </Tooltip>
+                          </DialogDisclosure>
                         </Flex>
                       </Flex>
 
@@ -419,10 +439,15 @@ function ProductAddonsPage() {
                             borderRadius: '$xs',
                           }}
                         >
-                          <IconButton
-                            icon="plus"
-                            ariaLabel="Adicione produtos"
-                          />
+                          <DialogDisclosure
+                            {...addNewSingleItemToAddonGroupPanel}
+                            style={{ all: 'unset' }}
+                          >
+                            <IconButton
+                              icon="plus"
+                              ariaLabel="Adicione produtos"
+                            />
+                          </DialogDisclosure>
                           <Text color="subdued">
                             Adicione produtos ao seu grupo.
                           </Text>
@@ -437,6 +462,19 @@ function ProductAddonsPage() {
       </Page>
 
       <PanelAddProductAddOn dialog={addNewAddonPanel} />
+      <DialogAddSingleItemToGroup
+        dialog={addNewSingleItemToAddonGroupPanel}
+        product_type="multi"
+      />
+      <Dialog
+        dialog={removeAddonGroupDialog}
+        title="Deseja remover esse grupo?"
+        content="Ao confirmar, esse grupo será excluído permanentemente."
+        onPrimaryLabel="Remover grupo"
+        variant="delete"
+        size="sm"
+        css={{ h: '30vh' }}
+      ></Dialog>
     </>
   );
 }

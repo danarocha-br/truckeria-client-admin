@@ -10,7 +10,7 @@ export type ButtonProps = {
   label?: string;
   ariaLabel?: string;
   icon?: keyof typeof iconPath;
-  variant?: 'primary' | 'flat' | 'success' | 'icon';
+  variant?: 'primary' | 'flat' | 'success' | 'icon' | 'danger';
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   loading?: boolean;

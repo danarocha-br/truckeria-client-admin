@@ -1,6 +1,6 @@
 import { keyframes, styled } from '../../../stitches.config';
 import { DialogBackdrop, Dialog } from 'reakit';
-import { transparentize } from 'polished';
+import { transparentize, darken } from 'polished';
 
 import { colors } from 'styles/tokens';
 
@@ -38,7 +38,7 @@ export const Container = styled(Dialog, {
   height: '$full',
 
   color: '$text-default',
-  bg: colors.neutral[600],
+  bg: darken(0.065, colors.neutral[800]),
 
   '@media (prefers-reduced-motion: no-preference)': {
     ' &[data-enter]': {
@@ -60,7 +60,7 @@ export const PanelTitle = styled('header', {
   bg: transparentize(0.3, colors.neutral[700]),
 });
 
-export const PanelContent = styled('header', {
+export const PanelContent = styled('div', {
   px: '$4',
   py: '$6',
   pb: '$12',

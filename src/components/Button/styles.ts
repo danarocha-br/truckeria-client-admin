@@ -60,6 +60,27 @@ export const Container = styled(Button, {
         },
       },
 
+      danger: {
+        bg: '$surface-danger-default',
+        color: '$text-onInteractive',
+
+        '&:hover': {
+          bg: '$surface-danger-hover',
+        },
+        '&:focus': {
+          bg: '$surface-danger-hover',
+          boxShadow: `0 0 0 1px $colors$surface-base-default,
+        0 0 0 calc(2px + 2px) $colors$surface-danger-transparent`,
+          borderColor: '$surface-base-default',
+        },
+        '&:active': {
+          bg: '$surface-danger-pressed',
+        },
+        '&:disabled': {
+          bg: '$surface-danger-disabled',
+        },
+      },
+
       success: {
         bg: '$action-success-default',
         color: '$text-onInteractive',
@@ -162,6 +183,13 @@ export const Container = styled(Button, {
     loading: {
       true: {
         opacity: 0.7,
+      },
+    },
+
+    disabled: {
+      true: {
+        cursor: 'not-allowed',
+        opacity: 0.5,
       },
     },
   },
