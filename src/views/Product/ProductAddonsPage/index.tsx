@@ -22,7 +22,6 @@ import {
 
 import { IProduct } from '../';
 import { formatCurrency } from 'utils/formatCurrency';
-import { darkTheme } from '../../../../stitches.config';
 import { colors } from 'styles/tokens';
 
 import { data as groups } from './mock';
@@ -44,6 +43,10 @@ const MultiProductsList = ({
       css={{
         p: '$3',
         bg: '$surface-base-default',
+        [`.light-theme &`]: {
+          bg: '$background-default',
+        },
+
         boxShadow: `0 0 0 2px $colors$background-subdued`,
         borderRadius: '$xs',
         mb: '$3',
@@ -101,16 +104,7 @@ const MultiProductsList = ({
               variant="icon"
               size="sm"
               css={{
-                color: '$text-default',
-                bg: '$surface-base-subdued',
                 p: '$1',
-                '&:hover': {
-                  bg: '$surface-base-hover',
-                },
-                [`.${darkTheme} &`]: {
-                  color: '$text-onInteractive',
-                  bg: transparentize(0.5, colors.neutral[700]),
-                },
               }}
             />
           </Tooltip>
@@ -122,16 +116,7 @@ const MultiProductsList = ({
               variant="icon"
               size="sm"
               css={{
-                color: '$text-default',
-                bg: '$surface-base-subdued',
                 p: '$1',
-                '&:hover': {
-                  bg: '$surface-base-hover',
-                },
-                [`.${darkTheme} &`]: {
-                  color: '$text-onInteractive',
-                  bg: transparentize(0.5, colors.neutral[700]),
-                },
               }}
             />
           </Tooltip>
@@ -151,6 +136,9 @@ const SingleProductList = ({ name }: IProduct) => {
       css={{
         p: '$3',
         bg: '$surface-base-default',
+        [`.light-theme &`]: {
+          bg: '$background-default',
+        },
         boxShadow: `0 0 0 2px $colors$background-subdued`,
         borderRadius: '$xs',
         mb: '$3',
@@ -182,16 +170,7 @@ const SingleProductList = ({ name }: IProduct) => {
               variant="icon"
               size="sm"
               css={{
-                color: '$text-default',
-                bg: '$surface-base-subdued',
                 p: '$1',
-                '&:hover': {
-                  bg: '$surface-base-hover',
-                },
-                [`.${darkTheme} &`]: {
-                  color: '$text-onInteractive',
-                  bg: transparentize(0.5, colors.neutral[700]),
-                },
               }}
             />
           </Tooltip>
@@ -206,12 +185,19 @@ const SingleProductList = ({ name }: IProduct) => {
                 color: '$text-default',
                 bg: '$surface-base-subdued',
                 p: '$1',
-                '&:hover': {
-                  bg: '$surface-base-hover',
-                },
-                [`.${darkTheme} &`]: {
+                [`.dark-theme &`]: {
                   color: '$text-onInteractive',
                   bg: transparentize(0.5, colors.neutral[700]),
+                  '&:hover': {
+                    bg: '$surface-base-hover',
+                  },
+                },
+                [`.light-theme &`]: {
+                  color: '$text-primary',
+                  bg: '$action-transparent-pressed',
+                  '&:hover': {
+                    bg: '$surface-base-subdued',
+                  },
                 },
               }}
             />
@@ -340,18 +326,11 @@ function ProductAddonsPage() {
                                 variant="icon"
                                 size="sm"
                                 css={{
-                                  color: '$text-default',
-                                  bg: '$surface-base-subdued',
                                   p: '$1',
-                                  '&:hover': {
-                                    bg: '$surface-base-hover',
-                                  },
-                                  [`.${darkTheme} &`]: {
-                                    color: '$text-onInteractive',
-                                    bg: transparentize(
-                                      0.5,
-                                      colors.neutral[700]
-                                    ),
+
+                                  [`.light-theme &`]: {
+                                    color: '$text-default',
+                                    bg: '$action-transparent-subdued',
                                   },
                                 }}
                               />
@@ -365,15 +344,11 @@ function ProductAddonsPage() {
                               variant="icon"
                               size="sm"
                               css={{
-                                color: '$text-default',
-                                bg: '$surface-base-subdued',
                                 p: '$1',
-                                '&:hover': {
-                                  bg: '$surface-base-hover',
-                                },
-                                [`.${darkTheme} &`]: {
-                                  color: '$text-onInteractive',
-                                  bg: transparentize(0.5, colors.neutral[700]),
+
+                                [`.light-theme &`]: {
+                                  color: '$text-default',
+                                  bg: '$action-transparent-subdued',
                                 },
                               }}
                             />
@@ -391,17 +366,21 @@ function ProductAddonsPage() {
                                 size="sm"
                                 css={{
                                   color: '$text-default',
-                                  bg: '$surface-base-subdued',
                                   p: '$1',
-                                  '&:hover': {
-                                    bg: '$surface-base-hover',
-                                  },
-                                  [`.${darkTheme} &`]: {
+
+                                  [`.dark-theme &`]: {
                                     color: '$text-onInteractive',
                                     bg: transparentize(
                                       0.5,
                                       colors.neutral[700]
                                     ),
+                                    '&:hover': {
+                                      bg: '$surface-base-hover',
+                                    },
+                                  },
+                                  [`.light-theme &`]: {
+                                    color: '$text-primary',
+                                    bg: '$action-transparent-subdued',
                                   },
                                 }}
                               />
@@ -437,6 +416,9 @@ function ProductAddonsPage() {
                             border: '2px dashed $surface-base-default',
                             p: '$6',
                             borderRadius: '$xs',
+                            [`.light-theme &`]: {
+                              bg: '$neutral100',
+                            },
                           }}
                         >
                           <DialogDisclosure

@@ -44,8 +44,10 @@ export const Page = ({
           '@bp-md': {
             borderTopLeftRadius: '$lg',
             borderBottomLeftRadius: '$lg',
-            bg: bgColor,
             ...css,
+            [`.dark-theme &`]: {
+              bg: bgColor,
+            },
           },
         }}
       >

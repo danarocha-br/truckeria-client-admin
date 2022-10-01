@@ -22,7 +22,13 @@ function SectionBlock({
       justify="between"
       as="section"
       css={{
-        bg: transparentize(0.3, colors.neutral[900]),
+        [`.dark-theme &`]: {
+          bg: transparentize(0.3, colors.neutral[900]),
+        },
+        [`.light-theme &`]: {
+          bg: '$background-default',
+        },
+
         borderRadius: '$md',
         py: '$6',
 

@@ -38,7 +38,13 @@ export const Container = styled(Dialog, {
   height: '$full',
 
   color: '$text-default',
-  bg: darken(0.065, colors.neutral[800]),
+
+  [`.dark-theme &`]: {
+    bg: darken(0.065, colors.neutral[800]),
+  },
+  [`.light-theme &`]: {
+    bg: '$background-default',
+  },
 
   '@media (prefers-reduced-motion: no-preference)': {
     ' &[data-enter]': {
@@ -55,9 +61,17 @@ export const Container = styled(Dialog, {
 
 export const PanelTitle = styled('header', {
   p: '$4',
-  borderBottom: '2px solid',
-  borderColor: transparentize(0.3, colors.neutral[700]),
-  bg: transparentize(0.3, colors.neutral[700]),
+
+  [`.dark-theme &`]: {
+    borderBottom: '2px solid',
+    borderColor: transparentize(0.3, colors.neutral[700]),
+    bg: transparentize(0.3, colors.neutral[700]),
+  },
+
+  [`.light-theme &`]: {
+    color: '$text-onInteractive',
+    bg: colors.neutral[500],
+  },
 });
 
 export const PanelContent = styled('div', {
@@ -72,6 +86,10 @@ export const PanelFooter = styled('footer', {
   position: 'fixed',
   bottom: '$0',
   borderTop: `2px solid ${transparentize(0.5, colors.neutral[700])}`,
+
+  [`.light-theme &`]: {
+    borderColor: '$background-subdued',
+  },
 
   d: 'flex',
   justifyContent: 'end',

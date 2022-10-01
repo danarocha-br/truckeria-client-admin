@@ -19,10 +19,33 @@ export const TabTrigger = styled(TabsPrimitive.Trigger, {
   color: '$text-default',
   opacity: 0.6,
   fontFamily: 'inherit',
-  bg: transparentize(0.24, colors.neutral[800]),
   py: '$2',
   px: '$7',
   height: 32,
+
+  [`.dark-theme &`]: {
+    bg: transparentize(0.24, colors.neutral[800]),
+
+    '&:hover': { color: '$text-warning' },
+
+    '&:focus': {
+      color: '$text-warning',
+      position: 'relative',
+      boxShadow: `0 -3px 0 3px $colors$surface-base-default`,
+    },
+  },
+
+  [`.light-theme &`]: {
+    bg: transparentize(0.5, colors.neutral[300]),
+
+    '&:hover': {
+      bg: transparentize(0.2, colors.neutral[300]),
+    },
+    '&:focus': {
+      position: 'relative',
+      boxShadow: `0 -3px 0 3px ${transparentize(0.2, colors.neutral[400])},`,
+    },
+  },
 
   d: 'flex',
   alignItems: 'center',
@@ -31,14 +54,8 @@ export const TabTrigger = styled(TabsPrimitive.Trigger, {
   userSelect: 'none',
   transition: '$base',
 
-  '&:hover': { color: '$text-warning' },
   '&[data-state="active"]': {
     opacity: 1,
-  },
-  '&:focus': {
-    color: '$text-warning',
-    position: 'relative',
-    boxShadow: `0 -3px 0 3px $colors$surface-base-default`,
   },
 });
 

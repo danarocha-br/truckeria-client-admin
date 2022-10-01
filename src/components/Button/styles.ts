@@ -1,5 +1,7 @@
+import { transparentize } from 'polished';
 import { styled } from '../../../stitches.config';
 import { Button } from 'reakit/Button';
+import { colors } from 'styles/tokens';
 
 export const Container = styled(Button, {
   color: '$text-onInteractive',
@@ -122,12 +124,21 @@ export const Container = styled(Button, {
       },
 
       icon: {
-        bg: '$action-transparent-default',
-        color: '$text-subdued',
-
-        '&:hover': {
-          bg: '$action-transparent-hover',
+        [`.dark-theme &`]: {
+          color: '$text-onInteractive',
+          bg: transparentize(0.5, colors.neutral[700]),
+          '&:hover': {
+            bg: '$surface-base-hover',
+          },
         },
+        [`.light-theme &`]: {
+          color: '$text-default',
+          bg: '$action-transparent-pressed',
+          '&:hover': {
+            bg: '$surface-base-subdued',
+          },
+        },
+
         '&:focus': {
           boxShadow: `0 0 0 1px $colors$surface-base-default,
         0 0 0 calc(2px + 2px) $colors$action-transparent-transparent`,

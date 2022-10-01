@@ -41,7 +41,29 @@ export const SidePanel = ({
             variant="icon"
             label="Feche o painel"
             size="sm"
-            css={{ position: 'absolute', right: '$3', top: '$2', p: '$1' }}
+            css={{
+              position: 'absolute',
+              right: '$3',
+              top: '$2',
+              p: '$1',
+
+              '&:focus': {
+                boxShadow: `0 0 0 1px $colors$neutral800,
+              0 0 0 calc(2px + 2px) $colors$action-transparent-transparent`,
+              },
+
+              [`.light-theme &`]: {
+                bg: '$transparent',
+                color: '$text-onInteractive',
+                '&:hover': {
+                  bg: '$action-transparent-transparent',
+                },
+                '&:focus': {
+                  boxShadow: `0 0 0 1px $colors$neutral500,
+                0 0 0 calc(2px + 2px) $colors$action-transparent-transparent`,
+                },
+              },
+            }}
           />
         </S.PanelTitle>
 

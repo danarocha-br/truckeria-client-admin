@@ -44,8 +44,8 @@ export default {
   'loading-default': colors.neutral[200],
   'loading-subdued': colors.neutral[100],
 
-  'form-default': colors.neutral[100],
-  'form-subdued': darken(0.04, colors.neutral[100]),
+  'form-default': lighten(0.02, colors.neutral[100]),
+  'form-subdued': darken(0.05, colors.neutral[100]),
   'form-hover': colors.brand,
   'form-focus': colors.brand,
   'form-disabled': desaturate(0.7, colors.neutral[100]),
@@ -71,9 +71,9 @@ export default {
   'action-transparent-default': 'transparent',
   'action-transparent-subdued': transparentize(0.1, colors.neutral[200]),
   'action-transparent-hover': transparentize(0.89, colors.neutral[200]),
-  'action-transparent-pressed': transparentize(0.8, colors.neutral[200]),
+  'action-transparent-pressed': transparentize(0.7, colors.neutral[200]),
   'action-transparent-disabled': transparentize(0.9, colors.neutral[200]),
-  'action-transparent-transparent': transparentize(0.9, colors.neutral[200]),
+  'action-transparent-transparent': transparentize(0.85, colors.neutral[200]),
 
   'surface-info-default': colors.blue[500],
   'surface-info-subdued': colors.blue[100],

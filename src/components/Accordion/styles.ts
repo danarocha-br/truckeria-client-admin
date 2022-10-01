@@ -1,5 +1,7 @@
 import { keyframes, styled } from '../../../stitches.config';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
+import { darken } from 'polished';
+import { colors } from 'styles/tokens';
 
 const slideDown = keyframes({
   from: { height: 0 },
@@ -62,8 +64,18 @@ export const AccordionTrigger = styled(AccordionPrimitive.Trigger, {
   transition: '$slow',
   whiteSpace: 'nowrap',
 
-  '&[data-state="closed"]': { bg: '$action-transparent-transparent' },
-  '&[data-state="open"]': { bg: '$action-transparent-transparent' },
+  '&[data-state="closed"]': {
+    bg: '$action-transparent-transparent',
+    [`.light-theme &`]: {
+      bg: '$background-default',
+    },
+  },
+  '&[data-state="open"]': {
+    bg: '$action-transparent-transparent',
+    [`.light-theme &`]: {
+      bg: '$background-default',
+    },
+  },
   '&:hover': { bg: '$surface-base-subdued' },
 
   '& .accordion__trigger': {
@@ -77,6 +89,9 @@ export const AccordionContent = styled(AccordionPrimitive.Content, {
   fontSize: 15,
   color: '$text-default',
   bg: '$action-transparent-pressed',
+  [`.light-theme &`]: {
+    bg: darken(0.05, colors.neutral[100]),
+  },
   p: '$4',
 
   '&[data-state="open"]': {

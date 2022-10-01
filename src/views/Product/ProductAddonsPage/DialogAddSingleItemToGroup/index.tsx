@@ -156,16 +156,7 @@ const DialogAddSingleItemToGroup = ({
                   size="sm"
                   disabled={multiFields.length <= 1 ? true : false}
                   css={{
-                    color: '$text-default',
-                    bg: '$surface-base-subdued',
                     p: '$1',
-                    '&:hover': {
-                      bg: '$surface-base-hover',
-                    },
-                    [`.${darkTheme} &`]: {
-                      color: '$text-onInteractive',
-                      bg: transparentize(0.5, colors.neutral[700]),
-                    },
                   }}
                   onClick={() => multiRemove(index)}
                 />
@@ -177,17 +168,7 @@ const DialogAddSingleItemToGroup = ({
                       variant="icon"
                       size="sm"
                       css={{
-                        color: '$text-default',
-                        bg: '$surface-base-subdued',
                         p: '$1',
-                        '&:hover': {
-                          bg: '$surface-base-hover',
-                        },
-                        '&:disabled': { opacity: 0 },
-                        [`.${darkTheme} &`]: {
-                          color: '$text-onInteractive',
-                          bg: transparentize(0.5, colors.neutral[700]),
-                        },
                       }}
                       onClick={() => multiAppend({ ...multiItemDefaultValues })}
                     />

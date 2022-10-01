@@ -33,6 +33,11 @@ export const Container = styled(Dialog, {
 
   color: '$text-default',
   bg: '$background-subdued',
+
+  [`.light-theme &`]: {
+    bg: '$background-default',
+  },
+
   boxShadow:
     'hsl(206 22% 7% / 100%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
 
@@ -87,6 +92,7 @@ export const PanelTitle = styled('header', {
   borderBottom: '2px solid',
   borderColor: '$surface-base-default',
   d: 'inline-flex',
+  w: '$full',
 });
 
 export const PanelContent = styled('div', {
@@ -97,6 +103,11 @@ export const PanelContent = styled('div', {
 
 export const PanelFooter = styled('footer', {
   bg: '$background-subdued',
+
+  [`.light-theme &`]: {
+    bg: '$background-default',
+  },
+
   p: '$4',
   position: 'fixed',
   bottom: '$0',
