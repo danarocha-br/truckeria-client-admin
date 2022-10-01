@@ -123,7 +123,6 @@ function SingleProductPage() {
   }
 
   const productType = watch('product_type');
-  console.log(productType);
 
   // const costPrice = watch('cost_price');
   // const marginPrice = watch('margin_price');
@@ -176,13 +175,21 @@ function SingleProductPage() {
                 top: '$2',
                 right: '$4',
                 zIndex: 3,
-                bg: '$neutral800',
+
                 w: '$7',
                 h: '$7',
                 p: 6,
                 borderRadius: '$round',
                 '@bp-lg': {
                   d: 'block',
+                },
+
+                [`.dark-theme &`]: {
+                  bg: '$neutral800',
+                },
+
+                [`.light-theme &`]: {
+                  bg: '$white',
                 },
               }}
             >
@@ -202,7 +209,7 @@ function SingleProductPage() {
           <Tabs
             defaultValue="Detalhes básicos"
             css={{
-              bg: transparentize(0.2, colors.neutral[300]),
+              bg: '$surface-base-subdued',
               h: '$9',
 
               '@bp-md': {
@@ -210,7 +217,7 @@ function SingleProductPage() {
                 borderTopLeftRadius: '$lg',
               },
 
-              '@dark': {
+              [`.dark-theme &`]: {
                 bg: transparentize(0.3, colors.neutral[500]),
               },
             }}
@@ -226,6 +233,7 @@ function SingleProductPage() {
                   px: 4,
                   mr: 8,
                   mt: 4,
+                  bg: 'transparent !important',
 
                   '@bp-md': {
                     ml: '$-5',

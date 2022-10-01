@@ -108,6 +108,7 @@ export const Tr = styled('tr', {
   '& td:first-child::before': {
     content: '',
     position: 'absolute',
+    top: '$0',
     h: '$full',
     w: '6px',
     bg: '$yellow300',
@@ -156,7 +157,6 @@ export const Td = styled('td', {
 
   '&:first-child': {
     px: '$0',
-    borderRight: 'none',
     d: 'none',
   },
 

@@ -4,15 +4,15 @@ export default {
     icon: 'truck',
     href: '/orders',
   },
-  Menu: {
-    label: 'Cardápio',
-    icon: 'book',
-    href: '/menu',
-  },
   Products: {
     label: 'Produtos',
     icon: 'products',
     href: '/products',
+  },
+  Menu: {
+    label: 'Cardápio',
+    icon: 'book',
+    href: '/menu',
   },
   Schedule: {
     label: 'Cronograma',

@@ -4,7 +4,7 @@ import * as colors from '../tokens/colors';
 
 export default {
   'background-default': colors.neutral[900],
-  'background-subdued': darken(0.02, colors.neutral[800]),
+  'background-subdued': darken(0.04, colors.neutral[800]),
 
   'surface-base-default': colors.neutral[800],
   'surface-base-subdued': colors.neutral[700],

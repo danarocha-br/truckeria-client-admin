@@ -86,7 +86,8 @@ export const {
       'focus-sm':
         '$colors$surface-base-default 0px 0px 0px 3px, $colors$loading-default 0px 0px 0px 6px',
       'focus-highlight':
-        '$colors$surface-base-default 0px 0px 0px 5px, $colors$yellow500 0px 0px 0px 9px',
+        '$colors$background-subdued 0px 0px 0px 5px, $colors$yellow500 0px 0px 0px 9px',
+
       none: 'none',
     },
     transitions: {
@@ -257,6 +258,19 @@ export type CSS = Stitches.CSS<typeof config>;
 export const lightTheme = createTheme('light-theme', {
   colors: {
     ...light,
+  },
+  shadows: {
+    10: '0px 4px 10px rgba(0, 0, 0, 0.05)',
+    15: '0px 1px 15px rgba(0, 0, 0, 0.04)',
+    30: '0px 4px 30px rgba(0, 0, 0, 0.08)',
+    focus:
+      '$colors$surface-base-default 0px 0px 0px 5px, $colors$loading-default 0px 0px 0px 9px',
+    'focus-sm':
+      '$colors$surface-base-default 0px 0px 0px 3px, $colors$loading-default 0px 0px 0px 6px',
+    'focus-highlight':
+      '$colors$background-subdued 0px 0px 0px 5px, $colors$yellow500 0px 0px 0px 9px',
+
+    none: 'none',
   },
 });
 

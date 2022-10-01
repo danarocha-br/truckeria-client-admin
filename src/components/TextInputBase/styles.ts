@@ -48,7 +48,7 @@ export const Container = styled('div', {
   verticalAlign: 'top',
 
   w: '$full',
-  minWidth: '15rem',
+  minWidth: '12rem',
   h: '$11',
 
   transition: 'all cubic-bezier(0.4, 0, 0.2, 1) 150ms',
@@ -169,7 +169,7 @@ export const inputStyles = {
   appearance: 'none',
   p: '1.24rem 1.4rem 0',
   h: '$full',
-  borderRadius: '$md',
+  borderRadius: '$xs',
 
   position: 'absolute',
   fontSize: '$base',

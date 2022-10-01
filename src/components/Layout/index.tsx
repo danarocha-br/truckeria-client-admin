@@ -33,7 +33,7 @@ export const Layout = ({
             bg: '$white',
             borderTopLeftRadius: '$lg',
             borderBottomLeftRadius: '$lg',
-            p: '$4',
+
             zIndex: 2,
             position: 'fixed',
             w: '30%',
