@@ -138,7 +138,7 @@ function SingleProductPage() {
   //TODO animation on panel toggle
 
   return (
-    <Page removePadding bgColor={transparentize(0.5, colors.neutral[600])}>
+    <Page removePadding bgColor={transparentize(0.1, colors.neutral[800])}>
       <Layout sidePanel={isPanelActive && <ProductCardBlock data={product} />}>
         <Box
           css={{

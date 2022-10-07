@@ -25,4 +25,42 @@ export const data = {
   direct_sale: true,
   display_featured: false,
   display_new_item: true,
+  additional_items: [
+    {
+      id: '2',
+      name: 'Ponto da carne',
+      title: 'Escolha os molhos',
+      internal_name: 'molhos',
+      type: 'single',
+      price: 15,
+      items: [
+        {
+          id: '1',
+          name: 'Ponto médio',
+        },
+        {
+          id: '2',
+          name: 'Ponto mais',
+        },
+        {
+          id: '3',
+          name: 'Ponto a menos',
+        },
+      ],
+    },
+  ],
+
+  // additional_items: [{
+  //   group_name: 'Ponto da carne',
+  //   type: 'mandatory',
+  //   min_quantity: 0,
+  //   max_quantity: 0,
+  //   isActive: true,
+  //   items: {
+  //     id: '1',
+  //     item_id: 0,
+  //     item_name: 0,
+  //     item_price: 0,
+  //     isActive: 0,
+  //   }]
 };

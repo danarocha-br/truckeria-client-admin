@@ -31,7 +31,7 @@ export const TabTrigger = styled(TabsPrimitive.Trigger, {
   transition: '$base',
 
   [`.dark-theme &`]: {
-    bg: transparentize(0.24, colors.neutral[800]),
+    bg: transparentize(0.15, colors.neutral[800]),
     borderLeft: `2px solid ${transparentize(0.24, colors.neutral[800])}`,
 
     '&:hover': { color: '$text-warning' },
@@ -56,6 +56,7 @@ export const TabTrigger = styled(TabsPrimitive.Trigger, {
   },
 
   '&[data-state="active"]': {
+    color: '$text-warning',
     opacity: 1,
     borderLeftWidth: 0,
   },

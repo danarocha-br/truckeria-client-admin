@@ -28,7 +28,7 @@ import { data as groups } from './mock';
 import PanelAddProductAddOn from './PanelAddProductAddOn';
 import DialogAddSingleItemToGroup from './DialogAddSingleItemToGroup';
 
-const MultiProductsList = ({
+export const MultiProductsList = ({
   image_URL,
   name,
   price,
@@ -126,7 +126,7 @@ const MultiProductsList = ({
   );
 };
 
-const SingleProductList = ({ name }: IProduct) => {
+export const SingleProductList = ({ name }: IProduct) => {
   const [isHovered, setHovered] = useState(false);
 
   return (
@@ -302,10 +302,14 @@ function ProductAddonsPage() {
                       }
                     >
                       <Flex align="center" css={{ mb: '$2' }}>
-                        <Text size="sm" css={{ whiteSpace: 'nowrap' }}>
-                          Valor total: {` `}
-                          <b>{formatCurrency(group.price)}</b>
-                        </Text>
+                        {group.type === 'multi' && (
+                          <>
+                            <Text size="sm" css={{ whiteSpace: 'nowrap' }}>
+                              Valor total: {` `}
+                              <b>{formatCurrency(group.price)}</b>
+                            </Text>
+                          </>
+                        )}
 
                         <Flex
                           justify="end"
