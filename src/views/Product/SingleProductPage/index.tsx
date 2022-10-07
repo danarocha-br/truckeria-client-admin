@@ -244,6 +244,7 @@ function SingleProductPage() {
               <TabTitle
                 title={productType === 'single' ? 'Complementos' : 'Combo'}
               />
+              <TabTitle title="Menus" />
             </TabList>
 
             <TabContent title="Detalhes básicos">
@@ -495,6 +496,8 @@ function SingleProductPage() {
                 <ComboForm />
               </TabContent>
             )}
+
+            <TabContent title="Menus">ho</TabContent>
           </Tabs>
         </Box>
       </Layout>

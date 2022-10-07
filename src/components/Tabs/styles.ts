@@ -22,9 +22,17 @@ export const TabTrigger = styled(TabsPrimitive.Trigger, {
   py: '$2',
   px: '$7',
   height: 32,
+  w: 120,
+  d: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  userSelect: 'none',
+  transition: '$base',
 
   [`.dark-theme &`]: {
     bg: transparentize(0.24, colors.neutral[800]),
+    borderLeft: `2px solid ${transparentize(0.24, colors.neutral[800])}`,
 
     '&:hover': { color: '$text-warning' },
 
@@ -47,15 +55,9 @@ export const TabTrigger = styled(TabsPrimitive.Trigger, {
     },
   },
 
-  d: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-
-  userSelect: 'none',
-  transition: '$base',
-
   '&[data-state="active"]': {
     opacity: 1,
+    borderLeftWidth: 0,
   },
 });
 
